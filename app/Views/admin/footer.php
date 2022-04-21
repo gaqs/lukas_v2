@@ -1,7 +1,7 @@
-<!-- Modal edit cuestionario y usuario -->
+<!-- Modal edit cuestionario,usuario, fechas, etc... -->
 <div class="modal fade" id="edit_modal" tabindex="-1" aria-labelledby="edit_modal_label" aria-hidden="true">
   <div class="modal-dialog modal-xl px-5 pt-0">
-    <div class="modal-content">
+    <div class="modal-content p-3">
       <div class="modal-header">
         <h5 class="modal-title" id="edit_modal_label">Editar</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close" name="button"></button>
@@ -47,6 +47,13 @@
   $(document).ready(function() {
 
     var url = "<?= base_url()?>";
+    
+    //cambia icono izq boton por icono carga y bloquea boton
+    $('body').on('click', '.submit_something', function(){
+      console.log( $(this).children()[0] )
+      $(this).addClass('disabled')
+      $(this).children().removeClass().addClass('fa-solid fa-circle-notch fa-spin').prop('disabled', true)
+    });
 
     $('#users_table').DataTable({
         "language" : {
@@ -69,6 +76,32 @@
           url : url + "/admin/edit_form",
           type: "GET",
           data: "user_survey_id=" + id,
+          success: function(html){
+            $('#edit_modal .modal-dialog .modal-content').html(html);
+            $('#edit_modal').modal('toggle');
+          }
+        });
+      });
+
+      $('body').on('click', '#submit_status', function(){
+        var id = $(this).val();
+        $.ajax({
+          url : url + "/admin/edit_form",
+          type: "GET",
+          data: "user_survey_id=" + id,
+          success: function(html){
+            $('#edit_modal .modal-dialog .modal-content').html(html);
+            $('#edit_modal').modal('toggle');
+          }
+        });
+      });
+
+      $('body').on('click', '#edit_survey', function(){
+        var id = $(this).val();
+        $.ajax({
+          url : url + "/admin/edit_survey",
+          type: "GET",
+          data: "id=" + id,
           success: function(html){
             $('#edit_modal .modal-dialog .modal-content').html(html);
             $('#edit_modal').modal('toggle');

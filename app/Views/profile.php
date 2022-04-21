@@ -40,13 +40,17 @@
 				                      <input type="text" class="form-control" id="input_rut" name="rut" value="<?= $user['user_rut']; ?>" readonly>
 				                    </div>
 
-					    							<div class="col-7 mb-2">
+					    							<div class="col-4 mb-2">
 					    								<label for="input_email" class="form-label">Correo electrónico</label>
 					    								<span class="fas fa-envelope icon-input"></span>
-					    								<input type="email" class="form-control" id="input_email" aria-describedby="" value="<?= $user['user_email']; ?>" readonly>
+					    								<input type="email" class="form-control" id="input_email" name="email" aria-describedby="" value="<?= $user['user_email']; ?>" readonly>
 					    							</div>
-
-														<div class="col-5">
+														<div class="col-4 mb-2">
+					    								<label for="input_email" class="form-label">Correo opcional</label>
+					    								<span class="fas fa-envelope icon-input"></span>
+					    								<input type="email" class="form-control" id="input_optional_email" name="optional_email" aria-describedby="" value="<?= $user['optional_email']; ?>">
+					    							</div>
+														<div class="col-4">
 															<label for="input_phone" class="form-label">Teléfono</label>
 															<div class="input-group">
 																<span class="input-group-text">+56 9</span>
@@ -114,15 +118,15 @@
 				    						<h2 class="card-title">Empresa</h2>
 				    						<hr>
 
-												<!--
-												<div class="form-check mb-5">
-												  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-												  <label class="form-check-label" for="flexCheckDefault">
-												    No poseo una empresa
+												<div class="form-check my-4">
+												  <input class="form-check-input" type="checkbox" value="" id="bussiness_check" <?= ($user['status'] == '1' ? 'checked disabled' : null) ?>>
+												  <label class="form-check-label" for="bussiness_check">
+												    DESEO INSCRIBIR MI EMPRESA
 												  </label>
 												</div>
-											-->
+
 				    						<form id="business_form" class="" action="<?= base_url('users/profile');?>" method="post">
+													<input type="hidden" name="business_id" value="<?= $user['user_business_id'] ?? null ?>">
 				                  <div class="row mb-3">
 				                    <div class="col-12 mb-2">
 				                      <label for="input_name" class="form-label">Nombre negocio</label>
@@ -146,19 +150,16 @@
 						    								<input type="text" class="form-control" id="input_phone" name="business_phone" value="<?= set_value('business_phone',$user['user_business_phone']);?>" maxlength="8">
 															</div>
 					    							</div>
-
 					    							<div class="col-8 mb-2">
 					    								<label for="input_email" class="form-label">Página web</label>
 					    								<i class="fa-brands fa-chrome icon-input"></i>
-					    								<input type="text" class="form-control" id="input_webpage" name="business_webpage" value="<?= set_value('business_webpage', $user['webpage']) ?>">
+					    								<input type="url" class="form-control" id="input_webpage" name="business_webpage" placeholder="https://example.com" pattern="https://.*" value="<?= set_value('business_webpage', $user['webpage']) ?>">
 					    							</div>
-
 														<div class="col-6">
 					    								<label for="input_address" class="form-label">Representante legal</label>
 					    								<i class="fa-solid fa-user-tie icon-input"></i>
 					    								<input type="text" class="form-control" id="input_legal_representative" name="legal_representative" aria-describedby="" value="<?= set_value('legal_representative',$user['legal_representative']);?>" >
 					    							</div>
-
 														<div class="col-6">
 					    								<label for="input_address" class="form-label">Posicion representante</label>
 					    								<i class="fa-solid fa-briefcase icon-input"></i>
@@ -174,7 +175,7 @@
 
 													<div class="row">
 														<div class="col-md-6">
-																<a type="button" href="<?= base_url('home/delete_business'); ?>" class="btn btn-danger mt-5 w-100 submit_something" data-bs-toggle="modal" data-bs-target="#delete_modal" data-bs-whatever="@mdo"><i class="fa-solid fa-trash-can"></i> Eliminar</a>
+																<a href="<?= base_url('users/delete_business?id='.$user['user_business_id']); ?>" class="btn btn-danger mt-5 w-100 submit_something"><i class="fa-solid fa-trash-can"></i> Eliminar</a>
 														</div>
 														<div class="col-md-6">
 																<button type="submit" value="business" name="submit_form" class="btn btn-primary mt-5 w-100 submit_something"><i class="fas fa-edit"></i> Actualizar</button>

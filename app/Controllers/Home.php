@@ -20,6 +20,8 @@ class Home extends BaseController
 
     public function forms(){
       $db = db_connect();
+      $survey_answer_model = new SurveyAnswersModel();
+
       $data = [];
       $data['survey_id'] = $this->request->getVar('survey_id');
 
@@ -27,7 +29,7 @@ class Home extends BaseController
       $files_directory  = ROOTPATH . 'public/files/usuarios/' . session()->get('rut') . '/' . $data['survey_id'] . '/';
 
       if( $this->request->getMethod() == 'get' ){
-        $scanned_dir = array_map('basename', glob($form_directory."\\*.json", GLOB_BRACE));
+        $scanned_dir = array_map('basename', glob($form_directory."*.json", GLOB_BRACE));
 
         for ($i=0; $i < count($scanned_dir); $i++) { //crear funcion
           $id = substr($scanned_dir[$i], 0,1);
@@ -39,12 +41,7 @@ class Home extends BaseController
 
         //respuestas formulario si existe
         $data['answers'] = [];
-        $query = $db->table('survey_answers sa')
-                    ->select('sa.section, sa.question_number, sa.answer, us.results_id')
-                    ->join('users_surveys us', 'us.id = sa.users_surveys_id')
-                    ->where('us.surveys_id', $data['survey_id'] )
-                    ->where('us.user_id', session()->get('id'))
-                    ->get()->getResultArray();
+        $query = $survey_answer_model->survey_answers_per_user( $data['survey_id'], session()->get('id') );
 
         if( !empty($query) ){
           if ($query[0]['results_id'] == '3') {
@@ -55,7 +52,6 @@ class Home extends BaseController
             $data['answers'] = reorder_answers($query);
           }
         }
-
         //archivos de la encuesta si es que existen
         $file_list = [];
         $list = directory_map($files_directory);
@@ -73,8 +69,7 @@ class Home extends BaseController
         echo view('navbar');
         echo view('forms', $data);
         echo view('footer');
-
-      }//end if get
+      }//end get
 
       if( $this->request->getMethod() == 'post' ){
         $user_survey_id = 0;
@@ -101,35 +96,21 @@ class Home extends BaseController
         }else{
 
           for ($i=0; $i < count($query); $i++) { //todos los formularios
-            if( $data['survey_id'] == $query[$i]['surveys_id'] ){//si respondio previamente el fom "x"
+            if( $data['survey_id'] == $query[$i]['surveys_id'] ){//si respondio previamente el form "x"
               $user_survey_id = $query[$i]['id'];
               break;
             }
           }
         }//end if empty
 
-        $answers = new SurveyAnswersModel();
-
         $datos  = $this->request->getVar('data');
         $files  = $this->request->getFiles();
-
-        if ( $files ) { //crear funcion
-          $comp = $files['comp'];
-          for ($i=0; $i < count($comp); $i++) {
-            if ( $comp[$i]->getSize() != 0 ) {
-                array_map('unlink', glob( $files_directory . '1_'.$i.'_comp.*' )); //deprecated??
-                $name = '1_'.$i.'_comp.'.$comp[$i]->guessExtension(); //nombre: [seccion]_[numero archivo]_comp.[extension]
-                $comp[$i]->move($files_directory, $name);
-            }
-          }
-
-          $file = $files['file'];
-          for ($j=0; $j < count($file); $j++) {
-            if( $file[$j]->getSize() != 0 ){
-              array_map('unlink', glob( $files_directory . '2_'.$j.'_file.*' ));
-              $name = '2_'.$j.'_file.'.$file[$j]->guessExtension();
-              $file[$j]->move($files_directory, $name);
-            }
+         //manejo de archivos del formulario
+        if ( $files ) {
+          $aux = '1';
+          foreach ($files as $key => $value) {
+            manage_files( $aux, $files, $key, $files_directory ); //manage_files( $seccion formulario, $arreglo completo archivos, $key del array, $directorio )
+            $aux++;
           }
         }
 
@@ -137,7 +118,7 @@ class Home extends BaseController
           for ($j=0; $j < count($datos[$i]); $j++) {
 
             $userAnswers = [];
-            $query = $answers->select('id')
+            $query = $survey_answer_model->select('id')
                               ->where('users_surveys_id', $user_survey_id)
                               ->where('section', $i)
                               ->where('question_number', $j)
@@ -154,7 +135,7 @@ class Home extends BaseController
               'deleted_at'       => NULL
             ];
 
-            $answers->save($userAnswers);
+            $survey_answer_model->save($userAnswers);
 
           }//end for
         }//end for
@@ -165,6 +146,7 @@ class Home extends BaseController
       }//end request post
 
     }//end form function
+
 
     public function recover_info(){
       $db = db_connect();

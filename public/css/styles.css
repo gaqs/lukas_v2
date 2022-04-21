@@ -2,7 +2,42 @@ body{
   background-color: #e1e1e1;
   font-family: 'Roboto', sans-serif;
 }
+.passion-one-font{
+  font-family: 'Passion One', cursive;
+}
+.anton-font{
+  font-family: 'Anton', sans-serif;
+}
+.news_card_container{
+  overflow: hidden;
+height: 400px;
+justify-content: center;
+align-items: center;
+}
+.news_card_container img{
+  width: max-content;
+  display: block;
+  text-align: center;
+}
 
+.back{
+  background-image: url("../public/img/ganadores_blur.jpg");
+  height: 500px;
+  background-attachment: fixed;
+  background-position: 50% 30%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  /* margin-top: -140px; */
+  -webkit-filter: blur(0px) brightness(70%); /* Safari 6.0 - 9.0 */
+  filter: blur(0px) brightness(70%);
+}
+
+.carousel{
+box-shadow: rgba(50, 50, 93, 0.5) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
 .icon-input {
   position: absolute;
   z-index: 2;
@@ -42,6 +77,10 @@ body{
 
 .nav_register{
   margin-left: 3rem;
+}
+
+.card-img-overlay{
+  top: inherit !important;
 }
 
 @media (max-width: 576px) {

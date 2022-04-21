@@ -15,7 +15,7 @@ class Users extends BaseController
           //validation rules
           $rules = [
             'email'     => ['label'=>'correo electrónico', 'rules' => 'required|min_length[6]|max_length[50]|valid_email|verified_user[email]'],
-            'password'  => ['label'=>'contraseña',         'rules' => 'required|min_length[6]|max_length[255]|validate_user[email,password]']
+            'password'  => ['label'=>'contraseña', 'rules' => 'required|min_length[6]|max_length[255]|validate_user[email,password]']
           ];
           $errors = [
             'email' => [
@@ -58,14 +58,13 @@ class Users extends BaseController
       if( $this->request->getMethod() == 'post'){
         //reglas de validacion
         $rules = [
-          'name'            => ['label' => 'nombre',              'rules' => 'required|min_length[3]|max_length[20]'],
-          'lastname'        => ['label' => 'apellido',            'rules' => 'required|min_length[3]|max_length[20]'],
-          'email'           => ['label' => 'correo electrónico',  'rules' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[users.email]'],
-          'rut'             => ['label' => 'rut',                 'rules' => 'required|min_length[9]|max_length[12]|is_unique[users.rut]|validate_rut[users.rut]'],
-          'password'        => ['label' => 'contraseña',          'rules' => 'required|min_length[6]|max_length[255]'],
-          'repeat_password' => ['label' => 'confirmar contraseña',  'rules' => 'matches[password]']
+          'name'            => ['label' => 'nombre', 'rules' => 'required|min_length[3]|max_length[20]'],
+          'lastname'        => ['label' => 'apellido', 'rules' => 'required|min_length[3]|max_length[20]'],
+          'email'           => ['label' => 'correo electrónico', 'rules' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[users.email]'],
+          'rut'             => ['label' => 'rut', 'rules' => 'required|min_length[9]|max_length[12]|is_unique[users.rut]|validate_rut[users.rut]'],
+          'password'        => ['label' => 'contraseña', 'rules' => 'required|min_length[6]|max_length[255]'],
+          'repeat_password' => ['label' => 'confirmar contraseña', 'rules' => 'matches[password]']
         ];
-
         $errors = [
             'rut' => [
               'validate_rut' => 'El RUT ingresado contiene errores.'
@@ -88,10 +87,10 @@ class Users extends BaseController
           $data['link'] = base_url('users/email_validation?key='.$data['email'].'&token='.$token);
 
           $userData = [
-            'name'                      => $data['name'],
-            'lastname'                  => $data['lastname'],
+            'name'                      => ucwords(strlower($data['name'])),
+            'lastname'                  => ucwords(strlower($data['lastname'])),
             'rut'                       => $data['rut'],
-            'email'                     => $data['email'],
+            'email'                     => strlower($data['email']),
             'password'                  => $password,
             'email_verification_token'  => $token
           ];
@@ -109,8 +108,7 @@ class Users extends BaseController
           }
 
         }
-      }
-
+      }//end post
       echo view('header');
       echo view('navbar');
       echo view('register',$data);
@@ -167,13 +165,13 @@ class Users extends BaseController
 
           //reglas de validacion
           $rules = [
-            'name'      => ['label' => 'nombre',    'rules' => 'required|min_length[3]|max_length[20]'],
+            'name'      => ['label' => 'nombre', 'rules' => 'required|min_length[3]|max_length[20]'],
             'lastname'  => ['label' => 'apellidos', 'rules' => 'required|min_length[3]|max_length[20]'],
           ];
           //solo si se envia via post la password
           if($this->request->getPost('password') != '' ){
             $rules = [
-              'password'        => ['label' => 'contraseñas',        'rules' => 'required|min_length[6]|max_length[255]'],
+              'password'        => ['label' => 'contraseñas', 'rules' => 'required|min_length[6]|max_length[255]'],
               'repeat_password' => ['label' => 'repetir contraseña', 'rules' => 'matches[password]']
             ];
           }
@@ -182,22 +180,24 @@ class Users extends BaseController
           }else{
             //guardar informacion de usuario
             $userData = [
-              'id'        => session()->get('id'),
-              'name'      => $this->request->getVar('name'),
-              'lastname'  => $this->request->getVar('lastname'),
-              'phone'     => $this->request->getVar('phone'),
-              'address'   => $this->request->getVar('address'),
-              'occupation'=> $this->request->getVar('occupation'),
-              'deleted_at'=> NULL
+              'id'             => session()->get('id'),
+              'name'           => $this->request->getVar('name'),
+              'lastname'       => $this->request->getVar('lastname'),
+              'phone'          => '9' . $this->request->getVar('phone'),
+              'optional_email' =>$this->request->getVar('optional_email'),
+              'address'        => $this->request->getVar('address'),
+              'occupation'     => $this->request->getVar('occupation'),
+              'deleted_at'     => NULL
             ];
             //solo si se envia via post la password
             if($this->request->getPost('password') != '' ){
               $userData['password'] = $this->request->getPost('password');
             }
             $user_model->save($userData);
-
+            //actualiza cambios en el nombre y apellido
             session()->set('name', $userData['name']);
             session()->set('lastname', $userData['lastname']);
+
             session()->setFlashdata('success','Actualización usuario completa');
         }//end user
       }
@@ -224,6 +224,7 @@ class Users extends BaseController
             $businessData = [
               'user_id'                 => session()->get('id'),
               'rut'                     => $this->request->getVar('business_rut'),
+              'status'                  => '1',
               'business_name'           => $this->request->getVar('business_name'),
               'address'                 => $this->request->getVar('business_address'),
               'phone'                   => $this->request->getVar('business_phone'),
@@ -235,7 +236,6 @@ class Users extends BaseController
 
             $business = $users_business_model->where('user_id', session()->get('id'))
                                              ->first();
-
             if( $business != null ){
               $user_id = [ 'id' => $business['id'] ];
               $businessData = array_merge( $businessData, $user_id );
@@ -279,6 +279,15 @@ class Users extends BaseController
       echo view('footer');
 
     }//end profile
+
+    public function delete_business(){
+      $id = $this->request->getVar('id');
+
+      $users_business_model = new UsersBusinessModel();
+      $users_business_model->delete(['id'=> $id]);
+
+      return redirect()->to( base_url('users/profile') )->with('success','Actualización negocio completa');
+    }
 
     public function resend_validation(){ //resend funciona solo previa validacion de login que correo existe
       $data['email'] = $this->request->getVar('email');
@@ -345,8 +354,7 @@ class Users extends BaseController
               $send = send_email($user['email'], '', 'Olvidaste tu contraseña', $message, '');
 
               if( $send ){
-                session()->setFlashdata('success','Correo de recuperación enviado correctamente.');
-                return redirect()->to('/');
+                return redirect()->to('/')->with('success','Correo de recuperación enviado correctamente.');
               }else{
                 session()->setFlashdata('failure','Error al enviar el correo de recuepración.');
               }

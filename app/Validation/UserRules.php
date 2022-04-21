@@ -23,11 +23,9 @@ class UserRules
                   ->first();
 
     if($user != null){
-      if( $user['email_verified_at'] == '0000-00-00 00:00:00'){ return false; }
+      if( $user['email_verified_at'] == NULL ){ return false; }
     }
-
     return true;
-
   }
 
   public function validate_rut(string $str, string $fields, array $data){

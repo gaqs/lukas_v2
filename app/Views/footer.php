@@ -13,6 +13,7 @@
               </div>
           </footer>
         </div> <!-- /end footer -->
+        
       </div><!-- /end sidenav_content && authentication_content-->
     </div><!-- /end sidenav && authentication -->
 
@@ -101,6 +102,9 @@
 
 <script type="text/javascript" src="<?= base_url('dist/bootstrap-5.1.3/js/bootstrap.bundle.js');?>"></script>
 <script type="text/javascript" src="<?= base_url('js/scrollreveal.js');?>"></script>
+
+<script type="text/javascript" src="<?= base_url('js/file-validator.js');?>"></script>
+
 <script type="text/javascript" src="<?= base_url('js/scripts.js?v=0.1');?>"></script>
 
 <!-- Custom script -->
@@ -109,7 +113,22 @@
 $(document).ready(function(){
   var url = '<?= base_url();?>';
 
-  //form validation
+  $('input[type=file]').fileValidator({
+    onInvalid:
+      function(type, file){
+        $(this).addClass('is-invalid').val('');
+        $(this).next('.feedback').addClass('invalid-feedback').html('Archivo inválido.');
+      },
+    onValidation:
+      function(files){
+        $(this).removeClass('is-invalid');
+        $(this).next('.feedback').removeClass('invalid-feedback').html('');
+      },
+    maxSize: '20000000',
+    type: 'image/jpeg image/jpg image/png application/pdf application/msword application/vnd.ms-powerpoint application/vnd.ms-excel application/vnd.openxmlformats-officedocument.wordprocessingml.document application/vnd.openxmlformats-officedocument.spreadsheetml.sheet application/vnd.oasis.opendocument.spreadsheet application/vnd.oasis.opendocument.text'
+    //.jpeg .jpg .png .pdf .doc .xls .docx .xslx .odt .odf
+  });
+
   $('body').on('click', '#send_form', function(){
     var data = new FormData( $('#form')[0] );
     $.ajax({
@@ -119,6 +138,7 @@ $(document).ready(function(){
       processData: false,
       contentType: false,
       success: function(html){
+        console.log(html);
         var obj = JSON.parse(html);
         if( obj.status == 'error'){
           $('#error_form').addClass('alert-danger').html(obj.data);
@@ -134,6 +154,7 @@ $(document).ready(function(){
       }
     });
   });
+
 
   //borrar archivos dentro del formulario
   $('body').on('click', '#delete_file', function(){
@@ -211,6 +232,16 @@ $(document).ready(function(){
     $('#alert_toast .toast-body').html(failure);
     $('#alert_toast').toast('show');
   }
+
+  //check habilitar empresa
+  var status = "<?= $user['status'] ?? null; ?>";
+  if( status == '0' || status == '' ){
+    $('#business_form input').prop('disabled', true);
+  }
+  $('#bussiness_check').change(function(){
+    $('#business_form input').prop('disabled', false);
+  });
+
 
 });//end document ready
 </script>

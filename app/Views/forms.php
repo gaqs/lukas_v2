@@ -50,12 +50,13 @@
           echo '<div class="archivos_adjuntos">';
           foreach ($key->archivos as $row) {
             echo '<div class="mb-3 col-md-7">
-                    <label for="formFile" class="form-label mb-1">'.$row.'</label>
+                    <label for="formFile" class="form-label mb-0">'.$row.'</label>
+                    <div class="form-text mt-0 mb-2"> (Tamaño máximo 20 mb. Formatos permitidos.jpeg, .jpg, .png, .pdf, .doc, .xls, .docx, .xslx, .odt, y .odf)</div>
                     <div class="row mb-3 '.( !isset( $file_list[1][$aux] ) ? 'd-none' : null ).'" id="uploadedFile">
                         <div class="col-md-12">
                           <div class="input-group">
                             <input type="text" class="form-control" value="DOCUMENTO COMPLEMENTARIO #'.($aux + 1).'" aria-label="" readonly>
-                            <button class="btn btn-outline-primary" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Descargar"><i class="fa-solid fa-download"></i></button>
+                            <a href="'.base_url('public/files/usuarios').'/'.session()->get('rut').'/'.$survey_id.'/'.($file_list[1][$aux]  ?? null).'" class="btn btn-outline-primary" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Descargar" download><i class="fa-solid fa-download"></i></a>
                             <button class="btn btn-outline-danger" id="delete_file" type="button" value="'.($file_list[1][$aux] ?? null).'" data-bs-tooltip="true" data-bs-placement="top" title="Eliminar">
                               <i class="fa-solid fa-trash-can"></i>
                             </button>
@@ -63,6 +64,7 @@
                         </div>
                       </div>
                   <input class="form-control '.( isset( $file_list[1][$aux] ) ? 'd-none' : null ).'" type="file" id="formFile" name="comp[]">
+                  <div class="feedback text-end"></div>
               </div>';
             $aux++;
           }
@@ -78,12 +80,13 @@
       $count = 0;
       foreach ($formulario[$i]->archivos as $key) {
         echo '<div class="mb-3 col-md-7">
-                <label for="formFile" class="form-label mb-1">'.($count + 1).'.- '.$key.'</label>
+                <label for="formFile" class="form-label mb-0">'.($count + 1).'.- '.$key.'</label>
+                <div class="form-text mt-0 mb-3 ms-3"> (Tamaño máximo 20 mb. Formatos permitidos .jpeg, .jpg, .png, .pdf, .doc, .xls, .docx, .xslx, .odt, y .odf)</div>
                   <div class="row '.( !isset( $file_list[2][$count] ) ? 'd-none' : null ).'" id="uploadedFile">
                   <div class="col-md-12">
                     <div class="input-group">
                       <input type="text" class="form-control" value="DOCUMENTO NECESARIO #'.($count + 1).'" aria-label="" readonly>
-                      <button class="btn btn-outline-primary" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Descargar"><i class="fa-solid fa-download"></i></button>
+                      <a href="'.base_url('public/files/usuarios').'/'.session()->get('rut').'/'.$survey_id.'/'.($file_list[2][$count] ?? null).'" class="btn btn-outline-primary" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Descargar" download><i class="fa-solid fa-download"></i></a>
                       <button class="btn btn-outline-danger" id="delete_file" type="button" value="'.($file_list[2][$count] ?? null).'" data-bs-tooltip="true" data-bs-placement="top" title="Eliminar">
                         <i class="fa-solid fa-trash-can"></i>
                       </button>
@@ -91,6 +94,7 @@
                   </div>
                 </div>
               <input class="form-control '.( isset( $file_list[2][$count] ) ? 'd-none' : null ).'" type="file" id="formFile" name="file[]">
+              <div class="feedback text-end"></div>
             </div>';
         $count++;
       }

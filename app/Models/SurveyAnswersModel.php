@@ -28,6 +28,17 @@ class SurveyAnswersModel extends Model{
     return $data;
   }
 
+  public function survey_answers_per_user( $survey_id, $user_id ){
+    $db = db_connect();
+    $query = $db->table('survey_answers sa')
+                ->select('sa.section, sa.question_number, sa.answer, us.results_id')
+                ->join('users_surveys us', 'us.id = sa.users_surveys_id')
+                ->where('us.surveys_id', $survey_id )
+                ->where('us.user_id', $user_id)
+                ->get()->getResultArray();
+    return $query;
+  }
+
 }
 
  ?>

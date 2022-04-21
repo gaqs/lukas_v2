@@ -7,13 +7,13 @@ class UsersBusinessModel extends Model{
   protected $table = 'users_business';
   protected $primaryKey = 'id';
 
-  protected $useSoftDeletes = true;
+  protected $useSoftDeletes = false;
   protected $useTimestamps = true;
   protected $createdField  = 'created_at';
   protected $updatedField  = 'updated_at';
   protected $deletedField  = 'deleted_at';
 
-  protected $allowedFields = ['user_id', 'rut', 'business_name', 'address','phone','webpage','legal_representative','position_representative', 'created_at', 'updated_at','deleted_at'];
+  protected $allowedFields = ['status','user_id','rut','business_name','address','phone','webpage','legal_representative','position_representative', 'created_at','updated_at','deleted_at'];
   protected $beforeInsert = ['beforeInsert'];
   protected $beforeUpdate = ['beforeUpdate'];
 

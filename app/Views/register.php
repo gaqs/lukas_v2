@@ -14,13 +14,6 @@
 												</div>
 											</div>
 		                  <div class="card-body">
-												<?php
-												if( session()->get('success') ){
-													echo '<div class="alert alert-success alert-dismissible fade show">'.session()->get('success').'<button type="button" class="btn-close text-danger" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-												}else if( session()->get('failure') ){
-													echo '<div class="alert alert-danger alert-dismissible fade show">'.session()->get('failure').'<button type="button" class="btn-close text-danger" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-												}
-												?>
 		                      <form class="" action="<?= base_url('users/register');?>" method="post">
 		                          <div class="row mb-3">
 		                              <div class="col-md-6">

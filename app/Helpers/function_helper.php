@@ -1,16 +1,35 @@
 <?php
 use CodeIgniter\Email\Email;
 
-function manage_files( $section, $array, $key, $directory ){
-  $file = $array[$key];
+function manage_files( $form_section, $array, $key_name, $directory_path ){
+  $file = $array[$key_name];
   for ($i=0; $i < count($file); $i++) {
     if ( $file[$i]->getSize() != 0 ) {
-        array_map('unlink', glob( $directory . $section.'_'.$i.'_'.$key.'.*' ));
-        $name = $section.'_'.$i.'_'.$key.'.'.$file[$i]->guessExtension(); //nombre: [seccion]_[numero archivo]_comp.[extension]
-        $file[$i]->move($directory, $name);
+        array_map('unlink', glob( $directory_path . $form_section.'_'.$i.'_'.$key_name.'.*' ));
+        $name = $form_section.'_'.$i.'_'.$key_name.'.'.$file[$i]->guessExtension(); //nombre: [seccion]_[numero archivo]_comp.[extension]
+        $file[$i]->move($directory_path, $name);
     }
   }
 }
+/* funciones originales
+$comp = $files['comp'];
+for ($i=0; $i < count($comp); $i++) {
+  if ( $comp[$i]->getSize() != 0 ) {
+      array_map('unlink', glob( $files_directory . '1_'.$i.'_comp.*' )); //deprecated??
+      $name = '1_'.$i.'_comp.'.$comp[$i]->guessExtension(); //nombre: [seccion]_[numero archivo]_comp.[extension]
+      $comp[$i]->move($files_directory, $name);
+  }
+}
+
+$file = $files['file'];
+for ($j=0; $j < count($file); $j++) {
+  if( $file[$j]->getSize() != 0 ){
+    array_map('unlink', glob( $files_directory . '2_'.$j.'_file.*' ));
+    $name = '2_'.$j.'_file.'.$file[$j]->guessExtension();
+    $file[$j]->move($files_directory, $name);
+  }
+}
+*/
 
 function reorder_answers($query){
 

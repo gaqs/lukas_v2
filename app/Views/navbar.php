@@ -43,7 +43,7 @@
               <li><a class="dropdown-item" href="<?= base_url('users/profile'); ?>">Perfil</a></li>
               <li><a class="dropdown-item mis_concursos" href="<?= base_url('users/profile'); ?>">Mis concursos</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logout_modal" >Logout</a></li>
+              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logout_modal" style="cursor: pointer;">Logout</a></li>
             </ul>
           </li>
 

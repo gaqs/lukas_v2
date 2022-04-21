@@ -3,20 +3,31 @@
 namespace App\Controllers;
 use App\Models\UserModel;
 use App\Models\AdminModel;
+use App\Models\SurveysModel;
+use App\Models\SurveyAnswersModel;
 
 class Admin extends BaseController
 {
     public function index()
     {
       $data = [];
+      $model = new SurveysModel();
+      $data['surveys'] = $model->findAll();
 
       echo view('admin/header');
       echo view('admin/navbar');
+      echo view('admin/dashboard',$data);
+      echo view('admin/footer');
+    }
 
+    public function users()
+    {
       $model = new UserModel();
       $data['users'] = $model->findAll();
 
-      echo view('admin/dashboard',$data);
+      echo view('admin/header');
+      echo view('admin/navbar');
+      echo view('admin/users',$data);
       echo view('admin/footer');
 
     }
@@ -30,7 +41,6 @@ class Admin extends BaseController
             'email'     => ['label' => 'correo', 'rules' => 'required|min_length[6]|max_length[50]|valid_email'],
             'password'  => ['label' => 'contraseña', 'rules' => 'required|min_length[6]|max_length[255]|validate_user[email,password]']
           ];
-
           $errors = [
             'password' => [
               'validate_user' => 'Correo electrónico o contraseña no coinciden'
@@ -86,12 +96,13 @@ class Admin extends BaseController
 
     public function edit_form(){
       $db = db_connect();
+      $survey_answer_model = new SurveyAnswersModel();
       $data = [];
       $data['user_survey_id'] = $this->request->getVar('user_survey_id');
 
-      $query = $db->table('users_surveys us')
-                  ->select('u.*, us.surveys_id')
-                  ->join('users u', 'u.id = us.user_id')
+      $query = $db->table('users u')
+                  ->select('u.rut, us.user_id, us.surveys_id')
+                  ->join('users_surveys us', 'u.id = us.user_id')
                   ->where('us.id', $data['user_survey_id'])
                   ->get()->getResultArray();
 
@@ -112,18 +123,8 @@ class Admin extends BaseController
         }//end for
 
         //respuestas formulario si existe
-        $data['answers'] = [];
-        $query = $db->table('survey_answers sa')
-                    ->select('sa.section, sa.question_number, sa.answer')
-                    ->join('users_surveys us', 'us.id = sa.users_surveys_id')
-                    ->where('us.surveys_id', $user['surveys_id'] )
-                    ->where('us.user_id', session()->get('id'))
-                    ->get()->getResultArray();
-
-        if( !empty($query) ){
-            $data['answers'] = reorder_answers($query);
-        }
-
+        $query = $survey_answer_model->survey_answers_per_user( $user['surveys_id'], $user['user_id']  );
+        $data['answers'] = reorder_answers($query);
         //archivos de la encuesta si es que existen
         $file_list = [];
         $list = directory_map($files_directory);
@@ -137,10 +138,21 @@ class Admin extends BaseController
 
         $data['file_list'] = $file_list;
 
-
-        echo view('modals/form_modal', $data);
+        echo view('admin/modals/form_modal', $data);
 
       }//end if get
+
+    }
+
+    public function edit_survey()
+    {
+      $data = [];
+      $id = $this->request->getVar('id');
+
+      $model = new SurveysModel();
+      $data['survey'] = $model->where('id', $id)
+                              ->first();
+      echo view('admin/modals/dates_modal', $data);
 
     }
 
