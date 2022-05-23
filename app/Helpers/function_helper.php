@@ -76,21 +76,27 @@ function send_email($send_to, $send_cc, $subject, $message, $attach){
 
   $email->initialize($config);
 
-  $email->setFrom('postmaster@lukasparaemprender.com', 'Testing');
+  $email->setFrom('postmaster@lukasparaemprender.com', 'Lukas para Emprender');
   $email->setTo($send_to);
   $email->setCC($send_cc);
 
-  $email->attach($attach);
-
+  if( $attach != '' ){
+    $email->attach($attach);
+  }
   $email->setSubject($subject);
   $email->setMessage($message);
 
+  $email->send();
+  return true;
+
+  /*
   if ( $email->send() ){
     return true;
   } else {
-    //echo $email->printDebugger();
+    echo $email->printDebugger();
     return false;
   }
+  */
 
 }//end send_email
 

@@ -1,0 +1,79 @@
+{
+  "id": "2",
+  "nombre": "Lukas para Emprender, categoria Empresa",
+  "importante": "Para poder completar su postulacion a la categoria empresa, es obligatorio que complete sus datos de empresa",
+  "formulario": {
+    "0": {
+      "titulo": "Datos Proyecto",
+      "datos": {
+        "0": {
+          "pregunta": "Nombre del Proyecto",
+          "ejemplo": ""
+        },
+        "1": {
+          "pregunta": "Rubro / Emprendimiento",
+          "ejemplo": ""
+        },
+        "2": {
+          "pregunta": "Página web o fan page",
+          "ejemplo": ""
+        },
+        "3": {
+          "pregunta": "Dirección",
+          "ejemplo": ""
+        },
+        "4": {
+          "pregunta": "Dirección",
+          "ejemplo": ""
+        }
+      }
+    },
+    "1": {
+      "titulo": "Información relevante al Proyecto",
+      "cuestionario": {
+        "0": {
+          "pregunta": "<b>Descripción del Emprendimiento:</b> realice una presentación de su negocio de manera que se pueda evaluar su potencial, para lo cual se sugiere describir, por lo menos, clientes que atiende, producto y/o servicio destacando sus elementos diferenciadores, proceso productivo, canales que utiliza para la comercialización, medios de difusión que utiliza, precios de los productos y/o servicios, ventas realizadas.",
+          "ejemplo": ""
+        },
+        "1": {
+          "pregunta": "<b>Experiencia y equipo de trabajo:</b> presente al equipo de trabajo que gestiona el negocio y realice una breve reseña de su experiencia, los logros alcanzados a la fecha, las redes de apoyo con las que cuenta, apoyos recibidos de organismos que apoyan el emprendimiento (Municipalidad, FOSIS; SERCOTEC, entre otros), indique si pertenece a alguna agrupación de emprendedores o empresarios, entre otros.",
+          "ejemplo": ""
+        },
+        "2": {
+          "pregunta": "<b>Descripción del proyecto:</b> describa brevemente la iniciativa a desarrollar con este financiamiento destacando los resultados que espera obtener y cómo potenciará su emprendimiento.",
+          "ejemplo": ""
+        },
+        "3": {
+          "pregunta": "<b>Gastos:</b> detalle las compras que realizará con el financiamiento indicando en qué invertirá el subsidio, cantidades, precios y cuál será el aporte de dicha compra al proyecto. Recuerde que los gastos en los que incurrirá deben ser coherentes con su emprendimiento y el proyecto que desarrollará. (Adjuntar cotizaciones referenciales) Recuerde valores netos",
+          "ejemplo": "",
+          "archivos": {
+            "0": "Cotizaciones Referenciales."
+          }
+        },
+        "4": {
+          "pregunta": "<b>¿Cuáles son sus proyecciones de ventas esperadas para el próximo año (2023) en caso de ser ganador?:</b> menciona valores estimativos y/o aproximados de futuras ventas especificando lo que significa para su negocio estos montos y lo que puede aportar en reactivación económica.",
+          "ejemplo": ""
+        },
+        "5": {
+          "pregunta": "<b>Información complementaria que desee indicar:</b> mencionar experiencia, certificación, ubicación, premios obtenidos, redes sociales, etc)",
+          "ejemplo": "",
+          "archivos": {
+            "0": "Archivo complementario #1",
+            "1": "Archivo complementario #2",
+            "2": "Archivo complementario #3"
+          }
+        }
+      }
+    },
+    "2": {
+      "titulo": "Documentación necesaria",
+      "archivos": {
+        "0": "Cedula de identidad POR AMBOS LADOS.",
+        "1": "Rol unico tributario.",
+        "2": "Carpeta Tributaria de los últimos 12 meses.",
+        "3": "Patente Municipal primer semetre 2022.",
+        "4": "Otros Permisos."
+      }
+    }
+  }
+}

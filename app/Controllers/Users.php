@@ -10,19 +10,21 @@ class Users extends BaseController
 {
     public function index() //login
     {
+        /* Validar login solo con rut, el correo se puede repetir  */
         $data = [];
         if($this->request->getMethod() == 'post'){
           //validation rules
           $rules = [
-            'email'     => ['label'=>'correo electrónico', 'rules' => 'required|min_length[6]|max_length[50]|valid_email|verified_user[email]'],
+            'rut' => ['label' => 'rut', 'rules' => 'required|min_length[9]|max_length[12]|validate_rut[users.rut]|verified_user[users.rut]'],
             'password'  => ['label'=>'contraseña', 'rules' => 'required|min_length[6]|max_length[255]|validate_user[email,password]']
           ];
           $errors = [
-            'email' => [
+            'rut' => [
+              'validate_rut' => 'El RUT ingresado contiene errores.',
               'verified_user' => 'Correo electrónico no validado.<br>Haga <a href="'.base_url('users/resend_validation').'?email={value}">click aquí</a> para reenviar el correo de validación.'
             ],
             'password' => [
-              'validate_user' => 'Correo electrónico o contraseña no coinciden.'
+              'validate_user' => 'RUT o contraseña no coinciden.'
             ]
           ];
 
@@ -30,7 +32,7 @@ class Users extends BaseController
             $data['validation'] = $this->validator;
           }else{
             $model = new UserModel();
-            $user = $model->where('email', $this->request->getVar('email'))
+            $user = $model->where('rut', $this->request->getVar('rut'))
                           ->first();
             $data = [
               'id'        => $user['id'],
@@ -42,7 +44,7 @@ class Users extends BaseController
               'loggedIn'  => true,
             ];
             session()->set($data);
-            return redirect()->to( base_url('home') );
+            return redirect()->to( base_url('#nosotros') )->with('success', 'Bienvenido! <b>'.$data['name'].' '.$data['lastname'].'</b>');
           }
         }
 
@@ -60,7 +62,7 @@ class Users extends BaseController
         $rules = [
           'name'            => ['label' => 'nombre', 'rules' => 'required|min_length[3]|max_length[20]'],
           'lastname'        => ['label' => 'apellido', 'rules' => 'required|min_length[3]|max_length[20]'],
-          'email'           => ['label' => 'correo electrónico', 'rules' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[users.email]'],
+          'email'           => ['label' => 'correo electrónico', 'rules' => 'required|min_length[6]|max_length[250]|valid_email'],
           'rut'             => ['label' => 'rut', 'rules' => 'required|min_length[9]|max_length[12]|is_unique[users.rut]|validate_rut[users.rut]'],
           'password'        => ['label' => 'contraseña', 'rules' => 'required|min_length[6]|max_length[255]'],
           'repeat_password' => ['label' => 'confirmar contraseña', 'rules' => 'matches[password]']
@@ -79,6 +81,7 @@ class Users extends BaseController
 
           $data['name']     = $this->request->getVar('name');
           $data['lastname'] = $this->request->getVar('lastname');
+          $data['sex']      = $this->request->getVar('sex');
           $data['email']    = $this->request->getVar('email');
           $data['rut']      = $this->request->getVar('rut');
           $token            = bin2hex(openssl_random_pseudo_bytes(32));
@@ -87,10 +90,11 @@ class Users extends BaseController
           $data['link'] = base_url('users/email_validation?key='.$data['email'].'&token='.$token);
 
           $userData = [
-            'name'                      => ucwords(strlower($data['name'])),
-            'lastname'                  => ucwords(strlower($data['lastname'])),
+            'name'                      => ucwords(strtolower($data['name'])),
+            'lastname'                  => ucwords(strtolower($data['lastname'])),
+            'sex'                       => $data['sex'],
             'rut'                       => $data['rut'],
-            'email'                     => strlower($data['email']),
+            'email'                     => strtolower($data['email']),
             'password'                  => $password,
             'email_verification_token'  => $token
           ];
@@ -104,7 +108,7 @@ class Users extends BaseController
           if( $send ){
             return redirect()->to( base_url('users') )->with('success','Hemos enviado un correo electrónico para validar sus datos y completar el registro.');
           }else{
-            return redirect()->to( base_url('users/register') )->with('failure','Error al enviar el correo de validación.');
+            return redirect()->to( base_url('users') )->with('failure','Error al enviar el correo de validación.');
           }
 
         }
@@ -142,9 +146,9 @@ class Users extends BaseController
           if (!is_dir(ROOTPATH.'public/files/usuarios/' . $rut['rut'])) {
               mkdir(ROOTPATH.'public/files/usuarios/' . $rut['rut'], 0777, TRUE);
           }
-          session()->setFlashdata('success','Correo validado correctamente.');
+          session()->setFlashdata('success','Correo validado correctamente. Ya puede iniciar sesión.');
         }else{
-          session()->setFlashdata('success','Correo validado previamente.');
+          session()->setFlashdata('success','Correo validado previamente. Ya puede iniciar sesión.');
         }
         return redirect()->to( base_url('users') );
       }
@@ -183,8 +187,11 @@ class Users extends BaseController
               'id'             => session()->get('id'),
               'name'           => $this->request->getVar('name'),
               'lastname'       => $this->request->getVar('lastname'),
+              'sex'            => $this->request->getVar('sex'),
+              'birthday'       => $this->request->getVar('birthday'),
               'phone'          => '9' . $this->request->getVar('phone'),
-              'optional_email' =>$this->request->getVar('optional_email'),
+              'fix_phone'      => $this->request->getVar('fix_phone'),
+              'optional_email' => $this->request->getVar('optional_email'),
               'address'        => $this->request->getVar('address'),
               'occupation'     => $this->request->getVar('occupation'),
               'deleted_at'     => NULL
@@ -271,7 +278,7 @@ class Users extends BaseController
       }//end post
 
       $data['user'] = $user_model->select_all();
-      $data['surveys'] = $users_surveys_model->recover_surveys_by_id();
+      $data['surveys'] = $users_surveys_model->recover_all_surveys_by_id();
 
       echo view('header');
       echo view('navbar');
@@ -319,9 +326,13 @@ class Users extends BaseController
 
       if( $this->request->getMethod() == 'post' ){
         $rules = [
-          'email' => ['label' => 'correo electrónico', 'rules' => 'required|min_length[6]|max_length[50]|valid_email|verified_user[email]']
+          'rut' => ['label' => 'rut', 'rules' => 'required|min_length[9]|max_length[12]|validate_rut[users.rut]'],
+          'email' => ['label' => 'correo electrónico', 'rules' => 'required|min_length[6]|max_length[250]|valid_email|verified_user[email]']
         ];
         $errors = [
+          'rut' => [
+            'validate_rut' => 'El RUT ingresado contiene errores.'
+          ],
           'email' => [
             'verified_user' => 'Correo electrónico no validado.<br>Haga <a href="'.base_url('users/resend_validation').'?email={value}">click aquí</a> para reenviar el correo de validación.'
           ]
@@ -330,15 +341,16 @@ class Users extends BaseController
         if(!$this->validate($rules,$errors)){
           $data['validation'] = $this->validator;
         }else{
-          $user = $model->where('email', $this->request->getVar('email') )
-                         ->first();
+          $user = $model->where('rut', $this->request->getVar('rut') )
+                        ->where('email', $this->request->getVar('email') )
+                        ->first();
 
           if( $user != null ){
             //ver tiempo desde generado el hash
             $limit_time = strtotime($user['email_verified_at']) + 360; //6 min
             $wait = $limit_time - time();
-            if( time() < $limit_time ){
-              session()->setFlashdata('failure','Correo de recuperación ya enviado. Espere <b>'.$wait.'</b> segundos.');
+            if( 0 > 1 ){ //time() < $limit_time
+              session()->setFlashdata('failure','Correo de recuperación ya enviado. Espere <b>'.$wait.'</b> segundos para intentar nuevamente.');
             }else{
 
               $userData = [
@@ -348,20 +360,21 @@ class Users extends BaseController
               ];
               $model->save($userData);
 
-              $data_e['link'] = base_url('users/change_password?key='.$user['email'].'&token='.$userData['email_verification_token']);
+              $data_e['link'] = base_url('users/change_password?key='.$user['rut'].'&token='.$userData['email_verification_token']);
 
               $message = view('emails/recover', $data_e);
               $send = send_email($user['email'], '', 'Olvidaste tu contraseña', $message, '');
 
               if( $send ){
-                return redirect()->to('/')->with('success','Correo de recuperación enviado correctamente.');
+                session()->setFlashdata('success', 'Correo de recuperación enviado correctamente.');
+                return redirect()->to( base_url() );
               }else{
-                session()->setFlashdata('failure','Error al enviar el correo de recuepración.');
+                session()->setFlashdata('failure','Error al enviar el correo de recuperación.');
               }
             }
           }else{
             //redireccion a forgot con mensaje de correo invalidado
-            session()->setFlashdata('failure','Correo electrónico no registrado.');
+            session()->setFlashdata('failure','No fue posible enviar correo de recuperacion, RUT y correo electrónico no asociados.');
           }
         }
       }
@@ -379,15 +392,22 @@ class Users extends BaseController
         $data['key']    = $this->request->getVar('key');
         $data['token']  = $this->request->getVar('token');
 
-        $user = $model->where('email', $this->request->getVar('key') )
-                       ->first();
+        $user = $model->where('rut', $data['key'] )
+                      ->where('email_verification_token', $data['token'] )
+                      ->first();
 
-        $limit_time = strtotime($user['email_verified_at']) + 360; //6 min
-        $wait = $limit_time - time();
-        if( time() > $limit_time ){
-          session()->setFlashdata('failure','Token de recuperacion vencido.');
-          return redirect()->to( base_url('users/forgot') );
+        if( $user != ''){
+          $data['email'] = $user['email'];
+
+          $limit_time = strtotime($user['email_verified_at']) + 360; //6 min
+          $wait = $limit_time - time();
+          if( time() > $limit_time ){
+            return redirect()->to( base_url('users') )->with('failure','Token de recuperacion vencido.');
+          }
+        }else{
+          return redirect()->to( base_url('users/forgot') )->with('failure','No es posible cambiar su contraseña, token incorrecto.');
         }
+
       }//end get
 
       if( $this->request->getMethod() == 'post' ){
@@ -401,10 +421,10 @@ class Users extends BaseController
           $data['validation'] = $this->validator;
         }else{
 
-          $email     = $this->request->getVar('email');
+          $email     = $this->request->getVar('rut');
           $password  = $this->request->getVar('password');
 
-          $user = $model->where('email', $this->request->getVar('email') )
+          $user = $model->where('rut', $this->request->getVar('rut') )
                          ->first();
 
           $userData = [
@@ -413,15 +433,57 @@ class Users extends BaseController
             'updated_at'  => date('y-m-d H:i:s')
           ];
           $model->save($userData);
-
-          return redirect()->to('/')->with('success','Contraseña actualizada correctamente.');
+          return redirect()->to( base_url('users') )->with('success','Contraseña actualizada correctamente.');
         }
       }
       echo view('header');
+      echo view('navbar');
       echo view('change',$data);
       echo view('footer');
 
     }//end change_password
+
+    public function update_password(){
+      $user_model = new UserModel();
+
+      $rules = [
+        'old_password'        => ['label' => 'contraseña actual', 'rules' => 'required|min_length[6]|max_length[255]'],
+        'new_password'        => ['label' => 'contraseña nueva', 'rules' => 'required|min_length[6]|max_length[255]'],
+        'repeat_new_password' => ['label' => 'repetir contraseña nueva', 'rules' => 'matches[new_password]']
+      ];
+      $errors = [
+        'repeat_new_password' => [
+          'matches' => 'Las contraseñas no coinciden.'
+        ]
+      ];
+
+      if(!$this->validate($rules, $errors)){
+        $validation = $this->validator;
+        //envia error via ajax por json_encode.
+        $resp['status'] = 'error';
+        $resp['data'] = $validation->listErrors();
+
+      }else{
+        $old_pass = $this->request->getVar('old_password');
+        $user = $user_model->where('id', session()->get('id') )
+                           ->first();
+
+        if( password_verify( $old_pass, $user['password'] ) ){
+          $userData = [
+            'id'       => session()->get('id'),
+            'password' => $this->request->getVar('new_password')
+          ];
+          $user_model->save($userData);
+          $resp['status'] = 'success';
+          $resp['data'] = 'Contraseña Actualizada. <b>Cerrando sesión...</b>';
+        }else{
+          $resp['status'] = 'error';
+          $resp['data'] = 'Contraseña actual incorrecta';
+        }
+      }
+      echo json_encode($resp);
+
+    }
 
 
     public function logout(){

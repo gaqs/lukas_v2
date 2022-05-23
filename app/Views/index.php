@@ -1,10 +1,4 @@
 <div id="authentication" class=""> <!-- bg-primary bg-gradient  -->
-  <!--
-  <div class="container my-5" style="height: 800px;">
-    <a href="<?= base_url('home/forms?survey_id=1'); ?>" type="button" class="btn btn-primary" name="button">PRUEBA FORMULARIO 1</a>
-    <a href="<?= base_url('home/forms?survey_id=2'); ?>" type="button" class="btn btn-primary" name="button">PRUEBA FORMULARIO 2</a>
-  </div>
-  -->
   <style media="screen">
     .carousel-item .container{
       height: 500px;
@@ -24,18 +18,19 @@
             <div class="col-3 offset-md-2 align-self-center">
               <img src="<?= base_url('public/img/lukitas_border.png'); ?>" class="w-100" alt="">
             </div>
-            <div class="col-6 fw-bolder align-self-center text-white">
+            <div class="col-7 fw-bolder align-self-center text-white">
               <h3>
                 CONCURSO
               </h3>
-              <h1 class="fw-bolder anton-font" style="font-size: 4rem;line-height: 1;">
+              <h1 class="fw-boldest passion-one-font carousel_lukas display-1 text-primary" style="line-height:0.8;">
                 <span>LUKAS PARA</span><br><span>EMPRENDER</span><br>
                 <span>2022</span><br>
+
               </h1>
-              <hr>
               <h4>
-                Subdireccion de Desarrollo Económico local<br>
-                Subdirección de Desarrollo Comunitario
+                <hr>
+                Dirección de Desarrollo Económico local<br>
+                Dirección de Desarrollo Comunitario
               </h4>
             </div>
           </div>
@@ -44,8 +39,8 @@
       <div class="carousel-item">
         <div class="container d-grid">
           <div class="row justify-content-center">
-            <div class="col-7 align-self-center bg-danger">
-
+            <div class="col-7 text-center align-self-center">
+              <h1 class="fw-boldest passion-one-font text-white">PARA POSTULAR AL CONCURSO<br><a class="text-decoration-none display-1 carousel_lukas" href="<?= base_url('#how'); ?>">¡HAGA CLICK AQUI!</a></h1>
             </div>
           </div>
         </div>
@@ -69,21 +64,116 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-  <section id="registro">
-    <div class="container my-5 pb-5">
-      <div class="row title text-center mb-3">
-        <h1>Registro</h1>
-      </div>
+  <section id="nosotros" class="bg-white">
+    <div class="container my-5">
       <div class="row">
-        <div class="col-8">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis leo id neque bibendum egestas. In volutpat, nunc a pellentesque interdum, lorem metus pulvinar ipsum, iaculis posuere dolor libero ut nulla.
+        <div class="col-md-6 d-flex align-items-center pe-5 text-end">
+          <div class="row">
+            <div class="col-12 title">
+              <h1 class="display-1 passion-one-font fw-boldest lh-1">Lukas para Emprender</h1>
+            </div>
+            <div class="col-12">
+              A contar del año 2009, la Municipalidad de Puerto Montt a través de la Subdirección de
+              Desarrollo Económico Local, ha puesto a disposición de la microempresa de la ciudad, un punto
+              de atención directo, para apoyo a gestión, capacitación y acceso a nuevas tecnologías de la
+              información para dar inicio o fortalecer una actividad económica.
+              <br><br>
+              Continuando con el apoyo del Municipio a los microempresarios y emprendedores de la comuna,
+              este año corresponde a la <b>13va versión</b> del concurso “Lukas para Emprender” en convenio con la
+              Universidad de Los Lagos.
+            </div>
+            <div class="col-12 mt-3">
+              <a href="#how" class="btn btn-lg btn-primary" type="button" name="button"> <i class="fa-solid fa-right-to-bracket"></i> Quiero Postular!</a>
+            </div>
+          </div>
+
         </div>
-        <div class="col-4 d-flex align-items-center">
-          <button type="button" class="btn btn-success w-100" name="button">Registrarse</button>
+        <div class="col-md-5">
+          <div class="blue_square"></div>
+          <img class="w-100" src="<?= base_url('public/img/people_working.png');?>" alt="">
         </div>
       </div>
     </div>
   </section>
+
+  <section id="how" class="bg-light">
+    <div class="container my-5">
+      <div class="row title text-center mb-3">
+        <h1 class="display-3 passion-one-font fw-bold">¿Como Postular?</h1>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-2 text-center">
+          <i class="fa-solid fa-angles-right" style="font-size:8rem;"></i>
+        </div>
+        <div class="col-md-10">
+          <ol>
+
+            <!-- concursar por postular -->
+            <li><b>Registrarse es obligatorio</b>, puede crear una cuenta haciendo <a href="<?= base_url('users/register'); ?>">click aqui</a>. Si ya posee una cuenta, puede iniciar sesión <a href="<?= base_url('users'); ?>">aquí</a>.</li>
+            <li>Para postular, eliga una de las categorías que se encuentran en la sección <b>concursos</b> haciendo <a href="<?= base_url('#concursos'); ?>">click aqui</a>.</li>
+            <li>Siga detenidamente las indicaciones listadas al momento de entrar a uno de las categorías.</li>
+            <li>Mantenga su perfil y datos bancarios actualizados haciendo <a href="<?= base_url('users/profile'); ?>" target="_blank">click aqui</a> o desde su nombre / perfil.<br>Si postula a la categoría empresa, tambien es requerido que la registre.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-10 offset-md-2 mt-2">
+            <h5 class="ms-3">¡Y listo! ya estará postulando.</h5>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="concursos" class="bg-light">
+    <div class="container my-5 pb-5">
+      <div class="row title text-center mb-3">
+        <h1 class="display-3 passion-one-font fw-bold">Concursos</h1>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading"><i class="fa-solid fa-triangle-exclamation"></i> Atención!</h4>
+            <p>La 13ra version del concurso Lukas para Emprender año 2022, solo permitirá que los usuarios previamente registrados, concursen en UNA SOLA CATEGORIA de las tres que se encuentran operativas. </p>
+            <hr>
+            <p class="mb-0"><b>Recuerde mantener los datos de su perfil actualizados.</b></p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <div class="card overflow-hidden card_concurso">
+            <i class="fa-solid fa-house-laptop back_icon"></i>
+            <div class="card-body" style="z-index:1;">
+              <h4 class="card-title">Categoría Emprendimiento</h4>
+              <p class="card-text">Corresponde a personas naturales mayores de 18 años de edad, sin iniciación de actividades en 1a categoría en la comuna de Puerto Montt, que posean un negocio o emprendimiento.</p>
+              <a href="<?= base_url('home/briefing?survey_id=1'); ?>" class="btn btn-lg btn-primary">Concursar <i class="fa-solid fa-angles-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card overflow-hidden card_concurso">
+            <i class="fa-solid fa-building back_icon"></i>
+            <div class="card-body" style="z-index:1;">
+              <h4 class="card-title">Categoría<br>Empresa</h4>
+              <p class="card-text">Corresponde a microempresarios con negocios establecidos, con iniciación de actividades en <b>1a Categoría</b> y todos los permisos de operación vigentes al momento de la postulación, con ventas inferiores a 2.400 UF.</p>
+              <a href="<?= base_url('home/briefing?survey_id=2'); ?>" class="btn btn-lg btn-primary">Concursar <i class="fa-solid fa-angles-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card overflow-hidden card_concurso">
+            <i class="fa-solid fa-ship back_icon"></i>
+            <div class="card-body" style="z-index:1;">
+              <h4 class="card-title">Categoría<br>Mujer Pescadora</h4>
+              <p class="card-text">Correspondea Mujeres inscritas en el Registro Pesquero Artesanal (RPA), hasta el 31 de diciembre del 2021, con o sin iniciacion de actividades y con emprendimiento en desarrollo en el ámbito pesquero o acuícola.</p>
+              <a href="<?= base_url('home/briefing?survey_id=3'); ?>" class="btn btn-lg btn-primary">Concursar <i class="fa-solid fa-angles-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--
   <section id="news" style="background: linear-gradient(180deg, #6c757d 60%, transparent 60%);">
     <div class="container my-5">
       <div class="row">
@@ -97,7 +187,7 @@
     </div>
     <div class="container my-5">
       <div class="row title text-center text-white mb-3">
-        <h1>Noticias</h1>
+        <h1 CLASS="display-3 passion-one-font fw-bold">Noticias</h1>
       </div>
       <div class="row">
         <?php for ($i=0; $i < 4; $i++) { ?>
@@ -117,10 +207,10 @@
 
       </div>
     </div>
-
   </section>
+  -->
 
-  <section id="sponsor">
+  <section id="sponsor" class="bg-white">
     	<div class="container my-5">
     		<div class="row justify-content-md-center">
     			<div class="col-md-2 col-5 align-self-center">
@@ -145,4 +235,96 @@
     			</div>
     		</div>
     	</div>
+  </section>
+  <section id="ayuda" class="bg-primary text-white">
+    <div class="container my-5 pb-5">
+      <div class="row">
+        <div class="col-12">
+          <h5><i class="fa-solid fa-angles-right"></i> Preguntas frecuentes</h5>
+        </div>
+        <div class="col-6">
+          <h1 class="display-1 passion-one-font fw-boldest lh-1 mb-5">Necesitas<br>ayuda?</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non nulla ut risus auctor congue vitae sit amet ipsum. Suspendisse accumsan nibh sit amet blandit sagittis.</p>
+          <a class="btn btn-light text-primary" href="<?= base_url('home/help'); ?>"><i class="fa-solid fa-circle-question"></i> Contactar soporte</a>
+        </div>
+        <div class="col-6">
+          <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item bg-transparent border border-secondary rounded">
+              <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed bg-primary text-white border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                  1. ¿Que es?
+                </button>
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  Es un financiamiento No reembolsable, que se adjudica al postulante por medio de un proceso
+                  concursable para iniciar nuevos negocios y/o fortalecer los actuales.
+                  Por lo tanto, no se trata de un crédito, ya que el dinero entregado a los(as) ganadores no debe ser
+                  devuelto, pero sí, debe ser rendido íntegramente.
+                  Dicho financiamiento está destinado a fortalecer diferentes ámbitos de gestión de la microempresa, así
+                  como al ingreso de nuevos mercados y/o consolidación en los actuales mercados, que presenten reales
+                  oportunidades de negocios a microempresas de la Comuna de Puerto Montt.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item bg-transparent border border-secondary rounded">
+              <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed bg-primary text-white border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                  2. ¿Cuál es su objetivo?
+                </button>
+              </h2>
+              <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  Fortalecer y promover la consolidación de microempresas con proyectos de negocio que agreguen valor a
+                  la oferta local y tengan un grado de diferenciación importante con los productos y servicios existentes,
+                  que se encuentran imposibilitadas de dar por sí mismas el salto de competitividad que les permita
+                  capturar una oportunidad de mercado a través de la innovación de productos, servicios y/o procesos,
+                  desarrollo de nuevos mercados y consolidación en los actuales.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item bg-transparent border border-secondary rounded">
+              <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed bg-primary text-white border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                  3. ¿Quiénes pueden participar?
+                </button>
+              </h2>
+              <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <b>Categoría / Línea Emprendimiento</b><br>
+                  <ol>
+                    <li>Hombres y mujeres sin iniciación de actividades de 1a categoría.</li>
+                    <li>Mayores de 18 años cumplidos a la fecha de cierre de la postulación al concurso.</li>
+                    <li>Que residan en la comuna de Puerto Montt.</li>
+                    <li>Emprendimiento desarrollado en la comuna de Puerto Montt.</li>
+                  </ol>
+                  <br>
+                  <b>Categoría / Línea Empresa</b><br>
+                  Personas naturales o jurídicas que cumplan los siguientes requisitos<br>
+                  <ol>
+                    <li>Que tributen en primera categoría con una antigüedad hasta 9 años (2010 en adelante) máximo y
+                    mínimo 3 meses, con patente municipal vigente, y los permisos que corresponden a cada
+                    actividad o rubro (resolución sanitaria, permiso SAG, etc.) vigente.</li>
+                    <li>En el caso de las personas jurídicas el representante para todos los efectos del concurso es el
+                    representante legal.</li>
+                    <li>Casa matriz en la comuna de Puerto Montt.</li>
+                    <li>Ventas netas anuales iguales o inferiores a 2.400 UF.</li>
+                    <li>El giro y patente municipal de la empresa del/la postulante deberá ser coherente con la
+                    naturaleza del proyecto que postula.</li>
+                  </ol>
+                  <br>
+                  <b>Categoría / Línea Mujer Pescadora Artesanal</b><br>
+                  <ol>
+                    <li>Mujeres inscritas en el Registro Pesquero Artesanal (RPA), hasta el 31 de diciembre 2021.</li>
+                    <li>Con o sin iniciación de actvidades</li>
+                    <li>Con un emprendimiento en desarrollo en el ámbito pesquero o acuícola en las líneas de diversificacón: Agrefación de valor, acuicultura de pequeña escala (APE), turismo vivenvial, patrimonial y gastronomía asociada al turismo.</li>
+                    <li>Con residencia en la Comuna de Puerto Montt.</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>

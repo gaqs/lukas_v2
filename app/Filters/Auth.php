@@ -13,8 +13,8 @@ class Auth implements FilterInterface
   {
     //filtro para evitar que trate de entrar sin sesion iniciada
     if(!session()->get('loggedIn')){
-      session()->setFlashdata('failure','Necesita logearse con su cuenta para poder concursar.');
-      return redirect()->to(base_url());
+      session()->setFlashdata('failure','Necesita iniciar sesión con su cuenta para poder postular.');
+      return redirect()->to( base_url('users') );
     }
 
     $model = new UserModel();
@@ -22,12 +22,12 @@ class Auth implements FilterInterface
                   ->first();
 
     if( !$user ){
-      session()->setFlashdata('failure','Necesita logearse con su cuenta para poder concursar.');
+      session()->setFlashdata('failure','Necesita iniciar sesión con su cuenta para poder postular.');
       return redirect()->to( base_url('users') );
     }
 
     if( !in_array(session()->get('role'), $arguments) ){
-      session()->setFlashdata('failure','No tiene permisos para poder ingresar a esta sección.');
+      session()->setFlashdata('failure','No tiene permisos suficientes para poder ingresar a esta sección.');
       return redirect()->to( base_url() );
     }
 

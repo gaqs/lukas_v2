@@ -10,18 +10,18 @@
                         Recuperar contraseña
                       </h3>
                       <div class="text-center">
-                        <small>Sistema de Administración</small>
+                        <small>Concursos Lukas para Emprender</small>
                       </div>
                     </div>
                     <div class="card-body">
-                      <?php
-                      if( session()->get('success') ){
-                        echo '<div class="alert alert-success alert-dismissible fade show">'.session()->get('success').'<button type="button" class="btn-close text-danger" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                      }else if( session()->get('failure') ){
-                        echo '<div class="alert alert-danger alert-dismissible fade show">'.session()->get('failure').'<button type="button" class="btn-close text-danger" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                      }
-                      ?>
+                      <div class="alert alert-info" role="alert">
+                        <small><b>¿Olvidaste tu contraseña?</b> No te preocupes! Sólo ingresa tu RUT y correo electrónico asociado y te enviaremos un link para que la puedas cambiar.</small>
+                      </div>
                       <form action="<?= base_url('users/forgot');?>" method="post">
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="input_rut" type="text" name="rut" value="<?= set_value('rut');?>" placeholder="12356789-0" oninput="checkRut(this)" maxlength="12"/>
+                            <label for="input_rut">RUT</label>
+                        </div>
                         <div class="form-floating mb-3">
                             <input class="form-control" id="input_email" type="email" name="email" value="<?= set_value('email');?>" placeholder="nombre@ejemplo.com" />
                             <label for="input_email">Correo electrónico</label>
@@ -32,12 +32,12 @@
                           </div>
                         <?php endif ?>
                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                            <button type="submit" class="btn btn-primary w-100"> <i class="fas fa-sign-in-alt"></i> Recuperar</button>
+                            <button type="submit" class="btn btn-primary w-100 submit_something"> <i class="fas fa-sign-in-alt"></i> Recuperar</button>
                         </div>
                       </form>
                     </div>
                     <div class="card-footer text-center py-3">
-                        <div class="small"><a href="<?= base_url('users/register'); ?>">Necesitas una cuenta? Registrate!</a></div>
+                        <div class="small"><a href="<?= base_url('users/register'); ?>">Necesitas una cuenta? Regístrate!</a></div>
                     </div>
                 </div>
             </div>

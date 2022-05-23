@@ -10,29 +10,41 @@
 													Registro
 												</h3>
 												<div class="text-center">
-													<small>Sistema de Administración</small>
+													<small>Concursos Lukas para Emprender</small>
 												</div>
 											</div>
 		                  <div class="card-body">
 		                      <form class="" action="<?= base_url('users/register');?>" method="post">
 		                          <div class="row mb-3">
-		                              <div class="col-md-6">
+		                              <div class="col-md-4">
 		                                  <div class="form-floating mb-3 mb-md-0">
 		                                      <input class="form-control" id="input_name" name="name" type="text" value="<?= set_value('name');?>" placeholder="Juan Andrés" />
 		                                      <label for="input_name">Nombres</label>
 		                                  </div>
 		                              </div>
-		                              <div class="col-md-6">
+		                              <div class="col-md-5">
 		                                  <div class="form-floating">
 		                                      <input class="form-control" id="input_lastname" type="text" name="lastname" value="<?= set_value('lastname');?>" placeholder="Perez Gonzales" />
 		                                      <label for="input_lastname">Apellidos</label>
 		                                  </div>
 		                              </div>
+																	<div class="col-md-3">
+																		<div class="form-floating">
+																		  <select class="form-select" id="sex_select" name="sex" aria-label="">
+																		    <option selected></option>
+																		    <option value="F" <?= set_select('sex', 'F'); ?>>Femenino</option>
+																		    <option value="M" <?= set_select('sex', 'M'); ?>>Masculino</option>
+																				<option value="O" <?= set_select('sex', 'O'); ?>>Otro</option>
+																		  </select>
+																		  <label for="floatingSelect">Sexo</label>
+																		</div>
+																	</div>
 		                          </div>
+
 															<div class="row mb-3">
 																<div class="col-md-4">
 																	<div class="form-floating">
-				                              <input class="form-control" id="input_rut" type="text" name="rut" value="<?= set_value('rut');?>" placeholder="111111111-1" oninput="checkRut(this)" />
+				                              <input class="form-control" id="input_rut" type="text" name="rut" value="<?= set_value('rut');?>" placeholder="111111111-1" oninput="checkRut(this)" maxlength="11"/>
 				                              <label for="input_rut">RUT</label>
 				                          </div>
 																</div>
@@ -72,7 +84,7 @@
 		                      </form>
 		                  </div>
 		                  <div class="card-footer text-center py-3">
-		                      <div class="small"><a href="<?= base_url('users'); ?>">Ya posees una cuenta? Logeate!</a></div>
+		                      <div class="small"><a href="<?= base_url('users'); ?>">Ya posees una cuenta? Inicia sesión!</a></div>
 		                  </div>
 		              </div>
 		          </div>

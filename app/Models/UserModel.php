@@ -13,7 +13,7 @@ class UserModel extends Model{
   protected $updatedField  = 'updated_at';
   protected $deletedField  = 'deleted_at';
 
-  protected $allowedFields = ['name','lastname','email','optional_email','rut','address','phone','password','occupation','email_verification_token','deleted_at', 'email_verified_at'];
+  protected $allowedFields = ['name','lastname','birthday','sex','email','optional_email','rut','address','phone','fix_phone','password','occupation','email_verification_token','deleted_at', 'email_verified_at'];
   protected $beforeInsert = ['beforeInsert'];
   protected $beforeUpdate = ['beforeUpdate'];
 
@@ -43,9 +43,13 @@ class UserModel extends Model{
                 ->select('u.id as user_id,
                           u.name as user_name,
                           u.lastname as user_lastname,
+                          u.birthday,
+                          u.sex,
                           u.rut as user_rut,
+                          u.birthday,
                           u.address as user_address,
                           u.phone as user_phone,
+                          u.fix_phone,
                           u.occupation as user_occupation,
                           u.email as user_email,
                           u.optional_email,

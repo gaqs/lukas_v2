@@ -24,26 +24,29 @@
     <div class="collapse navbar-collapse" id="navbar_content">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link <?= ($uri->getSegment(1) == 'catalogo' ? 'active' : null) ?>"  href="#">Catálogo</a>
+          <a class="nav-link <?= ($uri->getSegment(1) == '' ? 'active' : null) ?>"  href="<?= base_url();?>">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?= ($uri->getSegment(1) == 'ganadores' ? 'active' : null) ?>"  href="#">Ganadores</a>
+          <a class="nav-link <?= ($uri->getSegment(1) == 'catalogo' ? 'active' : null) ?>"  href="#nosotros">Nosotros</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?= ($uri->getSegment(1) == 'nosotros' ? 'active' : null) ?>"  href="#">Nosotros</a>
+          <a class="nav-link <?= ($uri->getSegment(1) == 'noticias' ? 'active' : null) ?>"  href="#concursos">Concursos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <?= ($uri->getSegment(1) == 'nosotros' ? 'active' : null) ?>"  href="#ayuda">Ayuda</a>
         </li>
 
         <?php if( session()->get('loggedIn') && session()->get('role') == 'user' ):?>
 
           <li class="nav-item dropdown nav_register">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle fw-bold text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <?= session()->get('name').' '.session()->get('lastname') ?>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="<?= base_url('users/profile'); ?>">Perfil</a></li>
-              <li><a class="dropdown-item mis_concursos" href="<?= base_url('users/profile'); ?>">Mis concursos</a></li>
+              <li><a class="dropdown-item mis_concursos" href="<?= base_url('users/profile'); ?>">Postulaciones</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logout_modal" style="cursor: pointer;">Logout</a></li>
+              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logout_modal" style="cursor: pointer;">Cerrar sesión</a></li>
             </ul>
           </li>
 
@@ -56,7 +59,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="<?= base_url('users'); ?>">
-              <i class="fas fa-sign-in-alt ml-1"></i> Ingresar
+              <i class="fas fa-sign-in-alt ml-1"></i> Iniciar sesión
             </a>
           </li>
 

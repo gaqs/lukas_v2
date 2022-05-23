@@ -1,19 +1,60 @@
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-4 mt-0 text-white" style="background-color:#202020;">
+  <div class="container text-start">
+    <div class="row text-start mt-3 pb-3">
+      <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3">
+        <h6 class="text-uppercase mb-4 font-weight-bold">DIDECO</h6>
+        <p>
+          <address>
+            <strong>Subdirección de Desarrollo Económico Local<br>Dirección de Desarrollo Comunitario</strong>
+            <br>
+            <a href="https://www.puertomontt.cl/unidades-municipales/dideco/" target="_blank">Más información</a>
+          </address>
+        </p>
+      </div>
+      <div class="col-md-5 col-lg-4 col-xl-4 mx-auto mt-4">
+        <h6 class="text-uppercase mb-4 font-weight-bold">CONTACTO</h6>
+        <p><i class="fa fa-home mr-3"></i> Av. Presidente Ibañez #600.<br>Edificio Consistorial II<br></p>
+        <p><i class="fa fa-envelope mr-3"></i> lukasparaemprender@puertomontt.cl</p>
+        <p><i class="fa fa-phone mr-3"></i> (+65) 2 261315</p>
+        <p><i class="fa fa-phone mr-3"></i> (+65) 2 261323</p>
+      </div>
+      <!-- Grid column -->
 
-        <div id="footer" class="mb-0">
-          <footer class="py-4 bg-light mt-auto">
-              <div class="container-fluid px-4">
-                  <div class="d-flex align-items-center justify-content-between small">
-                      <div class="text-muted">Copyright &copy; Gustavo Quilodrán | gaqs.02@gmail.com | Puerto Montt - 2022</div>
-                      <div>
-                          <a href="<?= base_url('admin/login'); ?>">Acceso Administrador</a>
-                          &middot;
-                          <a href="#">Terms &amp; Conditions</a>
-                      </div>
-                  </div>
-              </div>
-          </footer>
-        </div> <!-- /end footer -->
-        
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h6 class="text-uppercase mb-4 font-weight-bold">Links Útiles</h6>
+        <p><a class="text-decoration-none" href="https://www.puertomontt.cl/" target="_blank">Municipalidad Puerto Montt</a></p>
+        <p><a class="text-decoration-none" href="http://www.ulagos.cl/" target="_blank">Universidad de los Lagos</a></p>
+        <p><a class="text-decoration-none" href="http://www.ulagos.cl/category/campus-pto-montt/" target="_blank">ULL Campus Puerto Montt</a></p>
+        <p><a class="text-decoration-none" href="<?= base_url('admin/login'); ?>" target="_blank" class="">Acceso Administrador</a></p>
+      </div>
+
+    </div>
+    <!-- Footer links -->
+
+    <hr>
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center pb-2">
+
+      <!-- Grid column -->
+      <div class="col-md-12 col-lg-12">
+
+        <!--Copyright-->
+        <small class="text-center text-md-left"><b> Gustavo Quilodrán Sanhueza</b> | SUBDEL Puerto Montt | Municipalidad de Puerto Montt | contact: gaqs.02@gmail.com</small>
+
+      </div>
+      <!-- Grid column -->
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+</footer>
+<!-- Footer -->
+
       </div><!-- /end sidenav_content && authentication_content-->
     </div><!-- /end sidenav && authentication -->
 
@@ -82,12 +123,12 @@
 
 
     <!-- Toast prueba mensajes exito y error esquina inferior -->
-    <div class="position-fixed bottom-0 end-0 p-5" style="z-index: 11">
-      <div id="alert_toast" class="toast hide border-0 fade" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="position-fixed start-50 translate-middle-x" style="top:2rem;">
+      <div id="alert_toast" class="toast hide border-0 fade" data-bs-delay="6000" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
           <i class="fa-solid fa-bell me-2"></i>
-          <strong class="me-auto">Atención!</strong>
-          <small>1 segundos atrás</small>
+          <strong class="me-auto">¡Atención!</strong>
+          <small></small>
           <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body">
@@ -129,32 +170,48 @@ $(document).ready(function(){
     //.jpeg .jpg .png .pdf .doc .xls .docx .xslx .odt .odf
   });
 
-  $('body').on('click', '#send_form', function(){
-    var data = new FormData( $('#form')[0] );
+  $('body').on('click', '#save_form, #send_form', function(event){
+    event.preventDefault();
+    var button = $(this).val();
+    var send = false;
+    //verifica que no haya inputs text y textarea vacios
+    const fields = document.querySelectorAll("#form input[type=text], #form textarea");
+    const emptyInputs = Array.from(fields).filter( input => input.value == "");
+    //verifica que esten todos los archivos, o si falta uno que al menos tenga un archivo compatible
+    const files = document.querySelectorAll("#form input[name='file[]']");
+    const emptyFiles = Array.from(files).filter(
+        input => input.classList[2] != "d-none" && input.value == ""
+    );
+
+    console.log(emptyFiles);
+
+    if(emptyInputs.length === 0 && emptyFiles.length == 0){
+      send = true;
+    }
+    var formData = new FormData( $('#form')[0] );
+    formData.append('send', send);
+    formData.append('button', button);
+
     $.ajax({
       url : url + "/home/forms",
       type: "POST",
-      data: data,
+      data: formData,
       processData: false,
       contentType: false,
       success: function(html){
-        console.log(html);
+        //console.log(html);
         var obj = JSON.parse(html);
         if( obj.status == 'error'){
-          $('#error_form').addClass('alert-danger').html(obj.data);
           window.scrollTo(0, 0);
+          setTimeout(function(){ location.reload() } , 1000);
         }else if( obj.status == 'success' ){
-          $('#alert_toast').addClass('text-white bg-success');
-          $('#alert_toast .toast-header').addClass('text-white bg-success')
-          $('#alert_toast .toast-body').html(obj.data);
-          $('#alert_toast').toast('show');
-          window.scrollTo(0, 0);
-          setTimeout(function(){ location.reload() } , 2000)
+          setTimeout(function(){ location.reload() } , 2000);
         }
       }
     });
-  });
 
+
+  });
 
   //borrar archivos dentro del formulario
   $('body').on('click', '#delete_file', function(){
@@ -187,6 +244,26 @@ $(document).ready(function(){
     });
   });
 
+  $('body').on('click', '#update_password', function(){
+    event.preventDefault();
+    var data = $('#change_password_form').serialize();
+    $.ajax({
+      url : url + "/users/update_password",
+      type: "POST",
+      data: data,
+      success: function(html){
+        console.log(html);
+        var obj = JSON.parse(html);
+        if( obj.status == 'error'){
+          $('#error_change_password').addClass('alert-danger').html(obj.data);
+        }else if(obj.status == 'success'){
+          $('#error_change_password').addClass('alert-success').html(obj.data);
+          setTimeout(function(){ window.location.href = url+'/users/logout'; } , 3000)
+      }
+    }
+    });
+  });
+
   //mantiene tab activo despues de reload
   if( localStorage.getItem('active_tab') == null ){
     localStorage.setItem('active_tab', 'v-pills-user-tab')
@@ -202,6 +279,14 @@ $(document).ready(function(){
       $('.error_list').html('');
     })
   })
+
+  var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+  var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    return new bootstrap.Popover(popoverTriggerEl)
+  })
+
+
+
   var active_tab = localStorage.getItem('active_tab')
   if( active_tab ){
     $( '#' + active_tab ).tab('show')
@@ -211,7 +296,6 @@ $(document).ready(function(){
 
   //cambia icono izq boton por icono carga y bloquea boton
   $('body').on('click', '.submit_something', function(){
-    console.log( $(this).children()[0] )
     $(this).addClass('disabled')
     $(this).children().removeClass().addClass('fa-solid fa-circle-notch fa-spin').prop('disabled', true)
   });
@@ -232,16 +316,19 @@ $(document).ready(function(){
     $('#alert_toast .toast-body').html(failure);
     $('#alert_toast').toast('show');
   }
-
-  //check habilitar empresa
-  var status = "<?= $user['status'] ?? null; ?>";
-  if( status == '0' || status == '' ){
-    $('#business_form input').prop('disabled', true);
-  }
-  $('#bussiness_check').change(function(){
-    $('#business_form input').prop('disabled', false);
-  });
-
-
 });//end document ready
+
+
+
+
+
+  //scripts especificos para cada concurso.
+
+  //1.- categoria empresa, pregunta 4 (presupuesto) sin textbox.
+  var survey_id = '<?= $_GET['survey_id'] ?? null ; ?>';
+  if( survey_id == '2' ){
+    var textarea = $('#textarea_cuestionario_3');
+    textarea.addClass('d-none');
+
+  }
 </script>

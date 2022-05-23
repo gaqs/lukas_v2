@@ -38,7 +38,7 @@ class Admin extends BaseController
         if($this->request->getMethod() == 'post'){
           //validation rules
           $rules = [
-            'email'     => ['label' => 'correo', 'rules' => 'required|min_length[6]|max_length[50]|valid_email'],
+            'email'     => ['label' => 'correo', 'rules' => 'required|min_length[6]|max_length[250]|valid_email'],
             'password'  => ['label' => 'contraseña', 'rules' => 'required|min_length[6]|max_length[255]|validate_user[email,password]']
           ];
           $errors = [

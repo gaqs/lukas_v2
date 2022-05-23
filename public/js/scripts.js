@@ -17,8 +17,8 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 function checkRut(rut) {
-    var valor = rut.value.replace(/\./g,'');
-    valor = valor.replace('-','');
+    var valor = rut.value.replace('.','');
+    valor = valor.replaceAll('-','');
     cuerpo = valor.slice(0,-1);
     dv = valor.slice(-1).toUpperCase();
     rut.value = cuerpo + '-'+ dv
@@ -36,7 +36,6 @@ function checkRut(rut) {
     if(dvEsperado != dv) {  return false; }
     rut.setCustomValidity('');
 }
-
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
   'use strict'
@@ -77,3 +76,13 @@ var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toolt
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
+
+$('textarea').on("propertychange keyup input paste ready", function () {
+  var limit = $(this).data("limit");
+  var remainingChars = limit - $(this).val().length;
+  if (remainingChars <= 0) {
+    $(this).val($(this).val().substring(0, limit));
+  }
+  var rest = remainingChars<=0?0:remainingChars;
+  var asd = $(this).prev('label').children('span').text(rest);
+});

@@ -13,7 +13,7 @@ class SurveyAnswersModel extends Model{
   protected $updatedField  = 'updated_at';
   protected $deletedField  = 'deleted_at';
 
-  protected $allowedFields = ['users_surveys_id', 'section', 'question_number', 'answer','category_number','score','deleted_at'];
+  protected $allowedFields = ['users_surveys_id','section','question_number', 'answer','category_number','score','deleted_at'];
   protected $beforeInsert = ['beforeInsert'];
   protected $beforeUpdate = ['beforeUpdate'];
 
@@ -31,7 +31,7 @@ class SurveyAnswersModel extends Model{
   public function survey_answers_per_user( $survey_id, $user_id ){
     $db = db_connect();
     $query = $db->table('survey_answers sa')
-                ->select('sa.section, sa.question_number, sa.answer, us.results_id')
+                ->select('sa.section, sa.question_number, sa.answer, us.results_id, us.surveys_id')
                 ->join('users_surveys us', 'us.id = sa.users_surveys_id')
                 ->where('us.surveys_id', $survey_id )
                 ->where('us.user_id', $user_id)

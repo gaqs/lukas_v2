@@ -1,0 +1,79 @@
+{
+  "id": "3",
+  "nombre": "Lukas para Emprender, categoria Mujer Pescadora",
+  "importante": "",
+  "formulario": {
+    "0": {
+      "titulo": "Datos Proyecto",
+      "datos": {
+        "0": {
+          "pregunta": "Nombre del Proyecto",
+          "ejemplo": ""
+        },
+        "1": {
+          "pregunta": "Categoria RPA",
+          "ejemplo": ""
+        }
+      }
+    },
+    "1": {
+      "titulo": "Información relevante al Proyecto",
+      "cuestionario": {
+        "0": {
+          "pregunta": "<b>Expresar claramente el emprendimiento de negocio.</b>",
+          "ejemplo": "Problema: Bajos precios del pescado fresco. Solución: Dar valor agregado para mejor precio, como, cuando y donde realizara el emprendimiento, es decir, donde está emplazado, propiedad del terreno, precios, competencia, mercado, clientes, redes de contacto, tiene agua potable, apr, electricidad, solución particular o alcantarrilado, etc."
+        },
+        "1": {
+          "pregunta": "<b>Quienes le ayudan en su negocio, experiencia en el rubro, etc.</b>",
+          "ejemplo": "Grupo familiar, el esposo es pescador abastece de materias primas, los hijos ayudan a filetear, a ofrecer por redes sociales y la emprendedora vende en ferias y particulares."
+        },
+        "2": {
+          "pregunta": "<b>Que es lo nuevo o innovador, que lo distingue con su competencia, fortalezas de su negocio</b>",
+          "ejemplo": "Ahumado ecológico. Fortalezas: Me autoabastezco de materias primas, mi marido es pescador, vivo en una caleta, soy socia de un sindicato, llevo 20 años vendiendo informalmente, mi factor identatario es vendo ahumado con finas hierbas o quiero generar un producto nuevo con finas hierbas."
+        },
+        "3": {
+          "pregunta": "<b>¿Qué hará con el dinero adjudicado de este concurso?</b>",
+          "ejemplo": "En el negocio del ahumado voy a comprar un ahumador moderno ecológico, con pellets provenientes de bosques manejados, de gran eficiencia, describir mis costos de aumador, pellets, pescado, congelador, cuchillos fileteros, horas hombre, pasajes de micro, internet para ofrecer redes sociales, entre otros. presentación de presupuestos y cotizaciones.",
+          "archivos": {
+            "0": "Cotizaciones Referenciales."
+          }
+        },
+        "4": {
+          "pregunta": "<b>Quiénes son sus clientes, donde están, son estacionales, existe algún registro de ventas, etc.</b>",
+          "ejemplo": "En el negocio del ahumado le vendo a la sra. Carmela Gonzalez, mi vecina, (fotos de venta de producto, o boletas o facturas), vendo también en la fiesta costumbrista de Lenca y Chaicas (facturas, fotos o cartas de apoyo del pdte de la feria), vendo en Facebook, WhatsApp o Instagram (pantallazos de sus ofertas en las redes sociales), vendo cuando hay mareas (cuaderno de registro de ventas o carpeta tributaria para solicitar creditos)."
+        },
+        "5": {
+          "pregunta": "<b>¿Experiencia cuántos años lleva vendiendo?.</b>",
+          "ejemplo": "Ha vendido hace 10 años al minoreo merluza fresca eviscerada en filetes en bandeja de 500 grs con vitafilm a $5000 y hace dos años vende ahumado en caliente en tambor $7.000/kg, quiere dar otro paso hacia mejorar."
+        },
+        "6": {
+          "pregunta": "<b>Información complementaria: </b> Historia de la idea, experiencia, redes sociales, fotos de productos o servicios, videos, certificado de capacitaciones, recortes de diario, participación en notas de prensa o TV u otro.",
+          "ejemplo": "Fotos de su participación en capital semilla fosis, conadi, nota de prensa en sabingo, fotos de participación en el noticiero municipal, recortes de diarios de feria costumbrista de hace 5 años, certificados de capacitacion sence, certificados de capacitacion en liderazgo, entre otros.",
+          "archivos": {
+            "0": "Archivo complementario #1",
+            "1": "Archivo complementario #2",
+            "2": "Archivo complementario #3"
+          }
+        },
+        "7" : {
+          "pregunta": "<b>Informacion productiva.</b>",
+          "ejemplo": "Estadististica de desembarque con el RPA en el periodo señalado en sernapesca o la revision on line con clave de trazabilidad"
+        },
+        "8":{
+          "pregunta": "",
+          "ejemplo": ""
+        }
+      }
+    },
+    "2": {
+      "titulo": "Documentación necesaria",
+      "archivos": {
+        "0": "Cedula de identidad POR AMBOS LADOS.",
+        "1": "Rol unico tributario.",
+        "2": "Carpeta Tributaria de los últimos 12 meses.",
+        "3": "Patente Municipal primer semetre 2022.",
+        "4": "Otros Permisos."
+      }
+    }
+  }
+}

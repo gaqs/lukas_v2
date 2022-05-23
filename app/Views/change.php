@@ -14,27 +14,16 @@
                       </div>
                     </div>
                     <div class="card-body">
-                      <?php
-
-                      $uri = service('uri');
-
-                      if( session()->get('success') ){
-                        echo '<div class="alert alert-success alert-dismissible fade show">'.session()->get('success').'<button type="button" class="btn-close text-danger" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                      }else if( session()->get('failure') ){
-                        echo '<div class="alert alert-danger alert-dismissible fade show">'.session()->get('failure').'<button type="button" class="btn-close text-danger" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                      }
-                      ?>
-
                       <form action="<?= base_url('users/change_password')?>" method="post">
                         <div class="form-floating mb-3">
                             <input class="form-control" id="input_token" type="hidden" name="token" value="<?= $token ?? set_value('token'); ?>">
-                            <input class="form-control" id="input_email" type="email" name="email" value="<?= $key ?? set_value('email'); ?>" placeholder="" readonly/>
-                            <label for="input_email">Correo electrónico</label>
+                            <input class="form-control" id="input_rut" type="text" name="rut" value="<?= $key ?? set_value('rut'); ?>" placeholder="" readonly/>
+                            <label for="input_rut">RUT</label>
                         </div>
                         <div class="form-floating input-group mb-3">
-                            <input class="form-control" id="input_password" name="password" type="password" placeholder="" />
+                            <input class="form-control" id="input_password" name="password" type="password" placeholder="*************" />
                             <button class="btn btn-light rounded-end border px-3" id="toggle_button" type="button"><i id="toggle_icon" class="fa-solid fa-eye-slash"></i></button>
-                            <label for="input_password">Nueva contraseña</label>
+                            <label for="input_password" style="z-index:9;">Contraseña</label>
                         </div>
                           <div class="form-floating mb-3">
                               <input class="form-control" id="repeat_password" type="password" name="repeat_password" placeholder="" />
@@ -46,7 +35,7 @@
 														</div>
 													<?php endif ?>
                           <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                              <button type="submit" class="btn btn-primary w-100"> <i class="fas fa-sign-in-alt"></i> Cambiar</button>
+                              <button type="submit" class="btn btn-primary w-100 submit_something"> <i class="fas fa-sign-in-alt"></i> Cambiar</button>
                           </div>
                       </form>
 
@@ -60,3 +49,16 @@
       </div>
     </main>
   </div><!-- /end authentication_content-->
+  <script type="text/javascript">
+    const toggle_button = document.querySelector('#toggle_button');
+    const password = document.querySelector('#input_password');
+
+    toggle_button.addEventListener('click', function (e) {
+      // toggle the type attribute
+      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+      password.setAttribute('type', type);
+      // toggle the eye / eye slash icon
+      toggle_button.firstChild.classList.toggle('fa-eye-slash');
+      toggle_button.firstChild.classList.toggle('fa-eye');
+    });
+  </script>

@@ -13,7 +13,7 @@ class UsersSurveysModel extends Model{
   protected $updatedField  = 'updated_at';
   protected $deletedField  = 'deleted_at';
 
-  protected $allowedFields = ['user_id', 'surveys_id', 'results_id', 'result_information','created_at'];
+  protected $allowedFields = ['user_id', 'surveys_id', 'results_id', 'result_information','created_at', 'deleted_at'];
   protected $beforeInsert = ['beforeInsert'];
   protected $beforeUpdate = ['beforeUpdate'];
 
@@ -31,7 +31,20 @@ class UsersSurveysModel extends Model{
   public function recover_surveys_by_id(){
     $db = db_connect();
     $query = $db->table('users_surveys us')
-                ->select('us.id, us.user_id, us.surveys_id, s.name, us.results_id, rc.status, us.result_information, us.created_at, us.updated_at')
+                ->select('us.id, us.user_id, us.surveys_id, s.name, us.results_id, rc.status, us.result_information, us.created_at, us.updated_at, us.deleted_at')
+                ->join('surveys s', 's.id = us.surveys_id')
+                ->join('users u', 'u.id = us.user_id')
+                ->join('results_category rc', 'us.results_id = rc.id')
+                ->where('us.user_id', session()->get('id') )
+                ->where('us.deleted_at IS NULL')
+                ->get()->getResultArray();
+    return $query;
+  }
+
+  public function recover_all_surveys_by_id(){
+    $db = db_connect();
+    $query = $db->table('users_surveys us')
+                ->select('us.id, us.user_id, us.surveys_id, s.name, us.results_id, rc.status, us.result_information, us.created_at, us.updated_at, us.deleted_at')
                 ->join('surveys s', 's.id = us.surveys_id')
                 ->join('users u', 'u.id = us.user_id')
                 ->join('results_category rc', 'us.results_id = rc.id')

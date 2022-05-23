@@ -114,10 +114,11 @@
                     <tr>
                       <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">
-                          Hola! <?= $name.' '.$lastname; ?>
+                          Hola! <b><?= $name.' '.$lastname; ?></b>
                         </p>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">
-                          Muchas gracias por registrarse, para validar su correo, haga click en el siguiente boton:
+                          Muchas gracias por registrarte!<br>
+                          Para validar tu correo electrónico y asi poder participar en los concursos de Lukas para Emprender, haz click en el siguiente botón.
                         </p>
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; box-sizing: border-box; width: 100%;" width="100%">
                           <tbody>
@@ -129,7 +130,7 @@
                                       <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-radius: 5px; text-align: center; background-color: #3498db;" valign="top" align="center" bgcolor="#3498db">
 
                                         <!-- button -->
-                                        <a href="<?= $link; ?>" target="_blank" style="border: solid 1px #3498db; border-radius: 5px; box-sizing: border-box; cursor: pointer; display: inline-block; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-decoration: none; text-transform: capitalize; background-color: #3498db; border-color: #3498db; color: #ffffff;">Validar Correo Electrónico</a>
+                                        <a href="<?= $link; ?>" target="_blank" style="border: solid 1px #3498db; border-radius: 5px; box-sizing: border-box; cursor: pointer; display: inline-block; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-decoration: none; text-transform: capitalize; background-color: #3498db; border-color: #3498db; color: #ffffff;">Validar correo electrónico</a>
 
                                       </td>
                                     </tr>
@@ -140,10 +141,11 @@
                           </tbody>
                         </table>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">
-                          De lo contrario haga click aqui: <?= $link; ?>
+                          De lo contrario haz click en el siguiente link.<br>
+                          <?= $link; ?>
                         </p>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">
-                          Bienvenido!
+                          Bienvenido(a)!
                         </p>
                       </td>
                     </tr>
@@ -163,13 +165,13 @@
                     <span class="apple-link" style="color: #999999; font-size: 12px; text-align: center;">
                       <!-- footer text -->
                     </span>
-                    <br> Don't like these emails? <a href="http://i.imgur.com/CScmqnj.gif" style="text-decoration: underline; color: #999999; font-size: 12px; text-align: center;">Unsubscribe</a>.
+                    <br> Nuestra página, <a href="https://www.lukasparaemprender.com/" style="text-decoration: underline; color: #999999; font-size: 12px; text-align: center;">Lukas para Emprender</a>
                   </td>
                 </tr>
                 <tr>
                   <td class="content-block powered-by" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; color: #999999; font-size: 12px; text-align: center;" valign="top" align="center">
 
-                    Link --> <a href="http://htmlemail.io" style="color: #999999; font-size: 12px; text-align: center; text-decoration: none;">Click aqui</a>.
+                    <a href="https://www.puertomontt.cl/" style="color: #999999; font-size: 12px; text-align: center;">Municipalidad de Puerto Montt</a>
                   </td>
                 </tr>
               </table>

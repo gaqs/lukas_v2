@@ -9,7 +9,7 @@ class Home extends BaseController
 {
     public function index()
     {
-      session()->remove('success');
+      //session()->remove('success');
       //session()->remove('failure');
       $data = [];
       echo view('header');
@@ -20,38 +20,42 @@ class Home extends BaseController
 
     public function forms(){
       $db = db_connect();
-      $survey_answer_model = new SurveyAnswersModel();
+      $survey_answer = new SurveyAnswersModel();
+      $users_surveys = new UsersSurveysModel();
 
       $data = [];
       $data['survey_id'] = $this->request->getVar('survey_id');
+      $data['content'] = '';
 
-      $form_directory   = ROOTPATH . 'public/files/formularios/';
+      $form_directory   = ROOTPATH . 'public/files/concursos/' . $data['survey_id'] . '/';
       $files_directory  = ROOTPATH . 'public/files/usuarios/' . session()->get('rut') . '/' . $data['survey_id'] . '/';
 
       if( $this->request->getMethod() == 'get' ){
         $scanned_dir = array_map('basename', glob($form_directory."*.json", GLOB_BRACE));
-
-        for ($i=0; $i < count($scanned_dir); $i++) { //crear funcion
-          $id = substr($scanned_dir[$i], 0,1);
-          if( $id == $data['survey_id'] ){
-            $data['content'] = file_get_contents( $form_directory . $scanned_dir[$i] );
-            break;
-          }//end if
-        }//end for
+        $data['content'] = file_get_contents( $form_directory . $scanned_dir[0] );
 
         //respuestas formulario si existe
         $data['answers'] = [];
-        $query = $survey_answer_model->survey_answers_per_user( $data['survey_id'], session()->get('id') );
 
+        //NEED FIX
+        $surveys = $users_surveys->recover_surveys_by_id();
+        if( !empty($surveys) ){
+          if( $surveys[0]['surveys_id'] != $data['survey_id'] ){
+              return redirect()->to( base_url() )->with('failure','No es posible participar en otro concurso.');
+          }
+        }
+        $query = $survey_answer->survey_answers_per_user( $data['survey_id'], session()->get('id') );
         if( !empty($query) ){
-          if ($query[0]['results_id'] == '3') {
+          if ($query[0]['results_id'] == '4') {
             return redirect()->to( base_url() )->with('failure','No es posible ingresar a este concurso. Usuario retirado.');
           }else if( $query[0]['results_id'] != '1' ){
-            return redirect()->to( base_url() )->with('failure','Formulario en revision. No es posible editarlo.');
+            return redirect()->to( base_url() )->with('success','Formulario enviado, no es posible editarlo. <b>Recuerde mantener su perfil actualizado.</b>');
           }else{
             $data['answers'] = reorder_answers($query);
           }
         }
+        //NEED FIX
+
         //archivos de la encuesta si es que existen
         $file_list = [];
         $list = directory_map($files_directory);
@@ -76,13 +80,18 @@ class Home extends BaseController
         $userData = [];
         $resp = [];
 
+        $datos  = $this->request->getVar('data');
+        $send   = $this->request->getVar('send');
+        $button = $this->request->getVar('button');
+        $files  = $this->request->getFiles();
+
         $query = $db->table('users_surveys')
                     ->where('user_id', session()->get('id') )
                     ->where('surveys_id', $data['survey_id'] )
                     ->get()
                     ->getResultArray();
 
-        if( empty($query) ){ //primer formulario que llena el usuario
+        if( empty($query) && $button == 'save_form' ){ //primer formulario que llena el usuario
           $userData = [
             'user_id'     => session()->get('id'),
             'surveys_id'  => $data['survey_id'],
@@ -103,9 +112,7 @@ class Home extends BaseController
           }
         }//end if empty
 
-        $datos  = $this->request->getVar('data');
-        $files  = $this->request->getFiles();
-         //manejo de archivos del formulario
+        //manejo de archivos del formulario
         if ( $files ) {
           $aux = '1';
           foreach ($files as $key => $value) {
@@ -118,11 +125,11 @@ class Home extends BaseController
           for ($j=0; $j < count($datos[$i]); $j++) {
 
             $userAnswers = [];
-            $query = $survey_answer_model->select('id')
-                              ->where('users_surveys_id', $user_survey_id)
-                              ->where('section', $i)
-                              ->where('question_number', $j)
-                              ->first();
+            $query = $survey_answer->select('id')
+                                  ->where('users_surveys_id', $user_survey_id)
+                                  ->where('section', $i)
+                                  ->where('question_number', $j)
+                                  ->first();
 
             if( !empty($query) ){
               $userAnswers += [ 'id' => $query['id'] ];
@@ -135,12 +142,39 @@ class Home extends BaseController
               'deleted_at'       => NULL
             ];
 
-            $survey_answer_model->save($userAnswers);
+            $survey_answer->save($userAnswers);
 
           }//end for
         }//end for
-        $resp['status'] = 'success';
-        $resp['data'] = 'Datos agregados correctamente. <b>Redireccionando...</b>';
+
+        if( $button == 'send_form'){
+          if( $send == 'true'){
+            $data = [
+              'id'         => $user_survey_id,
+              'results_id' => '2'
+            ];
+            $users_surveys->save($data);
+
+            $data = [
+              'nombre' => session()->get('name'),
+              'apellido' => session()->get('lastname'),
+              'update_date' => date('y-m-d H:i:s'),
+              'link' => base_url(),
+            ];
+            //correo envio postulacion
+            $message = view('emails/sended', $data);
+            $send = send_email(session()->get('email'), '', 'Postulación confirmada', $message, '');
+
+            $resp['status'] = 'success';
+            session()->setFlashdata('success','Postulación enviada correctamente.');
+          }else{
+            $resp['status'] = 'error';
+            session()->setFlashdata('failure','Tiene campos sin llenar, su postulación no se ha enviado.');
+          }
+        }else{
+          $resp['status'] = 'success';
+          session()->setFlashdata('success','Datos guardados correctamente.<br><b>Recuerde que su postulación aún no se ha enviado.</b>');
+        }//end if send_form
 
         echo json_encode($resp);
       }//end request post
@@ -148,13 +182,40 @@ class Home extends BaseController
     }//end form function
 
 
+    public function briefing(){
+      $users_surveys     = new UsersSurveysModel();
+      $data['id']        = $this->request->getVar('survey_id');
+      $data['file_name'] = 'Bases del concurso';
+      $data['link'] = '#';
+
+      $surveys = $users_surveys->recover_surveys_by_id();
+      if( !empty($surveys) ){
+        if( $surveys[0]['surveys_id'] != $data['id'] ){
+            return redirect()->to( base_url() )->with('failure','No es posible postular a otro concurso.');
+        }
+      }
+
+      $form_directory   = ROOTPATH . 'public/files/concursos/' . $data['id'] . '/';
+      $file = array_map('basename', glob($form_directory."*.pdf", GLOB_BRACE));
+
+      if(!empty($file)){
+        $data['file_name'] = str_replace('.pdf', '', $file[0]);
+        $data['link'] = base_url('public/files/concursos/'.$data['id'].'/'.$file[0]);
+      }
+
+      echo view('header');
+      echo view('navbar');
+      echo view('briefing', $data);
+      echo view('footer');
+    }
+
     public function recover_info(){
       $db = db_connect();
       $id = $this->request->getVar('user_survey_id');
 
       $model = new UsersSurveysModel();
       $info  = $model->where( 'id', $id )
-                    ->first();
+                     ->first();
 
       echo json_encode($info);
     }
@@ -164,7 +225,7 @@ class Home extends BaseController
       $model = new UsersSurveysModel();
       $data = [
         'id'         => $id,
-        'results_id' => '3'
+        'results_id' => '4'
       ];
       $model->save($data);
       $model->delete($id);
@@ -177,15 +238,54 @@ class Home extends BaseController
 
     }//end delete_bank
 
-    public function delete_business(){
-
-    }//end delete_business
-
     public function delete_file(){
       $survey_id = $this->request->getVar('survey_id');
       $file_name = $this->request->getVar('file_name');
       $files_directory  = ROOTPATH . 'public/files/usuarios/' . session()->get('rut') . '/' . $survey_id . '/';
       array_map('unlink', glob( $files_directory . $file_name ));
     }//end delete_file
+
+    public function help(){
+      $data = [];
+
+      if( $this->request->getMethod() == 'post' ){
+
+        $rules = [
+          'name' => ['label' => 'nombre', 'rules' => 'required|min_length[3]|max_length[20]'],
+          'phone' => ['label' => 'teléfono', 'rules' => 'min_length[6]|max_length[20]'],
+          'email' => ['label' => 'correo electrónico', 'rules' => 'required|min_length[3]|valid_email'],
+          'subject' => ['label' => 'asunto', 'rules' => 'required|min_length[3]|max_length[20]'],
+          'message' => ['label' => 'mensaje', 'rules' => 'required|min_length[10]']
+        ];
+
+        if(!$this->validate($rules)){
+          $data['validation'] = $this->validator;
+        }else{
+          $data = [
+            'name' => $this->request->getVar('name'),
+            'phone' => $this->request->getVar('phone'),
+            'email' => $this->request->getVar('email'),
+            'subject' => $this->request->getVar('subject'),
+            'message' => $this->request->getVar('message')
+          ];
+
+          $message = view('emails/help',$data);
+
+          $send = send_email('lukasparaemprender@gmail.com', '', $data['subject'], $message, '');
+
+          if( $send ){
+            return redirect()->to( base_url() )->with('success','Mensaje enviado correctamente. Nos comunicaremos contigo prontamente.');
+          }else{
+            return redirect()->to( base_url() )->with('failure','Error al enviar el mensaje.');
+          }
+
+        }
+      }
+
+      echo view('header');
+      echo view('navbar');
+      echo view('help', $data);
+      echo view('footer');
+    }
 
 }

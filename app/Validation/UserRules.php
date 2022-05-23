@@ -7,7 +7,7 @@ class UserRules
 
   public function validate_user(string $str, string $fields,array $data){
     $model = new UserModel();
-    $user = $model->where('email', $data['email'])
+    $user = $model->where('rut', $data['rut'])
                   ->first();
 
     if( !$user ){
@@ -17,9 +17,11 @@ class UserRules
     return password_verify($data['password'], $user['password']);
   }
 
+
+  //es necesario validar a correo
   public function verified_user(string $str, string $fields,array $data){
     $model = new UserModel();
-    $user = $model->where('email', $data['email'])
+    $user = $model->where('rut', $data['rut'])
                   ->first();
 
     if($user != null){

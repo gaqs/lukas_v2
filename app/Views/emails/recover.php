@@ -117,7 +117,11 @@
                           Hola!
                         </p>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">
-                          Reinicio contraseña...
+                          <b>¿Olvidaste tu contraseña?</b><br>
+                          Hemos recibido una petición de reinicio de contraseña para tu cuenta.
+                          <br>
+                          <br>
+                          Para continuar con el procedimiento, has click en el siguiente botón.
                         </p>
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; box-sizing: border-box; width: 100%;" width="100%">
                           <tbody>
@@ -140,7 +144,12 @@
                           </tbody>
                         </table>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">
-                          De lo contrario haga click aqui: <?= $link; ?>
+                          De lo contrario haga click en el siguiente link.
+                          <br>
+                          <?= $link; ?>
+
+                          <br><br>
+                          <i>Si no has sido tú, simplemente ignora este correo electrónico.</i>
                         </p>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">
                           <!-- texto -->
@@ -163,13 +172,13 @@
                     <span class="apple-link" style="color: #999999; font-size: 12px; text-align: center;">
                       <!-- footer text -->
                     </span>
-                    <br> Don't like these emails? <a href="http://i.imgur.com/CScmqnj.gif" style="text-decoration: underline; color: #999999; font-size: 12px; text-align: center;">Unsubscribe</a>.
+                    <br> Nuestra página, <a href="https://www.lukasparaemprender.com/" style="text-decoration: underline; color: #999999; font-size: 12px; text-align: center;">Lukas para Emprender</a>
                   </td>
                 </tr>
                 <tr>
                   <td class="content-block powered-by" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; color: #999999; font-size: 12px; text-align: center;" valign="top" align="center">
 
-                    Link --> <a href="http://htmlemail.io" style="color: #999999; font-size: 12px; text-align: center; text-decoration: none;">Click aqui</a>.
+                    <a href="https://www.puertomontt.cl/" style="color: #999999; font-size: 12px; text-align: center; ">Municipalidad de Puerto Montt</a>
                   </td>
                 </tr>
               </table>

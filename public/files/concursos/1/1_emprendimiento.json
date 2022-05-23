@@ -1,0 +1,57 @@
+{
+  "id": "1",
+  "nombre": "Lukas para Emprender, categoria Emprendimiento",
+  "importante": "",
+  "formulario": {
+    "0": {
+      "titulo": "Datos Proyecto",
+      "datos": {
+        "0": {
+          "pregunta": "Nombre del Proyecto",
+          "ejemplo": ""
+        }
+      }
+    },
+    "1": {
+      "titulo": "Información relevante al Proyecto",
+      "cuestionario": {
+        "0": {
+          "pregunta": "<b>Descripción del Emprendimiento:</b> realice una presentación de su negocio de manera que se pueda evaluar su potencial, para lo cual se sugiere describir, por lo menos, clientes que atiende, producto y/o servicio destacando sus elementos diferenciadores, proceso productivo, canales que utiliza para la comercialización, medios de difusión que utiliza, precios de los productos y/o servicios, ventas realizadas.",
+          "ejemplo": ""
+        },
+        "1": {
+          "pregunta": "<b>Experiencia y equipo de trabajo:</b> presente al equipo de trabajo que gestiona el negocio y realice una breve reseña de su experiencia, los logros alcanzados a la fecha, las redes de apoyo con las que cuenta, apoyos recibidos de organismos que apoyan el emprendimiento (Municipalidad, FOSIS; SERCOTEC, entre otros), indique si pertenece a alguna agrupación de emprendedores o empresarios, entre otros.",
+          "ejemplo": ""
+        },
+        "2": {
+          "pregunta": "<b>Descripción del proyecto:</b> describa brevemente la iniciativa a desarrollar con este financiamiento destacando los resultados que espera obtener y cómo potenciará su emprendimiento.",
+          "ejemplo": ""
+        },
+        "3": {
+          "pregunta": "<b>Presupuesto:</b> detalle las compras que realizará con el financiamiento indicando en qué invertirá el subsidio, cantidades, precios y cuál será el aporte de dicha compra al proyecto. Recuerde que los gastos en los que incurrirá deben ser coherentes con su emprendimiento y el proyecto que desarrollará. (Adjuntar cotizaciones referenciales) Recuerde valor bruto.",
+          "ejemplo": "",
+          "archivos": {
+            "0": "Cotizaciones Referenciales."
+          }
+        },
+        "4":{
+          "pregunta": "<b>Información complementaria que desee indicar:</b> mencionar experiencia, certificación, ubicación, premios obtenidos, redes sociales, etc.).",
+          "ejemplo": "",
+          "archivos": {
+            "0": "Archivo complementario #1",
+            "2": "Archivo complementario #2"
+          }
+        }
+      }
+    },
+    "2": {
+      "titulo": "Documentación necesaria",
+      "archivos": {
+        "0": "Cedula de identidad POR AMBOS LADOS.",
+        "1": "Certificado de Residencia 2022 (Junta de vecinos o notarial).",
+        "2": "Otros permisos, si requiere rubro.",
+        "3": "Acreditación emprendimiento informal (redes sociales, fotografias, etc.)."
+      }
+    }
+  }
+}

@@ -7,22 +7,22 @@
 									<div class="card shadow-lg border-0 rounded-lg">
 											<div class="card-header py-4">
 												<h3 class="text-center font-weight-light mt-4">
-													Login
+													Iniciar sesión
 												</h3>
 												<div class="text-center">
-													<small>Sistema de Administración</small>
+													<small>Concursos Lukas para Emprender</small>
 												</div>
 											</div>
 											<div class="card-body">
 												<form action="<?= base_url('users/index');?>" method="post">
 														<div class="form-floating mb-3">
-																<input class="form-control" id="input_email" type="email" name="email" value="<?= set_value('email');?>" placeholder="nombre@ejemplo.com" />
-																<label for="input_email">Correo electrónico</label>
+																<input class="form-control" id="input_rut" type="text" name="rut" value="<?= set_value('rut');?>" placeholder="12356789-0" oninput="checkRut(this)" />
+																<label for="input_rut">RUT</label>
 														</div>
 														<div class="form-floating input-group mb-3">
 																<input class="form-control" id="input_password" name="password" type="password" placeholder="*************" />
 																<button class="btn btn-light rounded-end border px-3" id="toggle_button" type="button"><i id="toggle_icon" class="fa-solid fa-eye-slash"></i></button>
-																<label for="input_password">Contraseña</label>
+																<label for="input_password" style="z-index:9;">Contraseña</label>
 														</div>
 														<div class="form-check mb-3">
 																<input class="form-check-input" id="input_remember" type="checkbox" value="" />
@@ -40,7 +40,7 @@
 												</form>
 											</div>
 											<div class="card-footer text-center py-3">
-													<div class="small"><a href="<?= base_url('users/register'); ?>">Necesitas una cuenta? Registrate!</a></div>
+													<div class="small"><a href="<?= base_url('users/register'); ?>">Necesitas una cuenta? Regístrate!</a></div>
 											</div>
 									</div>
 							</div>
