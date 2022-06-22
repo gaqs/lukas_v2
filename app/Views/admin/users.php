@@ -5,7 +5,7 @@
 
       <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="<?= base_url('admin') ;?>">Home</a></li>
           <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
         </ol>
       </nav>
@@ -18,6 +18,8 @@
         <th>Nombre</th>
         <th>Correo</th>
         <th>Teléfono</th>
+        <th>Creado</th>
+        <th>Verificado</th>
         <th>Acción</th>
     </tr>
 </thead>
@@ -31,10 +33,12 @@
               <td>'.$users[$i]['name'].' '.$users[$i]['lastname'].'</td>
               <td>'.$users[$i]['email'].'</td>
               <td>'.$users[$i]['phone'].'</td>
+              <td>'.$users[$i]['created_at'].'</td>
+              <td>'.$users[$i]['email_verified_at'].'</td>
               <td class="text-center">
                 <div class="btn-group" role="group" aria-label="Acción">
-                  <button type="button" class="btn btn-primary"><i class="fa-solid fa-user-pen"></i></button>
-                  <button type="button" class="btn btn-danger"><i class="fa-solid fa-user-large-slash"></i></button>
+                  <button type="button" id="edit_user" class="btn btn-primary" value="'.$users[$i]['id'].'" ><i class="fa-solid fa-user-pen"></i></button>
+                  <button type="button" class="btn btn-danger disabled"><i class="fa-solid fa-user-large-slash"></i></button>
                 </div>
               </td>
             </tr>';
@@ -47,6 +51,8 @@
       <th>RUT</th>
       <th>Nombre</th>
       <th>Correo</th>
+      <th>Teléfono</th>
+      <th>Creado</th>
       <th>Teléfono</th>
       <th>Acción</th>
     </tr>

@@ -34,6 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('users', 'Users::index', ['filter' => 'noauth']);
 $routes->get('registro','Users::register', ['filter' => 'noauth']);
 $routes->get('users/register','Users::register', ['filter' => 'noauth']);
+$routes->get('admin/login','Admin::login', ['filter' => 'noauth']);
 
 $routes->group('home', ['filter' => 'auth:user'], function($routes){
   $routes->add('forms', 'Home::forms');
@@ -47,6 +48,11 @@ $routes->group('users', ['filter' => 'auth:user'], function($routes){
 
 $routes->group('admin', ['filter' => 'auth:admin'], function($routes){
   $routes->add('', 'Admin::index');
+  $routes->add('index', 'Admin::index');
+  $routes->add('users', 'Admin::users');
+  $routes->add('applications', 'Admin::applications');
+  $routes->add('password', 'Admin::password');
+  $routes->add('register', 'Admin::register');
 });
 
 

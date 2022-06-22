@@ -3,7 +3,7 @@
 			<main role="main">
 				<div class="container">
 					<div class="row justify-content-center">
-							<div class="col-lg-5">
+							<div class="col-lg-6">
 									<div class="card shadow-lg border-0 rounded-lg">
 											<div class="card-header py-4">
 												<h3 class="text-center font-weight-light mt-4">
@@ -14,6 +14,9 @@
 												</div>
 											</div>
 											<div class="card-body">
+												<div class="alert alert-warning" role="alert">
+												  <small>Si se encuentra con algún problema y/o error al momento de ingresar, no dude en contactarse al correo <b>lukasparaemprender@puertomontt.cl</b>.</small>
+												</div>
 												<form action="<?= base_url('users/index');?>" method="post">
 														<div class="form-floating mb-3">
 																<input class="form-control" id="input_rut" type="text" name="rut" value="<?= set_value('rut');?>" placeholder="12356789-0" oninput="checkRut(this)" />
@@ -40,7 +43,7 @@
 												</form>
 											</div>
 											<div class="card-footer text-center py-3">
-													<div class="small"><a href="<?= base_url('users/register'); ?>">Necesitas una cuenta? Regístrate!</a></div>
+													<div class="small"><a href="<?= base_url('users/register'); ?>" class="disabled">Necesitas una cuenta? Regístrate!</a></div>
 											</div>
 									</div>
 							</div>

@@ -6,7 +6,8 @@
       <small>
         <ul class="navbar-nav text-secondary">
           <li>
-            <i class="fa fa-envelope me-2"></i>lukasparaemprender@puertomontt.cl
+            <i class="fas fa-landmark me-1"></i>Municipalidad de Puerto Montt
+            <i class="fa fa-envelope ms-3 me-2"></i>lukasparaemprender@puertomontt.cl
             <i class="fa fa-phone ms-3 me-1"></i> (+65) 2 261315
           </li>
         </ul>
@@ -27,19 +28,19 @@
           <a class="nav-link <?= ($uri->getSegment(1) == '' ? 'active' : null) ?>"  href="<?= base_url();?>">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?= ($uri->getSegment(1) == 'catalogo' ? 'active' : null) ?>"  href="#nosotros">Nosotros</a>
+          <a class="nav-link <?= ($uri->getSegment(1) == 'catalogo' ? 'active' : null) ?>"  href="<?= base_url('#nosotros'); ?>">Nosotros</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?= ($uri->getSegment(1) == 'noticias' ? 'active' : null) ?>"  href="#concursos">Concursos</a>
+          <a class="nav-link <?= ($uri->getSegment(1) == 'noticias' ? 'active' : null) ?>"  href="<?= base_url('#how'); ?>">¿Como postular?</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?= ($uri->getSegment(1) == 'nosotros' ? 'active' : null) ?>"  href="#ayuda">Ayuda</a>
+          <a class="nav-link <?= ($uri->getSegment(1) == 'nosotros' ? 'active' : null) ?>"  href="<?= base_url('#ayuda'); ?>">Ayuda</a>
         </li>
 
         <?php if( session()->get('loggedIn') && session()->get('role') == 'user' ):?>
 
           <li class="nav-item dropdown nav_register">
-            <a class="nav-link dropdown-toggle fw-bold text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle fw-boldest text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <?= session()->get('name').' '.session()->get('lastname') ?>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
@@ -53,12 +54,12 @@
         <?php else: ?>
 
           <li class="nav-item nav_register">
-            <a class="nav-link"  href="<?= base_url('users/register'); ?>">
+            <a class="nav-link disabled"  href="<?= base_url('users/register'); ?>">
               <i class="fas fa-user-plus ml-1"></i> Registrarse
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="<?= base_url('users'); ?>">
+            <a class="nav-link active fw-boldest" href="<?= base_url('users'); ?>">
               <i class="fas fa-sign-in-alt ml-1"></i> Iniciar sesión
             </a>
           </li>

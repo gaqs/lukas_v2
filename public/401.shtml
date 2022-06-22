@@ -1,0 +1,12 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>401 Unauthorized</title>
+  </head>
+  <body>
+    <h1>No tiene autorización para entrar.</h1><br>
+    <h1>Página disponible desde el día Viernes 27 a las 15:00 hrs.</h1><br>
+    <p>Este servidor no pudo verificar que etés autorizado para acceder al documento requerido.</p>
+  </body>
+</html>

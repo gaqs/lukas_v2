@@ -10,52 +10,73 @@
           </ol>
         </nav>
 
-        <div class="row mb-5">
-          <div class="col-sm-3">
-            <div class="card">
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-success overflow-hidden h-100">
               <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <div class="card-body-icon">
+                  <i class="fas fa-fw fa-users"></i>
+                </div>
+                <div class="mr-5"><?= $users; ?> Usuarios</div>
               </div>
-              <a class="card-footer">
-                <small class="text-muted">Saber más</small>
+              <a href="<?= base_url('admin/users'); ?>" class="card-footer text-white clearfix small z-1">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
               </a>
             </div>
           </div>
-          <div class="col-sm-3">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <div class="col-xl-3 col-sm-6 mb-3">
+          <div class="card text-white bg-primary overflow-hidden h-100">
+            <div class="card-body">
+              <div class="card-body-icon">
+                <i class="fas fa-paste"></i>
               </div>
-              <a class="card-footer">
-                <small class="text-muted">Saber más</small>
-              </a>
+              <div class="mr-5"><?= $user_surveys; ?> Postulaciones</div>
             </div>
-          </div>
-          <div class="col-sm-3">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              </div>
-              <a class="card-footer">
-                <small class="text-muted">Saber más</small>
-              </a>
-            </div>
-          </div>
-          <div class="col-sm-3">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              </div>
-              <a class="card-footer">
-                <small class="text-muted">Saber más</small>
-              </a>
-            </div>
+            <a href="<?= base_url('admin/applications '); ?>" class="card-footer text-white clearfix small z-1">
+              <span class="float-left">View Details</span>
+              <span class="float-right">
+                <i class="fas fa-angle-right"></i>
+              </span>
+            </a>
           </div>
         </div>
+        <div class="col-xl-3 col-sm-6 mb-3">
+          <div class="card text-white bg-warning overflow-hidden h-100">
+            <div class="card-body">
+              <div class="card-body-icon">
+                <i class="fas fa-paper-plane fa-flip-horizontal"></i>
+              </div>
+              <div class="mr-5"><?= $sended; ?> Enviados</div>
+            </div>
+            <a class="card-footer text-white clearfix small z-1" href="#">
+              <span class="float-left">View Details</span>
+              <span class="float-right">
+                <i class="fas fa-angle-right"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-sm-6 mb-3">
+          <div class="card text-white bg-danger overflow-hidden h-100">
+            <div class="card-body">
+              <div class="card-body-icon">
+                <i class="fas fa-fw fa-map-marked-alt"></i>
+              </div>
+              <div class="mr-5">0 Negocios</div>
+            </div>
+            <a class="card-footer text-white clearfix small z-1" href="#">
+              <span class="float-left">View Details</span>
+              <span class="float-right">
+                <i class="fas fa-angle-right"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
 
         <table id="users_table" class="table table-striped display cell-border responsive w-100 align-middle">
         <thead>

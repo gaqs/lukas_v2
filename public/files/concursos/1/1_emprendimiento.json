@@ -1,14 +1,14 @@
 {
   "id": "1",
-  "nombre": "Lukas para Emprender, categoria Emprendimiento",
-  "importante": "",
+  "nombre": "Categoría Emprendimiento",
+  "importante": "Para poder completar su postulación a la categoria emprendimiento, es necesario que complete su perfil de usuario, haciendo click en su nombre ubicado en la barra superior.",
   "formulario": {
     "0": {
       "titulo": "Datos Proyecto",
       "datos": {
         "0": {
           "pregunta": "Nombre del Proyecto",
-          "ejemplo": ""
+          "ejemplo": "Compra de maquinaria para mejorar producción y ventas."
         }
       }
     },
@@ -16,30 +16,23 @@
       "titulo": "Información relevante al Proyecto",
       "cuestionario": {
         "0": {
-          "pregunta": "<b>Descripción del Emprendimiento:</b> realice una presentación de su negocio de manera que se pueda evaluar su potencial, para lo cual se sugiere describir, por lo menos, clientes que atiende, producto y/o servicio destacando sus elementos diferenciadores, proceso productivo, canales que utiliza para la comercialización, medios de difusión que utiliza, precios de los productos y/o servicios, ventas realizadas.",
-          "ejemplo": ""
+          "pregunta": "<b>Descripción del Emprendimiento:</b> realice una presentación de su negocio/emprendimiento de manera que se pueda evaluar su modelo de negocios, para lo cual se sugiere describir de la manera más detallada se cuenta con una detallada a los clientes junto a sus características y necesidades, oferta de productos/servicios, canales de venta, distribución y difusión, estrategias para capturar nuevos cliente, mantenerlos cautivos y estimular las ventas, las fuentes de ingresos incluyendo precios, política de descuentos, entre otros, recursos humanos, infraestructura y equipamiento necesarios para el desarrollo/implementación del negocio. Entregue datos que permitan evaluar el desarrollo y proyecciones del negocio (ventas, ingresos, costos, sucursales, empleados, entre otros).",
+          "ejemplo": "Tengo un negocio de artesanía en cuero tales como carteras, cinturones, billeteras y otros. El producto está dirigido principalmente a mujeres de todas las edades. La venta se realiza en la plaza de mi comuna y también a pedidos de diseños únicos, entre otras cosas. Se venden entre $2000 a $20.000, etc."
         },
         "1": {
-          "pregunta": "<b>Experiencia y equipo de trabajo:</b> presente al equipo de trabajo que gestiona el negocio y realice una breve reseña de su experiencia, los logros alcanzados a la fecha, las redes de apoyo con las que cuenta, apoyos recibidos de organismos que apoyan el emprendimiento (Municipalidad, FOSIS; SERCOTEC, entre otros), indique si pertenece a alguna agrupación de emprendedores o empresarios, entre otros.",
-          "ejemplo": ""
+          "pregunta": "<b>Experiencia y equipo de trabajo:</b> presente al equipo de trabajo que gestiona el negocio/emprendimiento y realice una breve reseña de su experiencia, los logros alcanzados a la fecha, las redes de apoyo con las que cuenta, apoyos recibidos de organismos que apoyan el emprendimiento (Municipalidad, FOSIS; SERCOTEC, entre otros), indique si pertenece a alguna agrupación de emprendedores o empresarios, entre otros.",
+          "ejemplo": "Tengo un socio/trabajador que me ayuda a cortar el cuero, llevo mas de 10 años en el rubro, he participado en diferentes exposiciones y he concurso en diferentes fondos concursables, he participado en capaciones de la Municipalidad, centro de negocios y pertenezco a la agrupación artesanos del cuero."
         },
         "2": {
           "pregunta": "<b>Descripción del proyecto:</b> describa brevemente la iniciativa a desarrollar con este financiamiento destacando los resultados que espera obtener y cómo potenciará su emprendimiento.",
-          "ejemplo": ""
+          "ejemplo": "Aumentar la producción y venta de los artículos de cuero para mujeres a través de renovar las herramientas y maquinarias, adquirir insumos y contratar a una persona que apoye este proceso, etc."
         },
         "3": {
-          "pregunta": "<b>Presupuesto:</b> detalle las compras que realizará con el financiamiento indicando en qué invertirá el subsidio, cantidades, precios y cuál será el aporte de dicha compra al proyecto. Recuerde que los gastos en los que incurrirá deben ser coherentes con su emprendimiento y el proyecto que desarrollará. (Adjuntar cotizaciones referenciales) Recuerde valor bruto.",
-          "ejemplo": "",
+          "pregunta": "<b>Presupuesto:</b> detalle las compras que realizará con el financiamiento indicando en qué invertirá el subsidio, cantidades, precios y cuál será el aporte de dicha compra al proyecto. Recuerde que los gastos en los que incurrirá deben ser coherentes con su emprendimiento y el proyecto que desarrollará. Recuerde que el total del presupuesto debe coincidir con el monto indicado en las bases.",
+          "ejemplo": "Para el negocio de artesanía en cuero necesito adquirir nuevas máquinas, materiales de trabajo, materias primas como el cuero, invertir en publicidad, volantes, etc.",
           "archivos": {
-            "0": "Cotizaciones Referenciales."
-          }
-        },
-        "4":{
-          "pregunta": "<b>Información complementaria que desee indicar:</b> mencionar experiencia, certificación, ubicación, premios obtenidos, redes sociales, etc.).",
-          "ejemplo": "",
-          "archivos": {
-            "0": "Archivo complementario #1",
-            "2": "Archivo complementario #2"
+            "0": "Cotizaciones Referenciales.",
+            "1": "Presupuesto. <a href='../files/concursos/ejemplos_doc/detalle_presupuesto.docx'>Descargar aquí tabla presupuesto formato tipo</a>."
           }
         }
       }
@@ -47,10 +40,10 @@
     "2": {
       "titulo": "Documentación necesaria",
       "archivos": {
-        "0": "Cedula de identidad POR AMBOS LADOS.",
-        "1": "Certificado de Residencia 2022 (Junta de vecinos o notarial).",
-        "2": "Otros permisos, si requiere rubro.",
-        "3": "Acreditación emprendimiento informal (redes sociales, fotografias, etc.)."
+        "0": "Cedula de identidad <b>POR AMBOS LADOS</b>.",
+        "1": "Certificado de Residencia 2022 (Junta de vecinos, Notarial o Cartola de Registro Social de Hogares).",
+        "2": "Otros Permisos (resolución sanitaria, SEC, rubro alimentación). Si pertenece al rubro de alimentación y no posee resolución sanitaria, <a href='../files/concursos/ejemplos_doc/declaracion_jurada_permiso_sanitario.docx'>descargar aquí declaración jurada simple</a>. Si su rubro no requiere este permiso, adjunte un documento simple que indique las causas.",
+        "3": "Acreditación emprendimiento informal (redes sociales, fotografias, permisos municipales, etc.)."
       }
     }
   }

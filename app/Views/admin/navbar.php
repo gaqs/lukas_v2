@@ -46,12 +46,22 @@
                       <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                       Usuarios
                   </a>
-                  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#applications_layout" aria-expanded="false" aria-controls="applications_layout">
+                      <div class="sb-nav-link-icon"><i class="fa-solid fa-paste"></i></div>
+                        Postulaciones
+                      <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                  </a>
+                  <div class="collapse" id="applications_layout" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                      <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="<?= base_url('admin/applications'); ?>">29/05/2022 - 19/06/2022</a>
+                      </nav>
+                  </div>
+                  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#surveys_layout" aria-expanded="false" aria-controls="surveys_layout">
                       <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                         Concursos
                       <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                   </a>
-                  <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                  <div class="collapse" id="surveys_layout" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                       <nav class="sb-sidenav-menu-nested nav">
 
                         <?= surveys_list(); ?>
@@ -60,13 +70,13 @@
                   </div>
 
                   <div class="sb-sidenav-menu-heading">Addons</div>
-                  <a class="nav-link" href="charts.html">
-                      <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                      Agregar Concurso
-                  </a>
-                  <a class="nav-link" href="tables.html">
+                  <a class="nav-link" href="<?= base_url('admin/password'); ?>">
                       <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                      Tablas
+                      Contraseñas
+                  </a>
+                  <a class="nav-link" href="<?= base_url('admin/register'); ?>">
+                      <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                      Administradores
                   </a>
               </div>
           </div>

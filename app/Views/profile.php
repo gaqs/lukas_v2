@@ -10,7 +10,9 @@
 
 						    <button class="nav-link mb-3" id="v-pills-user-tab" data-bs-toggle="pill" data-bs-target="#v-pills-user" type="button" role="tab" aria-controls="v-pills-user" aria-selected="true">Perfil</button>
 								<button class="nav-link mb-3" id="v-pills-bank-tab" data-bs-toggle="pill" data-bs-target="#v-pills-bank" type="button" role="tab" aria-controls="v-pills-bank" aria-selected="false">Cuenta Bancaria</button>
+								<!--
 								<button class="nav-link mb-3" id="v-pills-business-tab" data-bs-toggle="pill" data-bs-target="#v-pills-business" type="button" role="tab" aria-controls="v-pills-business" aria-selected="false">Empresa*</button>
+								-->
 								<button class="nav-link mb-3" id="v-pills-surveys-tab" data-bs-toggle="pill" data-bs-target="#v-pills-surveys" type="button" role="tab" aria-controls="v-pills-surveys" aria-selected="false"><b>Mis Postulaciones</b></button>
 
 						  </div>
@@ -42,7 +44,7 @@
 														<div class="col-md-4 mb-3">
 															<label for="sex_select" class="form-label">Sexo</label>
 															<select class="form-select" id="sex_select" name="sex" aria-label="Default select example">
-																<option value="" <?= $user['sex'] == '' ? 'selected=true' : null ?>></option>
+																<option value="" <?= $user['sex'] == '' ? 'selected=true' : null ?> selected>No informar</option>
 																<option value="F" <?= $user['sex'] == 'F' ? 'selected=true' : null ?>>Femenino</option>
 																<option value="M" <?= $user['sex'] == 'M' ? 'selected=true' : null ?>>Masculino</option>
 																<option value="O" <?= $user['sex'] == '0' ? 'selected=true' : null ?>>Otro</option>
@@ -91,25 +93,6 @@
 															<a class="text-decoration-none" href="" data-bs-toggle="modal" data-bs-target="#edit_pass_modal">Deseo cambiar mi contraseña</a>
 														</div>
 
-														<!--
-														<div class="col-12">
-															<div class="alert alert-warning" role="alert">
-															  <i class="fa-solid fa-circle-exclamation"></i> Los siguientes datos no son obligatorios para concursar y serán usados internamente para fines estadísticos.
-															</div>
-														</div>
-														<div class="col-12">
-														 agregar 	*Etnia
-															*jefa de hogares
-															*discapacidad
-														</div>
-														<div class="col-12 mb-2">
-					    								<label for="input_occupation" class="form-label">Ocupación</label>
-					    								<i class="fa-solid fa-briefcase icon-input"></i>
-					    								<input type="text" class="form-control" id="input_occupation" name="occupation" aria-describedby="" value="<?= set_value('occupation',$user['user_occupation']);?>" >
-					    							</div>
-														-->
-
-
 													</div><!-- end row -->
 
 				                  <?php if(isset($validation)): ?>
@@ -127,6 +110,7 @@
 				    			</div>
 								</div> <!-- /end user -->
 
+								<!--
 						    <div class="tab-pane fade" id="v-pills-business" role="tabpanel" aria-labelledby="v-pills-business-tab">
 									<div class="col-md-12">
 				    				<div class="card">
@@ -140,8 +124,6 @@
 												    <b>DESEO INGRESAR MI EMPRESA</b>
 												  </label>
 												</div>
-
-
 				    						<form id="business_form" class="" action="<?= base_url('users/profile');?>" method="post">
 													<input type="hidden" name="business_id" value="<?= $user['user_business_id'] ?? null ?>">
 				                  <div class="row mb-3">
@@ -204,7 +186,7 @@
 				    				</div>
 				    			</div>
 
-								</div> <!-- /end business -->
+								</div> /end business -->
 
 								<div class="tab-pane fade" id="v-pills-bank" role="tabpanel" aria-labelledby="v-pills-bank-tab">
 									<div class="col-md-12">
@@ -281,9 +263,9 @@
 																				<td>'.$surveys[$i]['status'].'</td>
 																				<td>
 																					<div class="btn-group" role="group" aria-label="Acción">
-																						<a href="'.base_url('home/forms?survey_id='.$surveys[$i]['surveys_id']).'" class="btn btn-primary '.( $r_id != 1 && 2 ? 'disabled' : null ).'" data-bs-tooltip="true" data-bs-placement="top" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
+																						<a href="'.base_url('home/forms?survey_id='.$surveys[$i]['surveys_id']).'" class="btn btn-primary disabled '.( $r_id != 1 && 2 ? 'disabled' : null ).'" data-bs-tooltip="true" data-bs-placement="top" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
 
-																						<button type="button" class="btn btn-danger '.( $r_id != 1 && 2  ? 'disabled' : null ).'" data-bs-toggle="modal" data-bs-target="#delete_form_modal" data-bs-whatever="'.$surveys[$i]['id'].'" data-bs-tooltip="true" data-bs-placement="top" title="Eliminar"><i class="fa-solid fa-trash-can"></i></button>
+																						<button type="button" class="btn btn-danger disabled '.( $r_id != 1 && 2  ? 'disabled' : null ).'" data-bs-toggle="modal" data-bs-target="#delete_form_modal" data-bs-whatever="'.$surveys[$i]['id'].'" data-bs-tooltip="true" data-bs-placement="top" title="Eliminar"><i class="fa-solid fa-trash-can"></i></button>
 
 																						<button type="button" id="form_info" class="btn btn-warning '.( $r_id != 4 ? 'disabled' : null ).' text-white" data-bs-tooltip="true" data-bs-placement="top" title="Justificaciones" value="'.$surveys[$i]['surveys_id'].'"><b>¿?</b></button>
 																					</div>
@@ -296,7 +278,7 @@
 
 												<div class="col-12 text-end">
 													¿Desea postular en algún concurso de Lukas para Emprender?<br>
-													<a href="<?= base_url('home#concursos'); ?>" class="btn btn-primary mt-2">
+													<a href="<?= base_url('home#how'); ?>" class="btn btn-primary mt-2">
 														<i class="fa-solid fa-share-from-square"></i> Click aqui para postular!
 													</A>
 												</div>
@@ -359,7 +341,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" id="update_password" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
+					<button type="button" id="update_password" class="btn btn-primary submit_something"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 				</div>
 			</div>

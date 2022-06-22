@@ -13,7 +13,7 @@ class UserModel extends Model{
   protected $updatedField  = 'updated_at';
   protected $deletedField  = 'deleted_at';
 
-  protected $allowedFields = ['name','lastname','birthday','sex','email','optional_email','rut','address','phone','fix_phone','password','occupation','email_verification_token','deleted_at', 'email_verified_at'];
+  protected $allowedFields = ['name','lastname','birthday','sex','email','optional_email','rut','address','phone','fix_phone','password','email_verification_token','deleted_at', 'email_verified_at'];
   protected $beforeInsert = ['beforeInsert'];
   protected $beforeUpdate = ['beforeUpdate'];
 
@@ -50,9 +50,9 @@ class UserModel extends Model{
                           u.address as user_address,
                           u.phone as user_phone,
                           u.fix_phone,
-                          u.occupation as user_occupation,
                           u.email as user_email,
                           u.optional_email,
+                          u.email_verified_at,
 
                           ub.id as user_bank_id,
                           ub.name as user_bank_name,
@@ -77,5 +77,46 @@ class UserModel extends Model{
       return $query[0];
   }
 
+  public function select_user_data($id){
+    $db = db_connect();
+
+    if( $id == '' ){ $id = session()->get('id'); }
+
+    $query = $db->table('users u')
+                ->select('u.id as user_id,
+                          u.name as user_name,
+                          u.lastname as user_lastname,
+                          u.birthday,
+                          u.sex,
+                          u.rut as user_rut,
+                          u.birthday,
+                          u.address as user_address,
+                          u.phone as user_phone,
+                          u.fix_phone,
+                          u.email as user_email,
+                          u.optional_email,
+                          u.email_verified_at,
+
+                          ub.id as user_bank_id,
+                          ub.name as user_bank_name,
+                          ub.type,
+                          ub.number')
+
+                ->join('users_bank ub', 'u.id = ub.user_id','left')
+                ->where('u.id', $id )
+                ->get()->getResultArray();
+
+      return $query[0];
+  }
+
 }//end class
+
+
+//SELECT u.id as user_id, us.id, u.rut, u.name, u.lastname, u.email
+//FROM users u, users_surveys us
+//WHERE us.user_id = u.id AND us.results_id = 2 AND us.surveys_id = 2
+//ORDER BY u.id
+
+//SELECT * FROM users_surveys WHERE surveys_id = 2 AND results_id = 2
+
 ?>

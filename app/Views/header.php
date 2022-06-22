@@ -35,10 +35,11 @@
 		<!-- Css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url('dist/bootstrap-5.1.3/css/bootstrap.css');?>">
     <link rel="stylesheet" type="text/css" href="<?= base_url('dist/fontawesome-6.0.0/css/all.css?v=0.1');?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('dist/magnificpopup-1.1.0/magnific-popup.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/animate.css');?>">
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/hover.css');?>">
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/dashboard.css');?>">
-    <link rel="stylesheet" type="text/css" href="<?= base_url('css/styles.css?v=1.3');?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('css/styles.css?v=1.8');?>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

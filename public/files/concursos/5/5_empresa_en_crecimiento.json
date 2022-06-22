@@ -1,0 +1,55 @@
+{
+  "id": "5",
+  "nombre": "Categoría Empresa en Crecimiento",
+  "importante": "Para poder completar su postulación a la categoria empresa, es necesario que complete su perfil de usuario, haciendo click en su nombre ubicado en la barra superior.",
+  "formulario": {
+    "0": {
+      "titulo": "Datos Proyecto",
+      "datos": {
+        "0": {
+          "pregunta": "Nombre del Proyecto",
+          "ejemplo": "Compra de maquinaria para mejorar producción y ventas."
+        }
+      }
+    },
+    "1": {
+      "titulo": "Información relevante al Proyecto",
+      "cuestionario": {
+        "0": {
+          "pregunta": "<b>Descripción del Negocio:</b> realice una presentación de su negocio/emprendimiento de manera que se pueda evaluar su modelo de negocios, para lo cual se sugiere describir de la manera más detallada se cuenta con una detallada a los clientes junto a sus características y necesidades, oferta de productos/servicios, canales de venta, distribución y difusión, estrategias para capturar nuevos cliente, mantenerlos cautivos y estimular las ventas, las fuentes de ingresos incluyendo precios, política de descuentos, entre otros, recursos humanos, infraestructura y equipamiento necesarios para la desarrollo/implementación del negocio/emprendimiento.",
+          "ejemplo": "Tengo un Minimarket donde vendemos productos de consumo masivo e inmediato para las personas, en los cuales se destacan alimentos, bebidas, productos de limpieza y productos para el hogar, entre otros más básicos. Nos encontramos en la Población Techo para todos, cercanos a colegios y empresas. Contamos con venta presencial y ventas por internet."
+        },
+        "1": {
+          "pregunta": "<b>Proyecciones del Negocio:</b> entregue datos que permitan evaluar el desarrollo y proyecciones del negocio (ventas, ingresos, costos, sucursales, empleados, entre otros). Describa las principales fortalezas y debilidades del negocio/emrprendimiento. Presente las metas a mediano y/o largo plazo que se han definido para el negocio/emprendimiento, en especial las que aportarán a su crecimiento en términos de captura de nuevos clientes, generación de nueva oferta de productos y/o servicios, implementación de nuevos canales y fuentes de ingresos, entre otros.",
+          "ejemplo": "Con los recursos obtenidos en caso de ser ganador me permitirá habilitar nuevos espacios para nuestros clientes, renovar nuestros equipos como por ejemplo congeladores, estantes, etc. Además de digitalizarnos en el control de inventario de nuestros productos. Esto nos permitirá poder recibir más público y ofrecerles una mejor atención."
+        },
+        "2": {
+          "pregunta": "<b>Experiencia y equipo de trabajo:</b> presente al equipo de trabajo que gestiona el negocio/emprendimiento y realice una breve reseña de su experiencia, los logros alcanzados a la fecha, las redes de apoyo con las que cuenta, apoyos recibidos de organismos que apoyan el emprendimiento (Municipalidad, FOSIS; SERCOTEC, entre otros), indique si pertenece a alguna agrupación de emprendedores o empresarios, entre otros.",
+          "ejemplo": "Llevamos mas de 20 años en la población, nos hemos capacitado para enfrentar los cambios tecnológicos, trabajamos mano a mano con los proveedores y contador del Minimarket, quien nos mantiene informado sobre el estado de la empresa. Nos hemos capacitado en los distintos organismos del Estado y de la comuna, por ejemplo, SII, Sercotec, Municipalidad, entre otros."
+        },
+        "3": {
+          "pregunta": "<b>Descripción del proyecto:</b> describa brevemente la iniciativa a desarrollar con este financiamiento <b>destacando</b> los resultados que espera obtener y cómo potenciará su emprendimiento.",
+          "ejemplo": "Habilitar espacios que nos permitan recibir mas publico y cumplir con los aforos exigidos por la autoridad sanitaria, adquirir equipos que nos permitan llevar el control de inventario de nuestro negocio, además de poder cambiar nuestros congeladores y estantes, que sin duda nos ayudaran a entregar un mejor servicio a nuestros clientes."
+        },
+        "4": {
+          "pregunta": "<b>Presupuesto:</b> detalle las compras que realizará con el financiamiento indicando en qué invertirá el subsidio, cantidades, precios y cuál será el aporte de dicha compra al proyecto. Recuerde que los gastos en los que incurrirá deben ser coherentes con su emprendimiento y el proyecto que desarrollará.",
+          "ejemplo": "Para el negocio adquirir nuevas máquinas, materiales de trabajo, nuevos productos, invertir en publicidad, volantes, etc. Gastos variables (fletes del proyecto, gastos de mantención, insumos, etc.), equipamiento (maquinaria, muebles)",
+          "archivos": {
+            "0": "Cotizaciones Referenciales.",
+            "1": "Presupuesto. <a href='../files/concursos/ejemplos_doc/detalle_presupuesto.docx'>Descargar aquí tabla presupuesto formato tipo</a>."
+          }
+        }
+      }
+    },
+    "2": {
+      "titulo": "Documentación necesaria",
+      "archivos": {
+        "0": "Cedula de identidad <b>POR AMBOS LADOS</b>.",
+        "1": "Rol unico tributario.",
+        "2": "Carpeta Tributaria de los últimos 3 meses.",
+        "3": "Patente Municipal primer semetre 2022.",
+        "4": "Otros Permisos (resolución sanitaria, SEC, rubro alimentación)."
+      }
+    }
+  }
+}

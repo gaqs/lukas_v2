@@ -6,10 +6,13 @@ $formulario =  (array)$json->formulario;
 <!-- form empresa/pregunta 4/ sin textbox solo archivo***  -->
 
   <div class="container mt-3 mb-5">
-    <!--<form class="needs-validation" action="<?= base_url('home/forms') ?>" method="post" id="form" enctype="multipart/form-data">-->
-    <form class="needs-valdiation" id="form" enctype="multipart/form-data" autocomplete="off">
-      <input type="hidden" name="survey_id" value="<?= set_value('survey_id', $survey_id);?>">
+    <div class="row text-center mb-3 text-white bg-primary p-3 rounded">
+      <div class="col-md-12">
+        <h1><?= $json->nombre; ?></h1>
+      </div>
 
+    </div>
+    <div class="row">
       <div class="alert alert-warning" role="alert" id="error_form">
         <div class="row">
           <div class="col-md-1 text-center">
@@ -20,9 +23,13 @@ $formulario =  (array)$json->formulario;
           </div>
         </div>
       </div>
+    </div>
+
+
+    <form class="needs-valdiation" id="form" enctype="multipart/form-data" autocomplete="off">
+      <input type="hidden" name="survey_id" value="<?= set_value('survey_id', $survey_id);?>">
 
 <?php
-
 
   for ($i=0; $i < count($formulario); $i++) {
     echo '<div class="row">
@@ -66,7 +73,7 @@ $formulario =  (array)$json->formulario;
               </div>';
 
         if( isset( $key->archivos ) ){
-          echo '<div class="archivos_adjuntos ms-4">';
+          echo '<div class="archivos_adjuntos ms-md-4">';
           foreach ($key->archivos as $row) {
             echo '<div class="mb-3 col-md-12">
                     <label for="formFile" class="form-label mb-0 file_label_'.($aux+1).'">'.($aux+1).'.- '.$row.'
@@ -76,7 +83,7 @@ $formulario =  (array)$json->formulario;
                         <div class="col-md-12">
                           <div class="input-group w-50">
                             <input type="text" class="form-control" value="DOCUMENTO COMPLEMENTARIO #'.($aux + 1).'" aria-label="" readonly>
-                            <a href="'.base_url('public/files/usuarios').'/'.session()->get('rut').'/'.$survey_id.'/'.($file_list[1][$aux]  ?? null).'" class="btn btn-outline-success z_index_0" target="_blank" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Ver/Descargar"><i class="fa-solid fa-eye"></i></a>
+                            <a href="'.base_url('public/files/usuarios').'/'.session()->get('rut').'/'.$survey_id.'/'.($file_list[1][$aux]  ?? null).'?v='.rand(0,50).'" class="btn btn-outline-success z_index_0" target="_blank" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Ver/Descargar"><i class="fa-solid fa-eye"></i></a>
                             <button class="btn btn-outline-danger z_index_0" id="delete_file" type="button" value="'.($file_list[1][$aux] ?? null).'" data-bs-tooltip="true" data-bs-placement="top" title="Eliminar">
                               <i class="fa-solid fa-trash-can"></i>
                             </button>
@@ -100,15 +107,13 @@ $formulario =  (array)$json->formulario;
       $count = 0;
       foreach ($formulario[$i]->archivos as $key) {
         echo '<div class="mb-3 col-md-12">
-                <label for="formFile" class="form-label mb-0">'.($count + 1).'.- '.$key.'
-                  <i class="fa-solid fa-circle-question help_icon" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-custom-class="custom_popover" data-bs-html="true" data-bs-content="<b>Ejemplo.</b> And heres some amazing content. Its very engaging. Right?"></i>
-                </label>
+                <label for="formFile" class="form-label mb-0">'.($count + 1).'.- '.$key.'</label>
                 <small class="form-text mt-0 mb-2 fw-light f-small d-block"> (Tamaño máximo 20 mb. Formatos permitidos .jpeg, .jpg, .png, .pdf, .doc, .xls, .docx, .xslx, .odt, y .odf)</small>
                   <div class="row '.( !isset( $file_list[2][$count] ) ? 'd-none' : null ).'" id="uploadedFile">
                   <div class="col-md-12">
                     <div class="input-group w-50">
                       <input type="text" class="form-control" value="DOCUMENTO NECESARIO #'.($count + 1).'" aria-label="" readonly>
-                      <a href="'.base_url('public/files/usuarios').'/'.session()->get('rut').'/'.$survey_id.'/'.($file_list[2][$count] ?? null).'" target="_blank" class="btn btn-outline-success z_index_0" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Ver/Descargar"><i class="fa-solid fa-eye"></i></a>
+                      <a href="'.base_url('public/files/usuarios').'/'.session()->get('rut').'/'.$survey_id.'/'.($file_list[2][$count] ?? null).'?v='.rand(0,50).'" target="_blank" class="btn btn-outline-success z_index_0" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Ver/Descargar"><i class="fa-solid fa-eye"></i></a>
                       <button class="btn btn-outline-danger z_index_0" id="delete_file" type="button" value="'.($file_list[2][$count] ?? null).'" data-bs-tooltip="true" data-bs-placement="top" title="Eliminar">
                         <i class="fa-solid fa-trash-can"></i>
                       </button>

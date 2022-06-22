@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\UserModel;
 use App\Models\UsersSurveysModel;
 use App\Models\SurveyAnswersModel;
 use CodeIgniter\Files\File;
@@ -9,8 +10,6 @@ class Home extends BaseController
 {
     public function index()
     {
-      //session()->remove('success');
-      //session()->remove('failure');
       $data = [];
       echo view('header');
       echo view('navbar');
@@ -18,7 +17,7 @@ class Home extends BaseController
       echo view('footer');
     }
 
-    public function forms(){
+    public function _forms(){
       $db = db_connect();
       $survey_answer = new SurveyAnswersModel();
       $users_surveys = new UsersSurveysModel();
@@ -49,7 +48,7 @@ class Home extends BaseController
           if ($query[0]['results_id'] == '4') {
             return redirect()->to( base_url() )->with('failure','No es posible ingresar a este concurso. Usuario retirado.');
           }else if( $query[0]['results_id'] != '1' ){
-            return redirect()->to( base_url() )->with('success','Formulario enviado, no es posible editarlo. <b>Recuerde mantener su perfil actualizado.</b>');
+            return redirect()->to( base_url() )->with('success','Formulario correctamente enviado, no es posible editarlo.');
           }else{
             $data['answers'] = reorder_answers($query);
           }
@@ -91,7 +90,7 @@ class Home extends BaseController
                     ->get()
                     ->getResultArray();
 
-        if( empty($query) && $button == 'save_form' ){ //primer formulario que llena el usuario
+        if( empty($query) ){ //( && $button == 'save_form') primer formulario que llena el usuario
           $userData = [
             'user_id'     => session()->get('id'),
             'surveys_id'  => $data['survey_id'],
@@ -172,6 +171,12 @@ class Home extends BaseController
             session()->setFlashdata('failure','Tiene campos sin llenar, su postulación no se ha enviado.');
           }
         }else{
+          $data = [
+            'id'         => $user_survey_id,
+            'updated_at' => date('y-m-d H:i:s'),
+          ];
+          $users_surveys->save($data);
+
           $resp['status'] = 'success';
           session()->setFlashdata('success','Datos guardados correctamente.<br><b>Recuerde que su postulación aún no se ha enviado.</b>');
         }//end if send_form
@@ -182,7 +187,7 @@ class Home extends BaseController
     }//end form function
 
 
-    public function briefing(){
+    public function _briefing(){
       $users_surveys     = new UsersSurveysModel();
       $data['id']        = $this->request->getVar('survey_id');
       $data['file_name'] = 'Bases del concurso';

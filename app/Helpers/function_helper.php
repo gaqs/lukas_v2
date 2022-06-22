@@ -3,33 +3,19 @@ use CodeIgniter\Email\Email;
 
 function manage_files( $form_section, $array, $key_name, $directory_path ){
   $file = $array[$key_name];
+
   for ($i=0; $i < count($file); $i++) {
     if ( $file[$i]->getSize() != 0 ) {
         array_map('unlink', glob( $directory_path . $form_section.'_'.$i.'_'.$key_name.'.*' ));
-        $name = $form_section.'_'.$i.'_'.$key_name.'.'.$file[$i]->guessExtension(); //nombre: [seccion]_[numero archivo]_comp.[extension]
+        $oname = $file[$i]->getName(); //estar atento
+        $ext = pathinfo( $oname, PATHINFO_EXTENSION );
+        $name = $form_section.'_'.$i.'_'.$key_name.'.'.$ext;
+        //nombre: [seccion]_[numero archivo]_comp.[extension]
+        //old function $file[$i]->guessExtension()
         $file[$i]->move($directory_path, $name);
     }
   }
 }
-/* funciones originales
-$comp = $files['comp'];
-for ($i=0; $i < count($comp); $i++) {
-  if ( $comp[$i]->getSize() != 0 ) {
-      array_map('unlink', glob( $files_directory . '1_'.$i.'_comp.*' )); //deprecated??
-      $name = '1_'.$i.'_comp.'.$comp[$i]->guessExtension(); //nombre: [seccion]_[numero archivo]_comp.[extension]
-      $comp[$i]->move($files_directory, $name);
-  }
-}
-
-$file = $files['file'];
-for ($j=0; $j < count($file); $j++) {
-  if( $file[$j]->getSize() != 0 ){
-    array_map('unlink', glob( $files_directory . '2_'.$j.'_file.*' ));
-    $name = '2_'.$j.'_file.'.$file[$j]->guessExtension();
-    $file[$j]->move($files_directory, $name);
-  }
-}
-*/
 
 function reorder_answers($query){
 
@@ -67,22 +53,26 @@ function send_email($send_to, $send_cc, $subject, $message, $attach){
 							'protocol' => 'smtp',
 							'SMTPHost' => 'mail.lukasparaemprender.com',
 							'SMTPPort' => '587',
-							'SMTPUser' => 'postmaster@lukasparaemprender.com',
-							'SMTPPass' => 'g3@N1Phrd=JL',
+              'SMTPUser' => 'postmaster_4@lukasparaemprender.com',
+              'SMTPPass' => '^h+JZz}#q5t@',
 							'mailType' => 'html',
 							'charset'  => 'utf-8',
 							'newline'	 => "\r\n"
 						);
+            //'SMTPUser' => 'postmaster@lukasparaemprender.com',
+            //'SMTPPass' => 'g3@N1Phrd=JL',
+            //'SMTPUser' => 'postmaster_3@lukasparaemprender.com',
+            //'SMTPPass' => 'jI!m%S?z}0Gj',
+            //'SMTPUser' => 'postmaster_4@lukasparaemprender.com',
+            //'SMTPPass' => '^h+JZz}#q5t@',
 
   $email->initialize($config);
 
-  $email->setFrom('postmaster@lukasparaemprender.com', 'Lukas para Emprender');
+  $email->setFrom('postmaster_3@lukasparaemprender.com', 'Lukas para Emprender');
   $email->setTo($send_to);
   $email->setCC($send_cc);
 
-  if( $attach != '' ){
-    $email->attach($attach);
-  }
+  if( $attach != '' ){ $email->attach($attach); }
   $email->setSubject($subject);
   $email->setMessage($message);
 
@@ -97,6 +87,41 @@ function send_email($send_to, $send_cc, $subject, $message, $attach){
     return false;
   }
   */
+
+}//end send_email
+
+
+function send_email_puertomontt($send_to, $send_cc, $subject, $message, $attach){
+  $email = \Config\Services::email();
+
+  $config_2 = Array(
+              'protocol' => 'smtp',
+              'SMTPHost' => 'smtp.office365.com',
+              'SMTPPort' => '587',
+              'SMTPUser' => 'lukasparaemprender@puertomontt.cl',
+              'SMTPPass' => 'lukas.2021*',
+              'mailType' => 'html',
+              'charset'  => 'utf-8',
+              'newline'	 => "\r\n"
+            );
+
+  $email->initialize($config_2);
+
+  $email->setFrom('lukasparaemprender@puertomontt.cl', 'Administrador Lukas para Emprender');
+  $email->setTo($send_to);
+  $email->setCC($send_cc);
+
+  if( $attach != '' ){ $email->attach($attach); }
+  $email->setSubject($subject);
+  $email->setMessage($message);
+
+  $email->send();
+  if ( $email->send() ){
+    return true;
+  } else {
+    echo $email->printDebugger();
+    return false;
+  }
 
 }//end send_email
 
@@ -122,4 +147,9 @@ function cuentas($selected){
     }
     echo '<option value="'.$cuentas[$a].'" '.$aux.'>'.$cuentas[$a].'</option>';
   }
+}
+
+function pass_generate($chars){
+  $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  return substr(str_shuffle($data), 0, $chars);
 }

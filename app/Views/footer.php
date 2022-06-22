@@ -42,7 +42,7 @@
       <div class="col-md-12 col-lg-12">
 
         <!--Copyright-->
-        <small class="text-center text-md-left"><b> Gustavo Quilodrán Sanhueza</b> | SUBDEL Puerto Montt | Municipalidad de Puerto Montt | contact: gaqs.02@gmail.com</small>
+        <small class="text-center text-md-left"><b> Gustavo Quilodrán Sanhueza</b> | SUBDEL | Municipalidad de Puerto Montt | contact: gaqs.02@gmail.com</small>
 
       </div>
       <!-- Grid column -->
@@ -123,8 +123,8 @@
 
 
     <!-- Toast prueba mensajes exito y error esquina inferior -->
-    <div class="position-fixed start-50 translate-middle-x" style="top:2rem;">
-      <div id="alert_toast" class="toast hide border-0 fade" data-bs-delay="6000" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="position-fixed w-100" style="top:2rem;pointer-events: none; touch-action: none;">
+      <div id="alert_toast" class="toast border-0 fade" data-bs-delay="6000" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
           <i class="fa-solid fa-bell me-2"></i>
           <strong class="me-auto">¡Atención!</strong>
@@ -142,10 +142,9 @@
 </html>
 
 <script type="text/javascript" src="<?= base_url('dist/bootstrap-5.1.3/js/bootstrap.bundle.js');?>"></script>
+<script type="text/javascript" src="<?= base_url('dist/magnificpopup-1.1.0/jquery.magnific-popup.js')?>"></script>
 <script type="text/javascript" src="<?= base_url('js/scrollreveal.js');?>"></script>
-
 <script type="text/javascript" src="<?= base_url('js/file-validator.js');?>"></script>
-
 <script type="text/javascript" src="<?= base_url('js/scripts.js?v=0.1');?>"></script>
 
 <!-- Custom script -->
@@ -153,6 +152,21 @@
 
 $(document).ready(function(){
   var url = '<?= base_url();?>';
+
+  $('.popup-youtube_1').magnificPopup({
+    disableOn: 700,
+    type: 'iframe',
+    mainClass: 'mfp-fade',
+    removalDelay: 160,
+    preloader: false,
+    fixedContentPos: false
+  });
+
+  /*
+  setTimeout(function(){
+    $('.popup-youtube_1').click(); // Will open the popup
+  }, 1000);
+  */
 
   $('input[type=file]').fileValidator({
     onInvalid:
@@ -175,16 +189,13 @@ $(document).ready(function(){
     var button = $(this).val();
     var send = false;
     //verifica que no haya inputs text y textarea vacios
-    const fields = document.querySelectorAll("#form input[type=text], #form textarea");
+    const fields = document.querySelectorAll("#form input[type=text], #form textarea:not(.d-none)");
     const emptyInputs = Array.from(fields).filter( input => input.value == "");
     //verifica que esten todos los archivos, o si falta uno que al menos tenga un archivo compatible
     const files = document.querySelectorAll("#form input[name='file[]']");
     const emptyFiles = Array.from(files).filter(
         input => input.classList[2] != "d-none" && input.value == ""
     );
-
-    console.log(emptyFiles);
-
     if(emptyInputs.length === 0 && emptyFiles.length == 0){
       send = true;
     }
@@ -205,7 +216,7 @@ $(document).ready(function(){
           window.scrollTo(0, 0);
           setTimeout(function(){ location.reload() } , 1000);
         }else if( obj.status == 'success' ){
-          setTimeout(function(){ location.reload() } , 2000);
+          location.reload();
         }
       }
     });
@@ -300,6 +311,10 @@ $(document).ready(function(){
     $(this).children().removeClass().addClass('fa-solid fa-circle-notch fa-spin').prop('disabled', true)
   });
 
+  //deshabilita link al hacer lick
+  $('body').on('click', '.link_something', function(){
+    $(this).addClass('pe-none')
+  });
 
   //***verificado si se puede crear funcion
   var success = "<?= session()->get('success'); ?>";
@@ -327,8 +342,21 @@ $(document).ready(function(){
   //1.- categoria empresa, pregunta 4 (presupuesto) sin textbox.
   var survey_id = '<?= $_GET['survey_id'] ?? null ; ?>';
   if( survey_id == '2' ){
+    var textarea = $('#textarea_cuestionario_4');
+    textarea.addClass('d-none');
+  }
+  if( survey_id == '1' ){
     var textarea = $('#textarea_cuestionario_3');
     textarea.addClass('d-none');
-
   }
+  if( survey_id == '4' ){
+    var textarea = $('#textarea_cuestionario_4');
+    textarea.addClass('d-none');
+  }
+  if( survey_id == '5' ){
+    var textarea = $('#textarea_cuestionario_4');
+    textarea.addClass('d-none');
+  }
+
+  //validar que el textarea que no se muestra, no pase por validacion
 </script>

@@ -1,6 +1,7 @@
 <?php
 namespace App\Validation;
 use App\Models\UserModel;
+use App\Models\AdminModel;
 
 class UserRules
 {
@@ -8,6 +9,18 @@ class UserRules
   public function validate_user(string $str, string $fields,array $data){
     $model = new UserModel();
     $user = $model->where('rut', $data['rut'])
+                  ->first();
+
+    if( !$user ){
+      return false;
+    }
+
+    return password_verify($data['password'], $user['password']);
+  }
+
+  public function validate_email(string $str, string $fields, array $data){
+    $model = new AdminModel();
+    $user = $model->where('email', $data['email'])
                   ->first();
 
     if( !$user ){

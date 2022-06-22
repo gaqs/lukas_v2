@@ -21,7 +21,7 @@ class Users extends BaseController
           $errors = [
             'rut' => [
               'validate_rut' => 'El RUT ingresado contiene errores.',
-              'verified_user' => 'Correo electrónico no validado.<br>Haga <a href="'.base_url('users/resend_validation').'?email={value}">click aquí</a> para reenviar el correo de validación.'
+              'verified_user' => 'Correo electrónico aún no validado.<br><b>Revise su carpeta SPAM</b>, de no encontrar el correo de validación, haga <a href="'.base_url('users/resend_validation').'?rut={value}" class="link_something">click aquí</a> para reenviar.'
             ],
             'password' => [
               'validate_user' => 'RUT o contraseña no coinciden.'
@@ -32,6 +32,7 @@ class Users extends BaseController
             $data['validation'] = $this->validator;
           }else{
             $model = new UserModel();
+            $aux = 0;
             $user = $model->where('rut', $this->request->getVar('rut'))
                           ->first();
             $data = [
@@ -44,7 +45,22 @@ class Users extends BaseController
               'loggedIn'  => true,
             ];
             session()->set($data);
-            return redirect()->to( base_url('#nosotros') )->with('success', 'Bienvenido! <b>'.$data['name'].' '.$data['lastname'].'</b>');
+
+            //verifica si tiene datos sin actualizar en su perfil.
+            $user_data = $model->select_user_data('');
+            foreach ($user_data as $key => $value) {
+              if($value == null ){
+                $aux = 1;
+                break;
+              }
+            }
+
+            if( $aux == 1 ){
+              session()->setFlashdata('success','Bienvenido! <b>'.$data['name'].' '.$data['lastname'].'</b>.<br>Recuerde mantener su perfil actualizado.');
+            }else{
+              session()->setFlashdata('success','Bienvenido! <b>'.$data['name'].' '.$data['lastname'].'</b>');
+            }
+            return redirect()->to( base_url() );
           }
         }
 
@@ -55,7 +71,7 @@ class Users extends BaseController
     }//end index
 
 
-    public function register(){
+    public function _register(){
       $data = [];
       if( $this->request->getMethod() == 'post'){
         //reglas de validacion
@@ -69,7 +85,8 @@ class Users extends BaseController
         ];
         $errors = [
             'rut' => [
-              'validate_rut' => 'El RUT ingresado contiene errores.'
+              'validate_rut' => 'El RUT ingresado contiene errores.',
+              'is_unique' => 'RUT registrado, inicie sesion o revise su correo electrónico para validar su cuenta.'
             ]
           ];
 
@@ -87,7 +104,7 @@ class Users extends BaseController
           $token            = bin2hex(openssl_random_pseudo_bytes(32));
           $password         = $this->request->getVar('password');
 
-          $data['link'] = base_url('users/email_validation?key='.$data['email'].'&token='.$token);
+          $data['link'] = base_url('users/email_validation?key='.$data['rut'].'&token='.$token);
 
           $userData = [
             'name'                      => ucwords(strtolower($data['name'])),
@@ -121,15 +138,15 @@ class Users extends BaseController
     }//end register
 
 
-    public function email_validation(){
+    public function _email_validation(){
       $model = new UserModel();
       $data = [];
 
       if( $this->request->getMethod() == 'get'){
-        $email = $this->request->getVar('key');
+        $rut = $this->request->getVar('key');
         $token = $this->request->getVar('token');
 
-        $user = $model->where('email', $email)
+        $user = $model->where('rut', $rut)
                       ->where('email_verification_token', $token)
                       ->first();
 
@@ -141,10 +158,8 @@ class Users extends BaseController
           ];
           $model->save($userData);
 
-          $rut = $model->where('email', $email)->first();
-
-          if (!is_dir(ROOTPATH.'public/files/usuarios/' . $rut['rut'])) {
-              mkdir(ROOTPATH.'public/files/usuarios/' . $rut['rut'], 0777, TRUE);
+          if (!is_dir(ROOTPATH.'public/files/usuarios/' . $rut)) {
+              mkdir(ROOTPATH.'public/files/usuarios/' . $rut, 0777, TRUE);
           }
           session()->setFlashdata('success','Correo validado correctamente. Ya puede iniciar sesión.');
         }else{
@@ -297,13 +312,14 @@ class Users extends BaseController
     }
 
     public function resend_validation(){ //resend funciona solo previa validacion de login que correo existe
-      $data['email'] = $this->request->getVar('email');
+      $data['rut'] = $this->request->getVar('rut');
 
       $model = new UserModel();
-      $user = $model->where('email', $data['email'])->first();
+      $user = $model->where('rut', $data['rut'])->first();
       $data['name']     = $user['name'];
       $data['lastname'] = $user['lastname'];
-      $data['link']     = base_url('users/email_validation?key='.$data['email'].'&token='.$user['email_verification_token']);
+      $data['email']    = $user['email'];
+      $data['link']     = base_url('users/email_validation?key='.$data['rut'].'&token='.$user['email_verification_token']);
 
       $message = view('emails/validation',$data);
 
@@ -334,7 +350,7 @@ class Users extends BaseController
             'validate_rut' => 'El RUT ingresado contiene errores.'
           ],
           'email' => [
-            'verified_user' => 'Correo electrónico no validado.<br>Haga <a href="'.base_url('users/resend_validation').'?email={value}">click aquí</a> para reenviar el correo de validación.'
+            'verified_user' => 'Correo electrónico no validado.<br>Haga <a href="'.base_url('users/resend_validation').'?rut={value}">click aquí</a> para reenviar el correo de validación.'
           ]
         ];
 

@@ -1,0 +1,51 @@
+{
+  "id": "4",
+  "nombre": "Categoría Idea de Negocios",
+  "importante": "Para poder completar su postulación a la categoria emprendimiento, es necesario que complete su perfil de usuario, haciendo click en su nombre ubicado en la barra superior.",
+  "formulario": {
+    "0": {
+      "titulo": "Datos Proyecto",
+      "datos": {
+        "0": {
+          "pregunta": "Nombre del Proyecto",
+          "ejemplo": "Compra de maquinaria para mejorar producción y ventas."
+        }
+      }
+    },
+    "1": {
+      "titulo": "Información relevante al Proyecto",
+      "cuestionario": {
+        "0": {
+          "pregunta": "<b>Descripción de la Oportunidad:</b> describa la oportunidad de negocio detectada, colocando énfasis en la identificación y caracterización de los potenciales clientes y sus necesidades, especialmente aquellas que no están completamente satisfechas. Presente antecedentes de la oferta de productos/servicios que actualmente se encuentra disponible para satisfacer las necesidades de los clientes, destacando aquellos aspectos de la necesidad que no se abordan. Entregue antecedentes cuantitativos y/o cualitativos que permitan dimensionar la oportunidad de negocio y justificar sus planteamientos.",
+          "ejemplo": "..."
+        },
+        "1": {
+          "pregunta": "<b>Descripción del modelo de negocios:</b> realice una descripción del modelo de negocios, para lo cual se sugiere describir de la manera más detallada a los clientes junto a sus características y necesidades, oferta de productos/servicios, canales de venta, distribución y difusión, estrategias para capturar nuevos cliente, mantenerlos cautivos y estimular las ventas, las fuentes de ingresos incluyendo precios, política de descuentos, entre otros.",
+          "ejemplo": "..."
+        },
+        "2": {
+          "pregunta": "<b>Experiencia y equipo de trabajo:</b> presente al equipo de trabajo que gestionará el negocio/emprendimiento y realice una breve reseña de su experiencia, los logros alcanzados a la fecha, las redes de apoyo con las que cuenta, apoyos recibidos de organismos que apoyan el emprendimiento (Municipalidad, FOSIS; SERCOTEC), entre otros.",
+          "ejemplo": "..."
+        },
+        "3": {
+          "pregunta": "<b>Descripcion del proyecto:</b> describa brevemente la iniciativa a desarrollar con este financiamiento destacando los resultados que espera obtener y cómo potenciarán su negocio/emprendimiento.",
+          "ejemplo": "..."
+        },
+        "4": {
+          "pregunta": "<b>Presupuesto:</b> detalle las compras que realizará con el financiamiento indicando en qué invertirá el subsidio, cantidades, precios y cuál será el aporte de dicha compra al proyecto. Recuerde que los gastos en los que incurrirá deben ser coherentes con su emprendimiento y el proyecto que desarrollará.",
+          "ejemplo": "...",
+          "archivos": {
+            "0": "Presupuesto. <a href='../files/concursos/ejemplos_doc/detalle_presupuesto.docx'>Descargar aquí tabla presupuesto formato tipo</a>."
+          }
+        }
+      }
+    },
+    "2": {
+      "titulo": "Documentación necesaria",
+      "archivos": {
+        "0": "Cedula de identidad <b>POR AMBOS LADOS</b>.",
+        "1": "Certificado de Residencia 2022 (Junta de vecinos, Notarial o Cartola de Registro Social de Hogares)."
+      }
+    }
+  }
+}

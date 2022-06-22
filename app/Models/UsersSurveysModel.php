@@ -13,7 +13,7 @@ class UsersSurveysModel extends Model{
   protected $updatedField  = 'updated_at';
   protected $deletedField  = 'deleted_at';
 
-  protected $allowedFields = ['user_id', 'surveys_id', 'results_id', 'result_information','created_at', 'deleted_at'];
+  protected $allowedFields = ['user_id', 'surveys_id', 'results_id', 'result_information','created_at', 'updated_at','deleted_at'];
   protected $beforeInsert = ['beforeInsert'];
   protected $beforeUpdate = ['beforeUpdate'];
 

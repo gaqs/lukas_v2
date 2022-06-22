@@ -4,6 +4,14 @@ body{
   font-weight: 300;
   font-size: 1rem;
 }
+
+a.disabled {
+  /* Make the disabled links grayish*/
+  color: gray;
+  /* And disable the pointer events */
+  pointer-events: none;
+}
+
 .passion-one-font{
   font-family: 'Passion One', cursive;
 }
@@ -33,7 +41,6 @@ b{
   display: block;
   text-align: center;
 }
-
 .back{
   background-image: url("../public/img/ganadores_blur.jpg");
   height: 500px;
@@ -185,16 +192,62 @@ iframe{
   margin-right: 5rem;
 }
 
+.dropdown-toggle::after{
+  display: inline-block;
+  margin-left: 0.255em;
+  vertical-align: 0.1em;
+  content: "";
+  border-top: 0.4em solid;
+  border-right: 0.4em solid transparent;
+  border-bottom: 0;
+  border-left: 0.4em solid transparent;
+}
+
+.thumbnail{
+  display: block;
+  position: relative;
+  z-index: 1;
+  filter:brightness(60%);
+  border-radius: 10px;
+}
+.play_yutu{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+z-index: 2;
+font-size: 8rem;
+color: white;
+opacity: 0.9;
+}
+
+.card-body-icon {
+  position: absolute;
+  z-index: 0;
+  top: -1.25rem;
+  right: -1rem;
+  opacity: 0.4;
+  font-size: 5rem;
+  -webkit-transform: rotate(15deg);
+  transform: rotate(15deg);
+}
+
+#alert_toast{
+  left: 50%;
+  position: relative;
+  transform: translate(-50%,0);
+}
 
 @media (max-width: 576px) {
-
 
 
 }
 
 @media (max-width: 768px) {
 
-
+  .map-responsive{
+    display: none !important;
+  }
 
 }
 
@@ -214,6 +267,18 @@ iframe{
   #nosotros .container .row .col-md-7{
     padding-left: 0 !important;
     padding-top: 3rem;
+  }
+  #nosotros .container .row div{
+    text-align: center;
+  }
+  .fa-angles-right{
+    display: none;
+  }
+  #formFile{
+    width: 100% !important;
+  }
+  #uploadedFile .col-md-12 .input-group{
+    width: 100% !important;
   }
 }
 
