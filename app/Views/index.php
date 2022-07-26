@@ -72,13 +72,54 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-  <section id="nosotros" class="bg-white">
 
+  <section id="nosotros" class="bg-white">
     <div class="container mt-5">
       <div class="row justify-content-center">
-        <div class="col-md-10 text-center">
-          <div class="alert alert-warning" role="alert">
-            <div class="fs-6"><i class="fa-solid fa-circle-exclamation"></i> Soporte Informático vía correo electrónico, a cerca de la plataforma de<br>postulación, concluye el <b>Viernes 17 de Junio a las 17:00 hrs.</b></div>
+        <div class="col-md-12 text-center">
+          <div class="alert alert-success" role="alert">
+            <div class="text-start">
+              <b class="fs-4 bold">LISTADO PRE SELECCIONADOS</b><br>
+              <b>Segunda Etapa - Evaluación Técnica:</b> Los proyectos declarados admisibles pasan a evaluación a cargo de la Comisión Técnica conformada por académicos, académicas y profesionales de la Universidad de Los Lagos, cada propuesta tendrá dos evaluaciones en base a los criterios y escala de calificación establecidos por estas bases. A cada proyecto se le calculará una nota denominada <b>Evaluación de Proyecto (EP)</b> y que corresponderá al promedio de las sus evaluaciones.</p>
+              <a class="btn btn-success mb-4 mt-2 w-100" href="<?= base_url("files/concursos/preseleccionados_2022/preseleccinados_lukas_para_emprender_2022.pdf?v=0.2"); ?>">
+                <i class="fa-solid fa-file-excel"></i> Descargar aquí listado preseleccionados
+              </a>
+              <br>
+              <b class="fs-4 bold">TALLERES PARA PRESELECCIONADOS</b><br>
+
+              <b>Cuarta Etapa - Talleres:</b> Los postulantes de los proyectos Pre Seleccionados deberán participar en tres talleres de emprendimiento con el objetivo de mejorar el proyecto presentado.
+              <table class="table table-striped mt-3 mb-0">
+                <tr class="border-bottom border-dark">
+                  <td><b>Ubicación.</b></td>
+                  <td colspan="2">Aula Magna Universidad de Los Lagos, dependencias Guillermo Gallardo 269, Puerto Montt. </td>
+                </tr>
+                <tr>
+                  <td><b>Fechas.</b></td>
+                  <td>28 de Julio</td>
+                  <td>Taller Modelo de Negocio</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>02 de Agosto</td>
+                  <td>Taller Planificación del Proyecto</td>
+                </tr>
+                <tr class="border-top border-dark">
+                  <td></td>
+                  <td>04 de Agosto</td>
+                  <td>Taller Presentación del Proyecto</td>
+                </tr>
+                <tr>
+                  <td><b>Horario.</b></td>
+                  <td>10:00 a 12:00</td>
+                  <td>Mujeres Pescadoras | Emprendimiento </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>15:00 a 17:00</td>
+                  <td>Idea de Negocios | Empresa | Empresa en Crecimiento  </td>
+                </tr>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -137,10 +178,10 @@
             <li>Siga detenidamente las indicaciones listadas al momento de entrar a uno de las categorías.</li>
             <li>Mantenga su perfil y datos bancarios actualizados haciendo <a href="<?= base_url('users/profile'); ?>" target="_blank" class="disabled">click aqui</a> o desde su nombre / perfil.</li>
           </ol>
-          <a href="<?= base_url('files/concursos/1/Fondo_Concursable_Lukas_para_Emprender_2022.pdf?v=0.2'); ?>" class="btn btn-success mb-3 ms-3 text-start disabled" target="_blank">
+          <a href="<?= base_url('files/concursos/1/Fondo_Concursable_Lukas_para_Emprender_2022.pdf?v=0.3'); ?>" class="btn btn-success mb-3 ms-3 text-start" target="_blank">
             <i class="fa-solid fa-download"></i> Bases categoría Empresa, emprendimiento e idea de negocio
           </a>
-          <a href="<?= base_url('files/concursos/3/Fondo_Concursable_Lukas_para_Emprender_2022_Mujer_Pescadora.pdf?v=0.2'); ?>" class="btn btn-success mb-3 ms-3 text-start disabled" target="_blank">
+          <a href="<?= base_url('files/concursos/3/Fondo_Concursable_Lukas_para_Emprender_2022_Mujer_Pescadora.pdf?v=0.3'); ?>" class="btn btn-success mb-3 ms-3 text-start" target="_blank">
             <i class="fa-solid fa-download"></i> Bases categoria mujer pescadora artesanal
           </a>
           <h5 class="ms-3">¡Y listo! ya estará postulando.</h5>

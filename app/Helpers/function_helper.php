@@ -53,8 +53,8 @@ function send_email($send_to, $send_cc, $subject, $message, $attach){
 							'protocol' => 'smtp',
 							'SMTPHost' => 'mail.lukasparaemprender.com',
 							'SMTPPort' => '587',
-              'SMTPUser' => 'postmaster_4@lukasparaemprender.com',
-              'SMTPPass' => '^h+JZz}#q5t@',
+              'SMTPUser' => 'postmaster_3@lukasparaemprender.com',
+              'SMTPPass' => 'jI!m%S?z}0Gj',
 							'mailType' => 'html',
 							'charset'  => 'utf-8',
 							'newline'	 => "\r\n"
@@ -87,41 +87,6 @@ function send_email($send_to, $send_cc, $subject, $message, $attach){
     return false;
   }
   */
-
-}//end send_email
-
-
-function send_email_puertomontt($send_to, $send_cc, $subject, $message, $attach){
-  $email = \Config\Services::email();
-
-  $config_2 = Array(
-              'protocol' => 'smtp',
-              'SMTPHost' => 'smtp.office365.com',
-              'SMTPPort' => '587',
-              'SMTPUser' => 'lukasparaemprender@puertomontt.cl',
-              'SMTPPass' => 'lukas.2021*',
-              'mailType' => 'html',
-              'charset'  => 'utf-8',
-              'newline'	 => "\r\n"
-            );
-
-  $email->initialize($config_2);
-
-  $email->setFrom('lukasparaemprender@puertomontt.cl', 'Administrador Lukas para Emprender');
-  $email->setTo($send_to);
-  $email->setCC($send_cc);
-
-  if( $attach != '' ){ $email->attach($attach); }
-  $email->setSubject($subject);
-  $email->setMessage($message);
-
-  $email->send();
-  if ( $email->send() ){
-    return true;
-  } else {
-    echo $email->printDebugger();
-    return false;
-  }
 
 }//end send_email
 

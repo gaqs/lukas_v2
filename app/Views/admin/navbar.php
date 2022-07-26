@@ -68,7 +68,7 @@
 
                       </nav>
                   </div>
-
+                  <?php if( session()->get('superadmin') == '1' ):  ?>
                   <div class="sb-sidenav-menu-heading">Addons</div>
                   <a class="nav-link" href="<?= base_url('admin/password'); ?>">
                       <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
@@ -78,6 +78,7 @@
                       <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                       Administradores
                   </a>
+                  <?php endif; ?>
               </div>
           </div>
           <div class="sb-sidenav-footer">

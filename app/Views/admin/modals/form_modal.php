@@ -98,7 +98,7 @@ for ($i=0; $i < count($formulario); $i++) {
                       <div class="col-md-12">
                         <div class="input-group w-50">
                           <input type="text" class="form-control" value="DOCUMENTO COMPLEMENTARIO #'.($aux + 1).'" aria-label="" readonly>
-                          <a href="'.base_url('public/files/usuarios').'/'.$user['rut'].'/'.$user['surveys_id'].'/'.($file_list[1][$aux]  ?? null).'" class="btn btn-outline-success z_index_0" target="_blank" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Ver/Descargar"><i class="fa-solid fa-eye"></i></a>
+                          <a href="'.base_url('public/files/usuarios').'/'.$user['rut'].'/'.$user['surveys_id'].'/'.($file_list[1][$aux]  ?? null).'?v='.rand(10000,99999).'" class="btn btn-outline-success z_index_0" target="_blank" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Ver/Descargar"><i class="fa-solid fa-eye"></i></a>
                           <button class="btn btn-outline-danger z_index_0" id="delete_file" type="button" value="'.($file_list[1][$aux] ?? null).'" data-bs-tooltip="true" data-bs-placement="top" title="Eliminar">
                             <i class="fa-solid fa-trash-can"></i>
                           </button>
@@ -128,7 +128,7 @@ for ($i=0; $i < count($formulario); $i++) {
                 <div class="col-md-12">
                   <div class="input-group w-50">
                     <input type="text" class="form-control" value="DOCUMENTO NECESARIO #'.($count + 1).'" aria-label="" readonly>
-                    <a href="'.base_url('public/files/usuarios').'/'.$user['rut'].'/'.$user['surveys_id'].'/'.($file_list[2][$count] ?? null).'" target="_blank" class="btn btn-outline-success z_index_0" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Ver/Descargar"><i class="fa-solid fa-eye"></i></a>
+                    <a href="'.base_url('public/files/usuarios').'/'.$user['rut'].'/'.$user['surveys_id'].'/'.($file_list[2][$count] ?? null).'?v='.rand(10000,99999).'" target="_blank" class="btn btn-outline-success z_index_0" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Ver/Descargar"><i class="fa-solid fa-eye"></i></a>
                     <button class="btn btn-outline-danger z_index_0" id="delete_file" type="button" value="'.($file_list[2][$count] ?? null).'" data-bs-tooltip="true" data-bs-placement="top" title="Eliminar">
                       <i class="fa-solid fa-trash-can"></i>
                     </button>

@@ -336,7 +336,7 @@ class Users extends BaseController
     }//end resend_validation
 
 
-    public function forgot(){
+    public function _forgot(){
       $data = [];
       $model = new UserModel();
 
@@ -401,7 +401,7 @@ class Users extends BaseController
     }//end forgot
 
 
-    public function change_password(){
+    public function _change_password(){
       $model = new UserModel();
 
       if( $this->request->getMethod() == 'get' ){

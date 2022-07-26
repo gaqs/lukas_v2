@@ -68,11 +68,12 @@ class Admin extends BaseController
 
             $data = [
               //'id'        => $admin['id'],
-              'name'      => $admin['name'],
-              'lastname'  => $admin['lastname'],
-              'email'     => $admin['email'],
-              'role'      => 'admin',
-              'loggedIn'  => true
+              'name'        => $admin['name'],
+              'lastname'    => $admin['lastname'],
+              'email'       => $admin['email'],
+              'role'        => 'admin',
+              'superadmin'  => $admin['superadmin'],
+              'loggedIn'    => true
             ];
             session()->set($data);
             return redirect()->to( base_url('admin/index'));
@@ -200,19 +201,23 @@ class Admin extends BaseController
         if(!$this->validate($rules)){
           return redirect()->to( base_url('admin/register') )->with('failure','Error al registrar al administrador.');
         }else{
+          $check = $this->request->getVar('superadmin');
+          $superadmin = 0;
+          if( isset($check) ){ $superadmin = 1; }
 
           $adminData = [
-            'name'     => $this->request->getVar('name'),
-            'lastname' => $this->request->getVar('lastname'),
-            'email'    => $this->request->getVar('email'),
-            'password' => $this->request->getVar('password'),
-            'role'     => 'admin'
+            'name'       => $this->request->getVar('name'),
+            'lastname'   => $this->request->getVar('lastname'),
+            'email'      => $this->request->getVar('email'),
+            'password'   => $this->request->getVar('password'),
+            'superadmin' => $superadmin,
+            'role'       => 'admin'
           ];
 
           $admin_model->save($adminData);
           //enviar email confirmacion
           $message = view('emails/admin',$adminData);
-          $send = send_email_puertomontt($adminData['email'], '', 'Cuenta Administrador Lukas para Emprender', $message, '');
+          $send = send_email($adminData['email'], '', 'Cuenta Administrador Lukas para Emprender', $message, '');
 
           return redirect()->to( base_url('admin/register') )->with('success','Administrador ingresado correctamente.');
 

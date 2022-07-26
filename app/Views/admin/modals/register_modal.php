@@ -31,6 +31,14 @@
           </div>
           <div class="form-text">La contraseña debe tener minimo 6 caracteres.</div>
         </div>
+        <?php if( session()->get('superadmin') == '1' ):  ?>
+        <div class="col-md-6">
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="check_superadmin" name="superadmin">
+            <label class="form-check-label" for="check_superadmin">Dar privilegios de superadmin (crear administradores y contraseñas)</label>
+          </div>
+        </div>
+        <?php endif; ?>
       </div>
     </div>
   </div>
