@@ -29,7 +29,7 @@
 														<div class="form-floating input-group mb-3">
 																<input class="form-control" id="input_password" name="password" type="password" placeholder="*************" />
 																<button class="btn btn-light rounded-end border px-3" id="toggle_button" type="button"><i id="toggle_icon" class="fa-solid fa-eye-slash"></i></button>
-																<label for="input_password">Contraseña</label>
+																<label for="input_password" style="z-index:9;">Contraseña</label>
 														</div>
 														<div class="form-check mb-3">
 																<input class="form-check-input" id="input_remember" type="checkbox" value="" />

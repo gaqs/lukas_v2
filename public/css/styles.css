@@ -12,8 +12,10 @@ a.disabled {
   pointer-events: none;
 }
 
-.passion-one-font{
+h1{
+  font-display: auto;
   font-family: 'Passion One', cursive;
+  font-weight: 700;
 }
 .anton-font{
   font-family: 'Anton', sans-serif;
@@ -42,7 +44,7 @@ b{
   text-align: center;
 }
 .back{
-  background-image: url("../public/img/ganadores_blur.jpg");
+  background-image: url("../public/img/ganadores_blur_2.jpg");
   height: 500px;
   background-attachment: fixed;
   background-position: 50% 30%;
@@ -121,13 +123,6 @@ box-shadow: rgba(50, 50, 93, 0.5) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px
   text-align: right;
   position: absolute;
   margin-right: 1rem;
-}
-
-.blue_square{
-  background: #0d6efd;
-  width: 2rem;
-  height: 40%;
-  position: absolute;
 }
 
 .experience_square{
@@ -238,8 +233,9 @@ opacity: 0.9;
   transform: translate(-50%,0);
 }
 
-@media (max-width: 576px) {
 
+
+@media (max-width: 576px) {
 
 }
 
@@ -249,12 +245,14 @@ opacity: 0.9;
     display: none !important;
   }
 
+
 }
 
 @media (max-width: 992px) {
   .nav_register{
     margin-left: 0;
   }
+
 
   #carousel_header .carousel-item .col-3{
     display: none;
@@ -282,6 +280,11 @@ opacity: 0.9;
   }
 }
 
-@media (max-width: 1200px) {  }
+@media (max-width: 1200px) { 
 
-@media (max-width: 1400px) {  }
+
+ }
+
+@media (max-width: 1400px) {
+
+  }

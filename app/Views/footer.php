@@ -123,8 +123,8 @@
 
 
     <!-- Toast prueba mensajes exito y error esquina inferior -->
-    <div class="position-fixed w-100" style="top:2rem;pointer-events: none; touch-action: none;">
-      <div id="alert_toast" class="toast border-0 fade" data-bs-delay="6000" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="position-fixed w-100" style="top:2rem;pointer-events: none; touch-action: none;z-index:9999;">
+      <div id="alert_toast" class="toast border-0 fade" data-bs-delay="8000" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
           <i class="fa-solid fa-bell me-2"></i>
           <strong class="me-auto">¡Atención!</strong>
@@ -189,7 +189,8 @@ $(document).ready(function(){
     var button = $(this).val();
     var send = false;
     //verifica que no haya inputs text y textarea vacios
-    const fields = document.querySelectorAll("#form input[type=text], #form textarea:not(.d-none)");
+    const fields = document.querySelectorAll("#form input[type=text]:not(.optional), #form select, #form textarea:not(.d-none)");
+    console.log(fields);
     const emptyInputs = Array.from(fields).filter( input => input.value == "");
     //verifica que esten todos los archivos, o si falta uno que al menos tenga un archivo compatible
     const files = document.querySelectorAll("#form input[name='file[]']");
@@ -255,25 +256,35 @@ $(document).ready(function(){
     });
   });
 
+  
   $('body').on('click', '#update_password', function(){
     event.preventDefault();
+    var old = $('#input_old_password').val();
+    var mew = $('#input_new_password').val();
+    var rep = $('#repeat_new_password').val();
     var data = $('#change_password_form').serialize();
-    $.ajax({
-      url : url + "/users/update_password",
-      type: "POST",
-      data: data,
-      success: function(html){
-        console.log(html);
-        var obj = JSON.parse(html);
-        if( obj.status == 'error'){
-          $('#error_change_password').addClass('alert-danger').html(obj.data);
-        }else if(obj.status == 'success'){
-          $('#error_change_password').addClass('alert-success').html(obj.data);
-          setTimeout(function(){ window.location.href = url+'/users/logout'; } , 3000)
-      }
+    if( old == '' || mew == '' || rep == '' ){
+      $('#error_change_password').addClass('alert-danger').html('Todos los campos son obligatorios.');
+    }else{
+      $.ajax({
+        url : url + "/users/update_password",
+        type: "POST",
+        data: data,
+        success: function(html){
+          console.log(html);
+          var obj = JSON.parse(html);
+          if( obj.status == 'error'){
+            $('#error_change_password').addClass('alert-danger').html(obj.data);
+          }else if(obj.status == 'success'){
+            $('#error_change_password').addClass('alert-success').html(obj.data);
+            setTimeout(function(){ window.location.href = url+'/users/logout'; } , 3000)
+          }
+        }
+      });
     }
-    });
+    
   });
+  
 
   //mantiene tab activo despues de reload
   if( localStorage.getItem('active_tab') == null ){

@@ -30,6 +30,20 @@ class UserRules
     return password_verify($data['password'], $user['password']);
   }
 
+  public function email_exist($email){
+    // Validamos la sintaxis del correo electrónico
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      return false;
+    }
+    // Obtenemos el nombre de dominio del correo electrónico
+    $domain = substr(strrchr($email, "@"), 1);
+    // Comprobamos si el nombre de dominio existe
+    if (!getmxrr($domain, $mxhosts)) {
+      return false;
+    }
+    
+    return true;
+  }
 
   //es necesario validar a correo
   public function verified_user(string $str, string $fields,array $data){

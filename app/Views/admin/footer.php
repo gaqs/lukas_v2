@@ -84,7 +84,7 @@
       });
 
 
-      $('body').on('click', '#edit_form', function(){
+      $('body').on('click', '#open_form', function(){
         var id = $(this).val();
         $.ajax({
           url : url + "/admin/edit_form",
@@ -97,15 +97,20 @@
         });
       });
 
-      $('body').on('click', '#submit_status', function(){
-        var id = $(this).val();
+      $('body').on('click', '#update_form', function(){
+        var id = $('#user_survey_id').val();
+        var formData = new FormData( $('#form')[0] );
+        formData.append('user_survey_id', id);
+
         $.ajax({
           url : url + "/admin/edit_form",
-          type: "GET",
-          data: "user_survey_id=" + id,
+          type: "POST",
+          data: formData,
+          processData: false,
+          contentType: false,
           success: function(html){
-            $('#edit_modal .modal-dialog .modal-content').html(html);
-            $('#edit_modal').modal('toggle');
+            console.log(html);
+            location.reload();
           }
         });
       });
@@ -125,8 +130,67 @@
 
       $('body').on('click', '#edit_user', function(){
         var id = $(this).val();
+
+        if( id == 0 ){
+          formData = new FormData( $('#user_info')[0] );
+          $.ajax({
+            url : url + "/admin/edit_user",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(html){
+              location.reload();
+            }
+          });
+
+        }else{
+          $.ajax({
+            url : url + "/admin/edit_user",
+            type: "GET",
+            data: "id=" + id,
+            success: function(html){
+              $('#edit_modal .modal-dialog .modal-content').html(html);
+              $('#edit_modal').modal('toggle');
+            }
+          });
+        }
+      });
+
+      $('body').on('click', '#edit_admin', function(){
+        var id = $(this).val();
         $.ajax({
-          url : url + "/admin/edit_user",
+          url : url + "/admin/edit_admin",
+          type: "GET",
+          data: "id=" + id,
+          success: function(html){
+            $('#admin_modal .modal-dialog .modal-content').html(html);
+            $('#admin_modal').modal('toggle');
+          }
+        });
+      });
+
+      $('body').on('click', '#update_admin', function(){
+        formData = new FormData( $('#admin_info')[0] );
+        $.ajax({
+          url : url + "/admin/edit_admin",
+          type: "POST",
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(html){
+            var obj = JSON.parse(html);
+            if( obj.status == 'success'){
+              location.reload();
+            }
+          }
+        });
+      });
+
+      $('body').on('click', '#export_zip', function(){
+        var id = $(this).val();
+        $.ajax({
+          url : url + "/export/edit_survey",
           type: "GET",
           data: "id=" + id,
           success: function(html){
@@ -136,18 +200,23 @@
         });
       });
 
-      /*
-      $('body').on('click', '#add_admin', function(){
+      $('body').on('click', '#delete_file', function(){
+        $(this).parents('#uploadedFile').addClass('d-none');
+        $(this).parents('#uploadedFile').next('#formFile').removeClass('d-none').val('');
+
+        var survey_id = $('input[name="survey_id"]').val();
+        var file_name = $(this).val();
+        var rut = $('#input_rut').val();
+
         $.ajax({
-          url : url + "/admin/add_admin",
-          type: "GET",
+          url : url + "/admin/delete_file",
+          type: "POST",
+          data: "survey_id=" + survey_id + "&file_name=" + file_name + "&rut=" + rut,
           success: function(html){
-            $('#edit_modal .modal-dialog .modal-content').html(html);
-            $('#edit_modal').modal('toggle');
+            //console.log(html);
           }
         });
       });
-      */
 
 
       $('body').on('click', '#button_random', function(){
@@ -157,9 +226,12 @@
         for (var i = 0, n = charset.length; i < length; ++i) {
             retVal += charset.charAt(Math.floor(Math.random() * n));
         }
+        document.getElementById('button_random').previousElementSibling.removeAttribute('readonly');
         $('#input_password_admin').val(retVal);
       });
+      
 
+      //popup de mensaje de exito y error
       var success = "<?= session()->get('success'); ?>";
       var failure = "<?= session()->get('failure'); ?>";
       if( success != ''){
@@ -174,6 +246,8 @@
         $('#alert_toast .toast-body').html(failure);
         $('#alert_toast').toast('show');
       }
+
+
 
 
 

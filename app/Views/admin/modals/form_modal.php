@@ -1,53 +1,49 @@
-<!--
 <div class="row">
-  <div class="col-md-12">
-    <div class="card border-primary mb-3">
-      <form class="form" action="" method="post">
-        <div class="card-header bg-primary text-white pt-3">
-          Status
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-5">
-              <div class="mb-3">
-                <label for="status_radio_2" class="form-label">Estado postulacion</label>
-                <br>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="status" id="status_radio_2" value="2">
-                  <label class="form-check-label" for="status_radio_2">En revisión</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="status" id="status_radio_3" value="3">
-                  <label class="form-check-label" for="status_radio_3">Retirado</label>
-                </div>
-                <br>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="status" id="status_radio_5" value="5">
-                  <label class="form-check-label" for="status_radio_5">Ganador</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="status" id="status_radio_4" value="4">
-                  <label class="form-check-label" for="status_radio_4">Descalificado</label>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-7">
-              <div class="mb-3">
-                <label for="descalification_form" class="form-label">Causa descalificacion</label>
-                <textarea class="form-control" id="descalification_form" name="descalification" rows="3"></textarea>
-              </div>
-            </div>
-          </div>
-          <button id="submit_status" type="button" class="btn btn-primary submit_something" name="button">Guardar</button>
-        </div>
-      </form>
+  <div class="col-md-6 mb-3">
+    <p>Estado Formulario.</p>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="status" id="radio1" value="option1" <?= $status == 2 ? 'checked':null; ?> >
+      <label class="form-check-label" for="radio1">Formulario Enviado</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="status" id="radio2" value="option2" <?= $status == 1 ? 'checked':null; ?> >
+      <label class="form-check-label" for="radio2">Formulario Guardado</label>
     </div>
   </div>
 </div>
--->
 
+<div class="card mb-3">
+  <div class="card-header pt-3">
+    Usuario
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-3 mb-3">
+        <label for="input_name" class="form-label">Nombre</label>
+        <span class="fas fa-user icon-input"></span>
+        <input type="text" class="form-control" id="input_name" name="name" readonly value="<?= set_value('name',$user['name']);?>">
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="input_lastname" class="form-label">Apellidos</label>
+        <span class="fas fa-user-friends icon-input"></span>
+        <input type="text" class="form-control" id="input_lastname" name="lastname" readonly value="<?= set_value('lastname',$user['lastname']);?>">
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="input_rut" class="form-label">RUT</label>
+        <i class="fa-solid fa-address-card icon-input"></i>
+        <input type="text" class="form-control" id="input_rut" name="rut" readonly value="<?= $user['rut']; ?>">
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="input_optional_email" class="form-label">Correo</label>
+        <span class="fas fa-envelope icon-input"></span>
+        <input type="email" class="form-control" id="input_email" name="email" readonly value="<?= $user['email']; ?>">
+      </div>
+    </div>
+  </div>
+</div>
 <form class="needs-valdiation" id="form" enctype="multipart/form-data" autocomplete="off">
 <input type="hidden" name="survey_id" id="survey_id" value="<?= set_value('survey_id', $survey_id);?>">
+<input type="hidden" name="user_survey_id" id="user_survey_id" value="<?= $user_survey_id; ?>">
 <?php
 $json = json_decode($content);
 $formulario =  (array)$json->formulario;
@@ -153,18 +149,16 @@ if( isset($validation) ){
   echo '<div class="col-12 mb-3">'.$validation->listErrors('custom').'</div>';
 }
 ?>
-<!--
-<div class="row">
-  <div class="col-12">
-    <button type="submit" class="btn btn-primary w-100 submit_something" name="button">Guardar</button>
+
+<div class="row mt-3 ms-2">
+  <div class="col-md-12 text-end">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    <button type="button" class="btn btn-primary" name="button" id="update_form"><i class="fas fa-sync"></i> Actualizar</button>
   </div>
 </div>
--->
+
 </form>
 <script type="text/javascript">
 var survey_id = $('#survey_id').val();
-if( survey_id == '1' ){ $('#textarea_cuestionario_3').addClass('d-none'); }
-if( survey_id == '2' ){ $('#textarea_cuestionario_4').addClass('d-none'); }
-if( survey_id == '4' ){ $('#textarea_cuestionario_4').addClass('d-none'); }
-if( survey_id == '5' ){ $('#textarea_cuestionario_4').addClass('d-none'); }
+
 </script>

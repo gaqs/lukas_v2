@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\UserModel;
+use App\Models\UsersBankModel;
 use App\Models\UsersSurveysModel;
 use App\Models\SurveyAnswersModel;
 use CodeIgniter\Files\File;
@@ -17,27 +18,30 @@ class Home extends BaseController
       echo view('footer');
     }
 
-    public function _forms(){
+    public function forms(){
       $db = db_connect();
-      $survey_answer = new SurveyAnswersModel();
-      $users_surveys = new UsersSurveysModel();
+      $survey_answer    = new SurveyAnswersModel();
+      $users_surveys    = new UsersSurveysModel();
+
+      //Datos basicos y bancarios del usuario
+      $user_model       = new UserModel();
+      $users_bank_model = new UsersBankModel();
 
       $data = [];
       $data['survey_id'] = $this->request->getVar('survey_id');
-      $data['content'] = '';
+      $data['content']    = '';
 
-      $form_directory   = ROOTPATH . 'public/files/concursos/' . $data['survey_id'] . '/';
+      $form_directory   = ROOTPATH . 'public/files/concursos/';
       $files_directory  = ROOTPATH . 'public/files/usuarios/' . session()->get('rut') . '/' . $data['survey_id'] . '/';
 
       if( $this->request->getMethod() == 'get' ){
-        $scanned_dir = array_map('basename', glob($form_directory."*.json", GLOB_BRACE));
-        $data['content'] = file_get_contents( $form_directory . $scanned_dir[0] );
-
-        //respuestas formulario si existe
-        $data['answers'] = [];
-
+        $data['content']  = file_get_contents( $form_directory.$data['survey_id'].'.json' );
+        $data['answers']  = [];//respuestas formulario si existe
+        $data['user']     = $user_model->select_all();
+        
         //NEED FIX
         $surveys = $users_surveys->recover_surveys_by_id();
+        
         if( !empty($surveys) ){
           if( $surveys[0]['surveys_id'] != $data['survey_id'] ){
               return redirect()->to( base_url() )->with('failure','No es posible participar en otro concurso.');
@@ -53,7 +57,6 @@ class Home extends BaseController
             $data['answers'] = reorder_answers($query);
           }
         }
-        //NEED FIX
 
         //archivos de la encuesta si es que existen
         $file_list = [];
@@ -111,6 +114,44 @@ class Home extends BaseController
           }
         }//end if empty
 
+        //datos basicos de usuario
+        $userForm = [
+          'id'             => session()->get('id'),
+          'name'           => $this->request->getVar('name'),
+          'lastname'       => $this->request->getVar('lastname'),
+          'sex'            => $this->request->getVar('sex'),
+          'birthday'       => $this->request->getVar('birthday'),
+          'sector'         => $this->request->getVar('sector'),
+          'phone'          => $this->request->getVar('phone'),
+          'fix_phone'      => $this->request->getVar('fix_phone'),
+          'optional_email' => $this->request->getVar('optional_email'),
+          'address'        => $this->request->getVar('address'),
+          'occupation'     => $this->request->getVar('occupation'),
+          'deleted_at'     => NULL
+        ];
+
+        $user_model->save($userForm);
+        //actualiza cambios en el nombre y apellido
+        session()->set('name', $userForm['name']);
+        session()->set('lastname', $userForm['lastname']);
+
+        $bankData = [
+          'user_id'   => session()->get('id'),
+          'name'      => $this->request->getVar('bank_name'),
+          'type'      => $this->request->getVar('type'),
+          'number'    => $this->request->getVar('number'),
+          'deleted_at'=> NULL
+        ];
+
+        $bank = $users_bank_model->where('user_id', session()->get('id'))
+                                 ->first();
+        if( $bank != null ){
+          $user_id = [ 'id' => $bank['id'] ];
+          $bankData = array_merge( $bankData, $user_id);
+        }
+
+        $users_bank_model->save($bankData);
+
         //manejo de archivos del formulario
         if ( $files ) {
           $aux = '1';
@@ -155,10 +196,10 @@ class Home extends BaseController
             $users_surveys->save($data);
 
             $data = [
-              'nombre' => session()->get('name'),
-              'apellido' => session()->get('lastname'),
+              'nombre'      => session()->get('name'),
+              'apellido'    => session()->get('lastname'),
               'update_date' => date('y-m-d H:i:s'),
-              'link' => base_url(),
+              'link'        => base_url(),
             ];
             //correo envio postulacion
             $message = view('emails/sended', $data);
@@ -187,26 +228,13 @@ class Home extends BaseController
     }//end form function
 
 
-    public function _briefing(){
-      $users_surveys     = new UsersSurveysModel();
-      $data['id']        = $this->request->getVar('survey_id');
-      $data['file_name'] = 'Bases del concurso';
-      $data['link'] = '#';
+    public function briefing(){
+      $users_surveys = new UsersSurveysModel();
+      $data['id']    = $this->request->getVar('survey_id');
+      $data['link']  = '#';
 
-      $surveys = $users_surveys->recover_surveys_by_id();
-      if( !empty($surveys) ){
-        if( $surveys[0]['surveys_id'] != $data['id'] ){
-            return redirect()->to( base_url() )->with('failure','No es posible postular a otro concurso.');
-        }
-      }
-
-      $form_directory   = ROOTPATH . 'public/files/concursos/' . $data['id'] . '/';
-      $file = array_map('basename', glob($form_directory."*.pdf", GLOB_BRACE));
-
-      if(!empty($file)){
-        $data['file_name'] = str_replace('.pdf', '', $file[0]);
-        $data['link'] = base_url('public/files/concursos/'.$data['id'].'/'.$file[0]);
-      }
+      //link cambia dependiendo de la id del formulario y su esta posee otro documento
+      $data['link'] = base_url('public/files/concursos/docs/Fondo_Concursable_Lukas_para_Emprender_2022.pdf');
 
       echo view('header');
       echo view('navbar');
@@ -247,18 +275,19 @@ class Home extends BaseController
       $survey_id = $this->request->getVar('survey_id');
       $file_name = $this->request->getVar('file_name');
       $files_directory  = ROOTPATH . 'public/files/usuarios/' . session()->get('rut') . '/' . $survey_id . '/';
+      //var_dump($files_directory);
       array_map('unlink', glob( $files_directory . $file_name ));
     }//end delete_file
 
     public function help(){
-      $data = [];
+      $data = []; 
 
       if( $this->request->getMethod() == 'post' ){
 
         $rules = [
-          'name' => ['label' => 'nombre', 'rules' => 'required|min_length[3]|max_length[20]'],
-          'phone' => ['label' => 'teléfono', 'rules' => 'min_length[6]|max_length[20]'],
-          'email' => ['label' => 'correo electrónico', 'rules' => 'required|min_length[3]|valid_email'],
+          'name'    => ['label' => 'nombre', 'rules' => 'required|min_length[3]|max_length[20]'],
+          'phone'   => ['label' => 'teléfono', 'rules' => 'min_length[6]|max_length[20]'],
+          'email'   => ['label' => 'correo electrónico', 'rules' => 'required|min_length[3]|valid_email'],
           'subject' => ['label' => 'asunto', 'rules' => 'required|min_length[3]|max_length[20]'],
           'message' => ['label' => 'mensaje', 'rules' => 'required|min_length[10]']
         ];
@@ -267,9 +296,9 @@ class Home extends BaseController
           $data['validation'] = $this->validator;
         }else{
           $data = [
-            'name' => $this->request->getVar('name'),
-            'phone' => $this->request->getVar('phone'),
-            'email' => $this->request->getVar('email'),
+            'name'    => $this->request->getVar('name'),
+            'phone'   => $this->request->getVar('phone'),
+            'email'   => $this->request->getVar('email'),
             'subject' => $this->request->getVar('subject'),
             'message' => $this->request->getVar('message')
           ];

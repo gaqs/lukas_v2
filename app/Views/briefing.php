@@ -5,28 +5,24 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
               <h1 class="fw-boldest passion-one-font carousel_lukas display-1">Atención!</h1>
-              <a href="<?= $link.'?v=0.2'; ?>" class="btn btn-success mb-3 ms-3" target="_blank">
-                <i class="fa-solid fa-download"></i> Descargar aquí las bases del Concurso
-              </a>
+              <h5>
+                <a href="<?= $link.'?v=0.2'; ?>" class="mb-3 ms-3 text-decoration-none" target="_blank">
+                  <i class="fa-solid fa-download"></i> Descargar aquí las bases del Concurso
+                </a>
+              </h5>
               <br>
               <ol>
                 <li>
                   <b>LEA DETENIDAMENTE LAS BASES DE POSTULACIÓN.</b>
                 </li>
                 <li>
-                  Proceda a completar el formulario, puede guardar sus avances en cualquier momento haciendo click en el botón <b>"GUARDAR"</b>.
+                  Proceda a completar el formulario, adjuntando los documentos solicitados en las bases de postulación.
                 </li>
                 <li>
-                  Ingresando a "Mis Concursos", desde su perfil, puede editar nuevamente su postulación.
+                Recuerde que puede guardar sus avances en cualquier momento haciendo click en el botón <b>GUARDAR</b>.
                 </li>
                 <li>
-                  Adjunte los documentos solicitados en las bases de postulación.
-                </li>
-                <li>
-                  Cuando haya completado los campos requeridos, haga click al boton <b>"ENVIAR"</b> ubicado al final del formulario.
-                </li>
-                <li>
-                  <b>Actualización 09/06/2022: </b>Quienes pertenezcan a rubros de alimentación en la categoría Emprendimiento deben presentar declaración jurada simple que acredite la intención de solicitar resolución sanitaria en el caso de ser ganador de la presente categoría (emprendimiento). Para las categorías Empresa y Empresa en crecimiento, deben adicionalmente acreditar el cumplimiento de la normativa sanitaria vinculada a los productos informados en el proyecto mediante permiso de la autoridad sanitaria vigente.
+                  Cuando haya completado TODOS los campos requeridos, haga click al botón <b>ENVIAR</b> ubicado al final del formulario.
                 </li>
               </ol>
 
@@ -41,7 +37,7 @@
               </div>
               -->
 
-              <a href="<?= base_url('home/forms?survey_id='.$id);?>" type="button" class="btn btn-lg btn-primary w-100 mt-3" id="postulate_button" name="button">IR AL FORMULARIO</a>
+              <a href="<?= base_url('home/forms?survey_id='.$id);?>" type="button" class="btn btn-lg btn-primary w-100 mt-3" id="postulate_button" name="button">IR AL FORMULARIO <i class="fa-solid fa-forward ms-2"></i></a>
             </div>
             <div class="col-md-4">
               <img src="<?= base_url('public/img/lukitas_border.png'); ?>" class="w-100" alt="">

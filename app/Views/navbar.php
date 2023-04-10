@@ -45,8 +45,10 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="<?= base_url('users/profile'); ?>">Perfil</a></li>
+              <!--
               <li><a class="dropdown-item mis_concursos" href="<?= base_url('users/profile'); ?>">Postulaciones</a></li>
               <li><hr class="dropdown-divider"></li>
+              -->
               <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logout_modal" style="cursor: pointer;">Cerrar sesión</a></li>
             </ul>
           </li>
@@ -54,7 +56,7 @@
         <?php else: ?>
 
           <li class="nav-item nav_register">
-            <a class="nav-link disabled"  href="<?= base_url('users/register'); ?>">
+            <a class="nav-link"  href="<?= base_url('users/register'); ?>">
               <i class="fas fa-user-plus ml-1"></i> Registrarse
             </a>
           </li>

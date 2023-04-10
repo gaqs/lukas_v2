@@ -172,12 +172,7 @@
                     <span class="apple-link" style="color: #999999; font-size: 12px; text-align: center;">
                       <!-- footer text -->
                     </span>
-                    <br> Nuestra página, <a href="https://www.lukasparaemprender.com/" style="text-decoration: underline; color: #999999; font-size: 12px; text-align: center;">Lukas para Emprender</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="content-block powered-by" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; color: #999999; font-size: 12px; text-align: center;" valign="top" align="center">
-
+                    <br> Nuestra página, <a href="https://www.lukasparaemprender.com/" style="text-decoration: underline; color: #999999; font-size: 12px; text-align: center;">Lukas para Emprender</a><br>
                     <a href="https://www.puertomontt.cl/" style="color: #999999; font-size: 12px; text-align: center; ">Municipalidad de Puerto Montt</a>
                   </td>
                 </tr>

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\UserModel;
+use App\Models\UsersBankModel;
 use App\Models\AdminModel;
 use App\Models\SurveysModel;
 use App\Models\SurveyAnswersModel;
@@ -13,7 +14,7 @@ class Admin extends BaseController
     {
       $data = [];
       $model = new SurveysModel();
-      $data['surveys'] = $model->findAll();
+      $data['surveys'] = $model->find([6,7]);
 
       $db = db_connect();
       $builder = $db->table('users');
@@ -44,7 +45,8 @@ class Admin extends BaseController
 
     }
 
-    public function login(){
+    public function login()
+    {
       $data = [];
 
         if($this->request->getMethod() == 'post'){
@@ -85,7 +87,8 @@ class Admin extends BaseController
         echo view('admin/footer');
     }
 
-    public function forms(){
+    public function forms()
+    {
       $data = [];
       $survey_id = $this->request->getVar('survey_id');
       $db = db_connect();
@@ -101,7 +104,6 @@ class Admin extends BaseController
       echo view('admin/tables',$data);
       echo view('admin/footer');
     }
-
 
     public function applications(){
       $data = [];
@@ -119,27 +121,31 @@ class Admin extends BaseController
       echo view('admin/footer');
     }
 
-    public function edit_form(){
+    public function edit_form()
+    {
       $db = db_connect();
       $survey_answer = new SurveyAnswersModel();
+      $user_survey   = new UsersSurveysModel();
       $data = [];
       $data['user_survey_id'] = $this->request->getVar('user_survey_id');
 
       $query = $db->table('users u')
-                  ->select('u.rut, us.user_id, us.surveys_id')
+                  ->select('u.name, u.lastname, u.rut, u.email, us.user_id, us.surveys_id')
                   ->join('users_surveys us', 'u.id = us.user_id')
                   ->where('us.id', $data['user_survey_id'])
                   ->get()->getResultArray();
 
-      $data['user'] = $query[0];
-      $data['survey_id'] = $data['user']['surveys_id'];
+      $data['user']       = $query[0];
+      $data['survey_id']  = $data['user']['surveys_id'];
 
-      $form_directory   = ROOTPATH . 'public/files/concursos/' . $data['user']['surveys_id'] . '/';
+      $form_directory   = ROOTPATH . 'public/files/concursos/';
       $files_directory  = ROOTPATH . 'public/files/usuarios/' . $data['user']['rut'] . '/' . $data['user']['surveys_id'] . '/';
 
       if( $this->request->getMethod() == 'get' ){
-        $scanned_dir = array_map('basename', glob($form_directory."*.json", GLOB_BRACE));
-        $data['content'] = file_get_contents( $form_directory . $scanned_dir[0] );
+
+        $data['status'] = $user_survey->where('id', $data['user_survey_id'])->findColumn('results_id')[0];
+
+        $data['content'] = file_get_contents( $form_directory . $data['user']['surveys_id'].'.json' );
 
         $query = $survey_answer->survey_answers_per_user( $data['user']['surveys_id'], $data['user']['user_id'] );
 
@@ -161,6 +167,54 @@ class Admin extends BaseController
 
       }//end if get
 
+
+      if( $this->request->getMethod() == 'post' ){
+
+        $datos          = $this->request->getVar('data');
+        $user_survey_id = $this->request->getVar('user_survey_id');
+        $files          = $this->request->getFiles();
+
+        var_dump($user_survey_id);
+
+        //manejo de archivos del formulario
+        if ( $files ) {
+          $aux = '1';
+          foreach ($files as $key => $value) {
+            manage_files( $aux, $files, $key, $files_directory ); //manage_files( $seccion formulario, $arreglo completo archivos, $key del array, $directorio )
+            $aux++;
+          }
+        }
+
+        $userAnswers = [];
+        for ($i=0; $i < count($datos); $i++) {
+          for ($j=0; $j < count($datos[$i]); $j++) {
+            
+            $userAnswers = [];
+            $query = $survey_answer->select('id')
+                                  ->where('users_surveys_id', $user_survey_id)
+                                  ->where('section', $i)
+                                  ->where('question_number', $j)
+                                  ->first();
+
+            if( !empty($query) ){
+              $userAnswers += [ 'id' => $query['id'] ];
+            }
+
+            $userAnswers += [
+              'users_surveys_id' => $user_survey_id,
+              'section'          => $i,
+              'question_number'  => $j,
+              'answer'           => $datos[$i][$j],
+              'deleted_at'       => NULL
+            ];
+
+            $survey_answer->save($userAnswers);
+
+          }//end for
+        }//end for
+
+      }//end request post
+
     }
 
     public function edit_survey()
@@ -180,27 +234,85 @@ class Admin extends BaseController
       $data = [];
       $id = $this->request->getVar('id');
 
-      $model = new UserModel();
-      $data['user'] = $model->select_user_data($id);
-      echo view('admin/modals/users_modal', $data);
+      $user_model       = new UserModel();
+      $users_bank_model = new UsersBankModel();
 
+      if( $this->request->getMethod() == 'post'){
+
+        $userData = [
+          'id'             => $id,
+          'name'           => $this->request->getVar('name'),
+          'lastname'       => $this->request->getVar('lastname'),
+          'sex'            => $this->request->getVar('sex'),
+          'birthday'       => $this->request->getVar('birthday'),
+          'sector'         => $this->request->getVar('sector'),
+          'phone'          => $this->request->getVar('phone'),
+          'fix_phone'      => $this->request->getVar('fix_phone'),
+          'optional_email' => $this->request->getVar('optional_email'),
+          'address'        => $this->request->getVar('address'),
+          'occupation'     => $this->request->getVar('occupation'),
+          'deleted_at'     => NULL
+        ];
+
+        if( $this->request->getVar('password') != '' ){
+          $new_pass = ['password' => $this->request->getVar('password') ];
+          $userData = array_merge( $userData, $new_pass  );
+        }
+
+        if( $this->request->getVar('email_verified_at') == 1 ){
+          $email_verified_at = $user_model->where('id',$id)->findColumn('email_verified_at');
+          if( $email_verified_at != '' ){
+            $email_verified = ['email_verified_at' => date('y-m-d H:i:s') ];
+            $userData = array_merge( $userData, $email_verified  );
+          }
+        }
+
+        $user_model->save($userData);
+
+        $bankData = [
+          'user_id'   => $id,
+          'name'      => $this->request->getVar('bank_name'),
+          'type'      => $this->request->getVar('type'),
+          'number'    => $this->request->getVar('number'),
+          'deleted_at'=> NULL
+        ];
+
+        $bank = $users_bank_model->where('user_id', $id)
+                                 ->first();
+        if( $bank != null ){
+          $user_id = [ 'id' => $bank['id'] ];
+          $bankData = array_merge( $bankData, $user_id  );
+        }
+        $users_bank_model->save($bankData);
+
+      }else{
+        $data['user'] = $user_model->select_user_data($id);
+        echo view('admin/modals/users_modal', $data);
+      }
+      
     }
 
-    public function register(){
+    public function admins()
+    {
       $data = [];
       $admin_model = new AdminModel();
       $db = db_connect();
       $data['admin'] = $db->table('administrators')
                           ->get()->getResultArray();
 
-      if( $this->request->getMethod() == 'post' ){
-        $rules = [
-          'email'     => ['label' => 'correo', 'rules' => 'required|min_length[6]|max_length[250]|is_unique[administrators.email]|valid_email'],
-        ];
+      echo view('admin/header');
+      echo view('admin/navbar');
+      echo view('admin/admins', $data);
+      echo view('admin/footer');
+    }
 
-        if(!$this->validate($rules)){
-          return redirect()->to( base_url('admin/register') )->with('failure','Error al registrar al administrador.');
-        }else{
+    public function edit_admin()
+    {
+      $admin_model = new AdminModel();
+      $data['id']    = $this->request->getVar('id');
+      $data['admin'] = [];
+
+      if( $this->request->getMethod() == 'post' ){
           $check = $this->request->getVar('superadmin');
           $superadmin = 0;
           if( isset($check) ){ $superadmin = 1; }
@@ -209,38 +321,51 @@ class Admin extends BaseController
             'name'       => $this->request->getVar('name'),
             'lastname'   => $this->request->getVar('lastname'),
             'email'      => $this->request->getVar('email'),
-            'password'   => $this->request->getVar('password'),
             'superadmin' => $superadmin,
             'role'       => 'admin'
           ];
+          if( $this->request->getVar('password') != ''){
+            $admin_pass = [ 'password' => $this->request->getVar('password')  ];
+            $adminData = array_merge( $adminData, $admin_pass );
+          }
+
+          if( $data['id'] != 0 ){
+            $admin_id = [ 'id' => $data['id'] ];
+            $adminData = array_merge( $adminData, $admin_id );
+          }else{
+            //enviar email confirmacion
+            $message = view('emails/admin',$adminData);
+            $send = send_email($adminData['email'], '', 'Cuenta Administrador Lukas para Emprender', $message, '');
+          }
 
           $admin_model->save($adminData);
-          //enviar email confirmacion
-          $message = view('emails/admin',$adminData);
-          $send = send_email($adminData['email'], '', 'Cuenta Administrador Lukas para Emprender', $message, '');
+          
+          $resp['status'] = 'success';
+          echo json_encode($resp);
 
-          return redirect()->to( base_url('admin/register') )->with('success','Administrador ingresado correctamente.');
-
+      }else if( $this->request->getMethod() == 'get' ){
+        if( $data['id'] == 0){ //registro nuevo
+          echo view('admin/modals/admin_modal', $data);
+        }else{//edicion de usuario previamente creado
+          $data['admin'] = $admin_model->find($data['id']);
+          echo view('admin/modals/admin_modal', $data);
         }
       }
-
-      echo view('admin/header');
-      echo view('admin/navbar');
-      echo view('admin/register', $data);
-      echo view('admin/footer');
     }
 
-    public function delete_admin(){
+    public function delete_admin()
+    {
       $admin_model = new AdminModel();
       $id = $this->request->getVar('id');
 
       $admin_model->delete( $id );
 
-      return redirect()->to( base_url('admin/register') )->with('success','Administrador eliminado correctamente.');
+      return redirect()->to( base_url('admin/admins') )->with('success','Administrador eliminado correctamente.');
     }
 
 
-    public function password(){
+    public function password()
+    {
       $data = [];
       if( $this->request->getMethod() == 'post' ){
         $pass = $this->request->getVar('pass');
@@ -257,14 +382,8 @@ class Admin extends BaseController
         echo view('admin/footer');
 
       }
-
     }
-
-    public function test_email(){
-      $send = send_email_puertomontt('gaqs.02@gmail.com', '', 'Prueba', 'prueba', '');
-      var_dump($send);
-    }
-
+    
     public function review_form(){ //solo emprendimiento
 
       $data = [];
@@ -319,10 +438,24 @@ class Admin extends BaseController
       }
     }
     echo '</table>';
-
-
-
     }
 
+    public function delete_file(){
+      $survey_id  = $this->request->getVar('survey_id');
+      $file_name  = $this->request->getVar('file_name');
+      $rut        = $this->request->getVar('rut');
+      $files_directory  = ROOTPATH . 'public/files/usuarios/' . $rut. '/' . $survey_id . '/';
+
+      array_map('unlink', glob( $files_directory . $file_name ));
+    }//end delete_file
+
+    public function show_email(){
+      $data['name'] = 'Gustavo';
+      $data['lastname'] = 'Quilodran';
+      $data['rut'] = '17513256-2';
+      $data['password'] = 'ASDASD';
+
+      echo view('emails/registered',$data);
+    }
 
 }//end class

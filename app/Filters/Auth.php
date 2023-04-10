@@ -14,7 +14,7 @@ class Auth implements FilterInterface
     //filtro para evitar que trate de entrar sin sesion iniciada
     if(!session()->get('loggedIn')){
       session()->setFlashdata('failure','Necesita iniciar sesión con su cuenta para poder acceder a esta sección.');
-      return redirect()->to( base_url() );
+      return redirect()->to( base_url('users') );
     }
 
     /*

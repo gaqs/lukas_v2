@@ -6,28 +6,112 @@ $formulario =  (array)$json->formulario;
 <!-- form empresa/pregunta 4/ sin textbox solo archivo***  -->
 
   <div class="container mt-3 mb-5">
-    <div class="row text-center mb-3 text-white bg-primary p-3 rounded">
+    <div class="row text-center mb-3 text-white bg-dark pt-2 pb-1 rounded">
       <div class="col-md-12">
-        <h1><?= $json->nombre; ?></h1>
-      </div>
-
-    </div>
-    <div class="row">
-      <div class="alert alert-warning" role="alert" id="error_form">
-        <div class="row">
-          <div class="col-md-1 text-center">
-            <i class="fa-solid fa-circle-exclamation display-1"></i>
-          </div>
-          <div class="col-md-11 ps-3">
-            <i><b>IMPORTANTE!</b><br><?= $json->importante; ?></i>
-          </div>
-        </div>
+        <h3><?= $json->nombre; ?></h3>
       </div>
     </div>
 
 
     <form class="needs-valdiation" id="form" enctype="multipart/form-data" autocomplete="off">
       <input type="hidden" name="survey_id" value="<?= set_value('survey_id', $survey_id);?>">
+
+      <div class="row">
+        <div class="card p-0 mb-3">
+          <div class="card-header pt-3">
+            <h5><i class="fas fa-pen-square"></i> Datos Básicos</h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              
+            <div class="col-md-4 mb-3">
+              <label for="input_name" class="form-label">Nombre<span class="text-danger">*</span></label>
+                <span class="fas fa-user icon-input"></span>
+                <input type="text" class="form-control" id="input_name" name="name" value="<?= set_value('name',$user['user_name']);?>">
+              </div>
+              <div class="col-md-5 mb-3">
+                <label for="input_lastname" class="form-label">Apellidos<span class="text-danger">*</span></label>
+                <span class="fas fa-user-friends icon-input"></span>
+                <input type="text" class="form-control" id="input_lastname" name="lastname" value="<?= set_value('lastname',$user['user_lastname']);?>">
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="input_rut" class="form-label">RUT<span class="text-danger">*</span></label>
+                <i class="fa-solid fa-address-card icon-input"></i>
+                <input type="text" class="form-control" id="input_rut" name="rut" value="<?= $user['user_rut']; ?>" readonly>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="sex_select" class="form-label">Sexo</label>
+                <select class="form-select" id="sex_select" name="sex" aria-label="Default select example">
+                    <option value="" <?= $user['sex'] == '' ? 'selected=true' : null ?> selected>No informar</option>
+                    <option value="F" <?= $user['sex'] == 'F' ? 'selected=true' : null ?>>Femenino</option>
+                    <option value="M" <?= $user['sex'] == 'M' ? 'selected=true' : null ?>>Masculino</option>
+                    <option value="O" <?= $user['sex'] == '0' ? 'selected=true' : null ?>>Otro</option>
+                </select>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="birthday_input" class="form-label">Fecha de nacimiento</label>
+                <input type="date" class="form-control" id="birthday_input" name="birthday" value="<?= set_value('birthday', $user['birthday']);?>">
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="input_phone" class="form-label">Teléfono celular<span class="text-danger">*</span></label>
+                <div class="input-group">
+                    <span class="input-group-text">+56 9</span>
+                    <input type="text" class="form-control" id="input_phone" name="phone" aria-describedby="" value="<?= set_value('phone',$user['user_phone']);?>" maxlength="8">
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="input_fix_phone" class="form-label">Teléfono fijo</label>
+                <i class="fa-solid fa-phone icon-input"></i>
+                <input type="text" class="form-control optional" id="input_fix_phone" name="fix_phone" aria-describedby="" value="<?= set_value('fix_phone',$user['fix_phone']);?>" maxlength="10">
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="sector_select" class="form-label">Sector</label>
+                <select class="form-select" id="sector_select" name="sector" aria-label="Default select example">
+                    <option value="urbano" <?= $user['sector'] == 'urbano' ? 'selected=true' : null ?> >Urbano</option>
+                    <option value="rural" <?= $user['sector'] == 'rural' ? 'selected=true' : null ?> >Rural</option>
+                </select>
+              </div>
+              <div class="col-md-9 mb-3">
+                <label for="input_address" class="form-label">Dirección<span class="text-danger">*</span></label>
+                <i class="fa-solid fa-location-dot icon-input"></i>
+                <input type="text" class="form-control" id="input_address" name="address" aria-describedby="" value="<?= set_value('address',$user['user_address']);?>" >
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="input_email" class="form-label">Correo electrónico<span class="text-danger">*</span></label>
+                <span class="fas fa-envelope icon-input"></span>
+                <input type="email" class="form-control" id="input_email" name="email" aria-describedby="" value="<?= $user['user_email']; ?>" readonly>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="input_optional_email" class="form-label">Correo opcional</label>
+                <span class="fas fa-envelope icon-input"></span>
+                <input type="email" class="form-control optional" id="input_optional_email" name="optional_email" aria-describedby="" value="<?= $user['optional_email']; ?>">
+              </div>
+              <div class="col-4 mb-3">
+                <label for="input_name" class="form-label">Banco</label>
+                <select class="form-select" aria-label="" name="bank_name" autocomplete="off">
+                <?= bancos( $user['user_bank_name'] ); ?>
+                </select>
+              </div>
+              <div class="col-4 mb-3">
+                <label for="input_type" class="form-label">Cuenta</label>
+                <select class="form-select" aria-label="" name="type" autocomplete="off">
+                <?= cuentas( $user['type'] ); ?>
+                </select>
+              </div>
+              <div class="col-4 mb-3">
+                <label for="input_number" class="form-label">Número cuenta</label>
+                <i class="fa-solid fa-address-card icon-input"></i>
+                <input type="text" class="form-control" id="input_number" name="number" value="<?= set_value('number', $user['number']) ?>">
+              </div>
+              <div class="row">
+                <small>
+                    <p class="text-end text-danger"><b>*</b>Obligatorio</p>
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 <?php
 
@@ -158,12 +242,12 @@ $formulario =  (array)$json->formulario;
     //cuando boton send form aparece en pantalla, boton guardar vuelve a su posicion
     var observer = new IntersectionObserver(function(entries) {
       var btn = $('#save_form');
-       if(entries[0].isIntersecting === true){
-         btn.removeClass('always_show');
-       }else{
-         btn.addClass('always_show');
-       }
-       //console.log('Element is fully visible in screen')
+        if(entries[0].isIntersecting === true){
+          btn.removeClass('always_show');
+        }else{
+          btn.addClass('always_show');
+        }
+        //console.log('Element is fully visible in screen')
     }, { threshold: [0.5] });
     observer.observe(document.querySelector("#send_form"))
   });

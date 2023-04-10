@@ -13,7 +13,7 @@ class UserModel extends Model{
   protected $updatedField  = 'updated_at';
   protected $deletedField  = 'deleted_at';
 
-  protected $allowedFields = ['name','lastname','birthday','sex','email','optional_email','rut','address','phone','fix_phone','password','email_verification_token','deleted_at', 'email_verified_at'];
+  protected $allowedFields = ['name','lastname','birthday','sector','sex','email','optional_email','rut','address','phone','fix_phone','password','email_verification_token','deleted_at', 'email_verified_at'];
   protected $beforeInsert = ['beforeInsert'];
   protected $beforeUpdate = ['beforeUpdate'];
 
@@ -47,6 +47,7 @@ class UserModel extends Model{
                           u.sex,
                           u.rut as user_rut,
                           u.birthday,
+                          u.sector,
                           u.address as user_address,
                           u.phone as user_phone,
                           u.fix_phone,
@@ -87,6 +88,7 @@ class UserModel extends Model{
                           u.name as user_name,
                           u.lastname as user_lastname,
                           u.birthday,
+                          u.sector,
                           u.sex,
                           u.rut as user_rut,
                           u.birthday,

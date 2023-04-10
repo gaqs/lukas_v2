@@ -40,9 +40,12 @@
                       <td>'.$users[$i]['updated_at'].'</td>
                       <td class="text-center">
                         <div class="btn-group" role="group" aria-label="Acción">
-                          <button type="button" class="btn btn-primary" id="edit_form" value="'.$users[$i]['users_surveys_id'].'"><i class="fa-solid fa-pen-to-square"></i></button>
+                          <button type="button" class="btn btn-primary" id="open_form" value="'.$users[$i]['users_surveys_id'].'"><i class="fa-solid fa-pen-to-square"></i></button>
+
                           <a href="'.base_url('export/export_user_survey?user_id='.$users[$i]['id'].'&survey_id='.$users[$i]['surveys_id']).'" target="_blank" type="button" class="btn btn-success" id="export_form" ><i class="fa-solid fa-file-export"></i></a>
-                          <button type="button" class="btn btn-danger text-white" id="delete_form"><i class="fa-solid fa-download"></i></button>
+
+                          <a href="'.base_url('export/export_zip?user_id='.$users[$i]['id'].'&survey_id='.$users[$i]['surveys_id']).'" target="_blank" type="button" class="btn btn-danger" id="export_form" ><i class="fa-solid fa-download"></i></i></a>
+
                         </div>
                       </td>
                     </tr>';

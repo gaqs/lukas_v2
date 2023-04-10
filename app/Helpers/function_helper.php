@@ -1,6 +1,21 @@
 <?php
 use CodeIgniter\Email\Email;
 
+function email_valdiation($email) {
+  // Validamos la sintaxis del correo electrónico
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    return false;
+  }
+  // Obtenemos el nombre de dominio del correo electrónico
+  $domain = substr(strrchr($email, "@"), 1);
+  // Comprobamos si el nombre de dominio existe
+  if (!getmxrr($domain, $mxhosts)) {
+    return false;
+  }
+  
+  return true;
+}
+
 function manage_files( $form_section, $array, $key_name, $directory_path ){
   $file = $array[$key_name];
 
@@ -35,7 +50,7 @@ function surveys_list(){
   $data = $db->table('surveys')->get()->getResultArray();
   $survey_list = '';
 
-  for ($i=0; $i < count($data); $i++) {
+  for ($i=5; $i < count($data); $i++) {
     $survey_list .= '<a class="nav-link" href="'.base_url('admin/forms?survey_id=').$data[$i]['id'].'">'.($i+1).'. '.$data[$i]['name'].'</a>';
   }
   return $survey_list;
@@ -53,8 +68,8 @@ function send_email($send_to, $send_cc, $subject, $message, $attach){
 							'protocol' => 'smtp',
 							'SMTPHost' => 'mail.lukasparaemprender.com',
 							'SMTPPort' => '587',
-              'SMTPUser' => 'postmaster_3@lukasparaemprender.com',
-              'SMTPPass' => 'jI!m%S?z}0Gj',
+              'SMTPUser' => 'postmaster@lukasparaemprender.com',
+              'SMTPPass' => 'g3@N1Phrd=JL',
 							'mailType' => 'html',
 							'charset'  => 'utf-8',
 							'newline'	 => "\r\n"
@@ -68,11 +83,10 @@ function send_email($send_to, $send_cc, $subject, $message, $attach){
 
   $email->initialize($config);
 
-  $email->setFrom('postmaster_3@lukasparaemprender.com', 'Lukas para Emprender');
+  $email->setFrom('postmaster@lukasparaemprender.com', 'Lukas para Emprender');
   $email->setTo($send_to);
-  $email->setCC($send_cc);
-
-  if( $attach != '' ){ $email->attach($attach); }
+  $send_cc != '' ? $email->setCC($send_cc): false;
+  $attach != '' ? $email->attach($attach): false;
   $email->setSubject($subject);
   $email->setMessage($message);
 
