@@ -199,6 +199,8 @@ class Users extends BaseController
             'phone'           => $this->request->getVar('phone'),
             'fix_phone'       => $this->request->getVar('fix_phone'),
             'optional_email'  => $this->request->getVar('optional_email'),
+            'id_native'       => $this->request->getVar('id_native'),
+            'agrupation'      => $this->request->getVar('agrupation'),
             'address'         => $this->request->getVar('address'),
             'occupation'      => $this->request->getVar('occupation'),
             'deleted_at'      => NULL

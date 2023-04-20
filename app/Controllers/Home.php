@@ -116,18 +116,20 @@ class Home extends BaseController
 
         //datos basicos de usuario
         $userForm = [
-          'id'             => session()->get('id'),
-          'name'           => $this->request->getVar('name'),
-          'lastname'       => $this->request->getVar('lastname'),
-          'sex'            => $this->request->getVar('sex'),
-          'birthday'       => $this->request->getVar('birthday'),
-          'sector'         => $this->request->getVar('sector'),
-          'phone'          => $this->request->getVar('phone'),
-          'fix_phone'      => $this->request->getVar('fix_phone'),
-          'optional_email' => $this->request->getVar('optional_email'),
-          'address'        => $this->request->getVar('address'),
-          'occupation'     => $this->request->getVar('occupation'),
-          'deleted_at'     => NULL
+          'id'              => session()->get('id'),
+          'name'            => $this->request->getVar('name'),
+          'lastname'        => $this->request->getVar('lastname'),
+          'sex'             => $this->request->getVar('sex'),
+          'birthday'        => $this->request->getVar('birthday'),
+          'sector'          => $this->request->getVar('sector'),
+          'phone'           => $this->request->getVar('phone'),
+          'fix_phone'       => $this->request->getVar('fix_phone'),
+          'optional_email'  => $this->request->getVar('optional_email'),
+          'id_native'       => $this->request->getVar('id_native'),
+          'agrupation'      => $this->request->getVar('agrupation'),
+          'address'         => $this->request->getVar('address'),
+          'occupation'      => $this->request->getVar('occupation'),
+          'deleted_at'      => NULL
         ];
 
         $user_model->save($userForm);
@@ -209,7 +211,7 @@ class Home extends BaseController
             session()->setFlashdata('success','Postulación enviada correctamente.');
           }else{
             $resp['status'] = 'error';
-            session()->setFlashdata('failure','Tiene campos sin llenar, su postulación no se ha enviado.');
+            session()->setFlashdata('failure','Tiene campos sin completar, <b>SU POSTULACIÓN NO SE HA ENVIADO</b>.');
           }
         }else{
           $data = [
@@ -219,7 +221,7 @@ class Home extends BaseController
           $users_surveys->save($data);
 
           $resp['status'] = 'success';
-          session()->setFlashdata('success','Datos guardados correctamente.<br><b>Recuerde que su postulación aún no se ha enviado.</b>');
+          session()->setFlashdata('success','Datos guardados correctamente.<br><b>RECUERDE QUE SU POSTULACIÓN AUN NO SE HA ENVIADO.</b>');
         }//end if send_form
 
         echo json_encode($resp);
@@ -231,10 +233,10 @@ class Home extends BaseController
     public function briefing(){
       $users_surveys = new UsersSurveysModel();
       $data['id']    = $this->request->getVar('survey_id');
-      $data['link']  = '#';
-
+      
+      //$data['link']  = '#';
       //link cambia dependiendo de la id del formulario y su esta posee otro documento
-      $data['link'] = base_url('public/files/concursos/docs/Fondo_Concursable_Lukas_para_Emprender_2022.pdf');
+      //$data['link'] = base_url('public/files/concursos/docs/Fondo_Concursable_Lukas_para_Emprender_2022.pdf');
 
       echo view('header');
       echo view('navbar');

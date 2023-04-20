@@ -15,6 +15,7 @@ class Export extends BaseController
   }
   
   public function export_user_survey(){
+    error_reporting(E_WARNING);
     require_once( APPPATH . "ThirdParty/dompdf/autoload.inc.php" );
     $user_model     = new UserModel();
     $user_surveys   = new UsersSurveysModel();
@@ -42,11 +43,16 @@ class Export extends BaseController
     $options->set('fontHeightRatio', '1');
     $options->set('defaultPaperSize', 'a4');
 
+    if( session()->get('id') == $user_id || session()->get('role') == 'admin'){
+
     $dompdf = new Dompdf($options);
     $dompdf->loadHtml( view('admin/pdfview', $data) );
     $dompdf->render();
-    $dompdf->stream('document.pdf', array("Attachment" => false));
+    $dompdf->stream('export.pdf', array("Attachment" => false));
 
+    }else{
+      return redirect()->to(base_url())->with('failure', 'No tiene permisos para acceder a este formulario.');
+    }
   }
 
   public function export_zip(){

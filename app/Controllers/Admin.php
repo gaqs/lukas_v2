@@ -14,7 +14,7 @@ class Admin extends BaseController
     {
       $data = [];
       $model = new SurveysModel();
-      $data['surveys'] = $model->find([6,7]);
+      $data['surveys'] = $model->find([6,7,8,9]);
 
       $db = db_connect();
       $builder = $db->table('users');
@@ -172,9 +172,8 @@ class Admin extends BaseController
 
         $datos          = $this->request->getVar('data');
         $user_survey_id = $this->request->getVar('user_survey_id');
+        $status         = $this->request->getVar('status');
         $files          = $this->request->getFiles();
-
-        var_dump($user_survey_id);
 
         //manejo de archivos del formulario
         if ( $files ) {
@@ -184,6 +183,9 @@ class Admin extends BaseController
             $aux++;
           }
         }
+        
+        //actualiza status formulario, enviado = 2 o guardado = 1 
+        $user_survey->update($user_survey_id, ['results_id' => $status]);
 
         $userAnswers = [];
         for ($i=0; $i < count($datos); $i++) {
@@ -249,6 +251,8 @@ class Admin extends BaseController
           'phone'          => $this->request->getVar('phone'),
           'fix_phone'      => $this->request->getVar('fix_phone'),
           'optional_email' => $this->request->getVar('optional_email'),
+          'id_native'       => $this->request->getVar('id_native'),
+          'agrupation'      => $this->request->getVar('agrupation'),
           'address'        => $this->request->getVar('address'),
           'occupation'     => $this->request->getVar('occupation'),
           'deleted_at'     => NULL
@@ -308,7 +312,8 @@ class Admin extends BaseController
 
     public function edit_admin()
     {
-      $admin_model = new AdminModel();
+      error_reporting(E_WARNING);
+      $admin_model   = new AdminModel();
       $data['id']    = $this->request->getVar('id');
       $data['admin'] = [];
 
@@ -344,7 +349,8 @@ class Admin extends BaseController
           echo json_encode($resp);
 
       }else if( $this->request->getMethod() == 'get' ){
-        if( $data['id'] == 0){ //registro nuevo
+        if( $data['id'] == 0 ){ //registro nuevo
+          $data['admin']['superadmin'] = 0;
           echo view('admin/modals/admin_modal', $data);
         }else{//edicion de usuario previamente creado
           $data['admin'] = $admin_model->find($data['id']);

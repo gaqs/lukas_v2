@@ -121,7 +121,7 @@
                             <tr>
                               <td align="left" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 5px;" valign="top">
                                 <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 10px; ">
-                                  Muchas gracias por completar correctamente el formulario del 13er concurso de <b>Luka$ para Emprender</b>, su postulación ha sido recibida correctamente con fecha <b><?= $update_date; ?></b>.
+                                  Muchas gracias por completar correctamente el formulario del 14to concurso de <b>Luka$ para Emprender</b>, su postulación ha sido recibida correctamente con fecha <b><?= $update_date; ?></b>.
                                   <br><br>
                                   Puede revisar el estado de su postulación en su perfil, sección "Mis Postulaciones".
                                   <br><br>

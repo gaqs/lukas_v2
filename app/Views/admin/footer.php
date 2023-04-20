@@ -29,7 +29,7 @@
         ¿Está seguro que desea cerrar su sesión actual?
       </div>
       <div class="modal-footer">
-        <a href="<?= base_url('users/logout');?>">
+        <a href="<?= base_url('users/logout'); ?>">
           <button type="button" class="btn btn-primary" name="button"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
         </a>
       </div>
@@ -52,212 +52,218 @@
   </div>
 </div>
 
-<script type="text/javascript" src="<?= base_url('dist/bootstrap-5.1.3/js/bootstrap.bundle.js');?>"></script>
-<script type="text/javascript" src="<?= base_url('js/scrollreveal.js');?>"></script>
-<script type="text/javascript" src="<?= base_url('dist/datatables-1.11.3/datatables.js');?>"></script>
-<script type="text/javascript" src="<?= base_url('dist/datatables-1.11.3/Responsive-2.2.9/js/responsive.bootstrap5.js');?>"></script>
-<script type="text/javascript" src="<?= base_url('js/scripts.js?v=0.1');?>"></script>
+<script type="text/javascript" src="<?= base_url('dist/bootstrap-5.1.3/js/bootstrap.bundle.js'); ?>"></script>
+<script type="text/javascript" src="<?= base_url('js/scrollreveal.js'); ?>"></script>
+<script type="text/javascript" src="<?= base_url('dist/datatables-1.11.3/datatables.js'); ?>"></script>
+<script type="text/javascript" src="<?= base_url('dist/datatables-1.11.3/Responsive-2.2.9/js/responsive.bootstrap5.js'); ?>"></script>
+<script type="text/javascript" src="<?= base_url('js/scripts.js?v=0.1'); ?>"></script>
 <script type="text/javascript">
 
-  $(document).ready(function() {
+  $(document).ready(function () {
 
-    var url = "<?= base_url()?>";
+    var url = "<?= base_url() ?>";
 
     //cambia icono izq boton por icono carga y bloquea boton
-    $('body').on('click', '.submit_something', function(){
+    $('body').on('click', '.submit_something', function () {
       $(this).addClass('disabled')
       $(this).children().removeClass().addClass('fa-solid fa-circle-notch fa-spin').prop('disabled', true)
     });
 
     $('#users_table').DataTable({
-        "language" : {
-          "url" : "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
-          "responsive": true
-        },
-        "bStateSave" : true,
-        "fnStateSave" : function(oSettings, oData){
-            localStorage.setItem('DataTables', JSON.stringify(oData));
-        },
-        "fnStateLoad": function(oSettings){
-          return JSON.parse(localStoragegetItem('DataTables'));
+      "language": {
+        "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+        "responsive": true
+      },
+      "bStateSave": true,
+      "fnStateSave": function (oSettings, oData) {
+        localStorage.setItem('DataTables', JSON.stringify(oData));
+      },
+      "fnStateLoad": function (oSettings) {
+        return JSON.parse(localStoragegetItem('DataTables'));
+      }
+    });
+
+
+    $('body').on('click', '#open_form', function () {
+      var id = $(this).val();
+      $.ajax({
+        url: url + "/admin/edit_form",
+        type: "GET",
+        data: "user_survey_id=" + id,
+        success: function (html) {
+          $('#edit_modal .modal-dialog .modal-content').html(html);
+          $('#edit_modal').modal('toggle');
         }
       });
+    });
 
+    $('body').on('click', '#update_form', function () {
+      var id = $('#user_survey_id').val();
+      var formData = new FormData($('#form')[0]);
+      formData.append('user_survey_id', id);
 
-      $('body').on('click', '#open_form', function(){
-        var id = $(this).val();
-        $.ajax({
-          url : url + "/admin/edit_form",
-          type: "GET",
-          data: "user_survey_id=" + id,
-          success: function(html){
-            $('#edit_modal .modal-dialog .modal-content').html(html);
-            $('#edit_modal').modal('toggle');
-          }
-        });
+      var tablejson = getTableData(document.getElementById('cotizacion'));
+      formData.append('data[1][7]', tablejson); 
+
+      var status = document.querySelector('input[name="status"]:checked');
+      if (status !== null) {
+        formData.append('status', status.value);
+      }
+
+      $.ajax({
+        url: url + "/admin/edit_form",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (html) {
+          //console.log(html);
+          location.reload();
+        }
       });
+    });
 
-      $('body').on('click', '#update_form', function(){
-        var id = $('#user_survey_id').val();
-        var formData = new FormData( $('#form')[0] );
-        formData.append('user_survey_id', id);
+    $('body').on('click', '#edit_survey', function () {
+      var id = $(this).val();
+      $.ajax({
+        url: url + "/admin/edit_survey",
+        type: "GET",
+        data: "id=" + id,
+        success: function (html) {
+          $('#edit_modal .modal-dialog .modal-content').html(html);
+          $('#edit_modal').modal('toggle');
+        }
+      });
+    });
 
+    $('body').on('click', '#edit_user', function () {
+      var id = $(this).val();
+
+      if (id == 0) {
+        formData = new FormData($('#user_info')[0]);
         $.ajax({
-          url : url + "/admin/edit_form",
+          url: url + "/admin/edit_user",
           type: "POST",
           data: formData,
           processData: false,
           contentType: false,
-          success: function(html){
-            console.log(html);
+          success: function (html) {
             location.reload();
           }
         });
-      });
 
-      $('body').on('click', '#edit_survey', function(){
-        var id = $(this).val();
+      } else {
         $.ajax({
-          url : url + "/admin/edit_survey",
+          url: url + "/admin/edit_user",
           type: "GET",
           data: "id=" + id,
-          success: function(html){
+          success: function (html) {
             $('#edit_modal .modal-dialog .modal-content').html(html);
             $('#edit_modal').modal('toggle');
           }
         });
-      });
+      }
+    });
 
-      $('body').on('click', '#edit_user', function(){
-        var id = $(this).val();
-
-        if( id == 0 ){
-          formData = new FormData( $('#user_info')[0] );
-          $.ajax({
-            url : url + "/admin/edit_user",
-            type: "POST",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(html){
-              location.reload();
-            }
-          });
-
-        }else{
-          $.ajax({
-            url : url + "/admin/edit_user",
-            type: "GET",
-            data: "id=" + id,
-            success: function(html){
-              $('#edit_modal .modal-dialog .modal-content').html(html);
-              $('#edit_modal').modal('toggle');
-            }
-          });
+    $('body').on('click', '#edit_admin', function () {
+      var id = $(this).val();
+      $.ajax({
+        url: url + "/admin/edit_admin",
+        type: "GET",
+        data: "id=" + id,
+        success: function (html) {
+          $('#admin_modal .modal-dialog .modal-content').html(html);
+          $('#admin_modal').modal('toggle');
         }
       });
+    });
 
-      $('body').on('click', '#edit_admin', function(){
-        var id = $(this).val();
-        $.ajax({
-          url : url + "/admin/edit_admin",
-          type: "GET",
-          data: "id=" + id,
-          success: function(html){
-            $('#admin_modal .modal-dialog .modal-content').html(html);
-            $('#admin_modal').modal('toggle');
+    $('body').on('click', '#update_admin', function () {
+      formData = new FormData($('#admin_info')[0]);
+      $.ajax({
+        url: url + "/admin/edit_admin",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (html) {
+          var obj = JSON.parse(html);
+          if (obj.status == 'success') {
+            location.reload();
           }
-        });
-      });
-
-      $('body').on('click', '#update_admin', function(){
-        formData = new FormData( $('#admin_info')[0] );
-        $.ajax({
-          url : url + "/admin/edit_admin",
-          type: "POST",
-          data: formData,
-          processData: false,
-          contentType: false,
-          success: function(html){
-            var obj = JSON.parse(html);
-            if( obj.status == 'success'){
-              location.reload();
-            }
-          }
-        });
-      });
-
-      $('body').on('click', '#export_zip', function(){
-        var id = $(this).val();
-        $.ajax({
-          url : url + "/export/edit_survey",
-          type: "GET",
-          data: "id=" + id,
-          success: function(html){
-            $('#edit_modal .modal-dialog .modal-content').html(html);
-            $('#edit_modal').modal('toggle');
-          }
-        });
-      });
-
-      $('body').on('click', '#delete_file', function(){
-        $(this).parents('#uploadedFile').addClass('d-none');
-        $(this).parents('#uploadedFile').next('#formFile').removeClass('d-none').val('');
-
-        var survey_id = $('input[name="survey_id"]').val();
-        var file_name = $(this).val();
-        var rut = $('#input_rut').val();
-
-        $.ajax({
-          url : url + "/admin/delete_file",
-          type: "POST",
-          data: "survey_id=" + survey_id + "&file_name=" + file_name + "&rut=" + rut,
-          success: function(html){
-            //console.log(html);
-          }
-        });
-      });
-
-
-      $('body').on('click', '#button_random', function(){
-        var length = 6;
-        var charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        var retVal = "";
-        for (var i = 0, n = charset.length; i < length; ++i) {
-            retVal += charset.charAt(Math.floor(Math.random() * n));
         }
-        document.getElementById('button_random').previousElementSibling.removeAttribute('readonly');
-        $('#input_password_admin').val(retVal);
       });
-      
+    });
 
-      //popup de mensaje de exito y error
-      var success = "<?= session()->get('success'); ?>";
-      var failure = "<?= session()->get('failure'); ?>";
-      if( success != ''){
-        $('#alert_toast').addClass('text-white bg-success');
-        $('#alert_toast .toast-header').addClass('text-white bg-success')
-        $('#alert_toast .toast-body').html(success);
-        $('#alert_toast').toast('show');
+    $('body').on('click', '#export_zip', function () {
+      var id = $(this).val();
+      $.ajax({
+        url: url + "/export/edit_survey",
+        type: "GET",
+        data: "id=" + id,
+        success: function (html) {
+          $('#edit_modal .modal-dialog .modal-content').html(html);
+          $('#edit_modal').modal('toggle');
+        }
+      });
+    });
+
+    $('body').on('click', '#delete_file', function () {
+      $(this).parents('#uploadedFile').addClass('d-none');
+      $(this).parents('#uploadedFile').next('#formFile').removeClass('d-none').val('');
+
+      var survey_id = $('input[name="survey_id"]').val();
+      var file_name = $(this).val();
+      var rut = $('#input_rut').val();
+
+      $.ajax({
+        url: url + "/admin/delete_file",
+        type: "POST",
+        data: "survey_id=" + survey_id + "&file_name=" + file_name + "&rut=" + rut,
+        success: function (html) {
+          //console.log(html);
+        }
+      });
+    });
+
+
+    $('body').on('click', '#button_random', function () {
+      var length = 6;
+      var charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      var retVal = "";
+      for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
       }
-      if( failure != ''){
-        $('#alert_toast').addClass('text-white bg-danger');
-        $('#alert_toast .toast-header').addClass('text-white bg-danger')
-        $('#alert_toast .toast-body').html(failure);
-        $('#alert_toast').toast('show');
-      }
+      document.getElementById('button_random').previousElementSibling.removeAttribute('readonly');
+      $('#input_password_admin').val(retVal);
+    });
+
+  
+
+    //popup de mensaje de exito y error
+    var success = "<?= session()->get('success'); ?>";
+    var failure = "<?= session()->get('failure'); ?>";
+    if (success != '') {
+      $('#alert_toast').addClass('text-white bg-success');
+      $('#alert_toast .toast-header').addClass('text-white bg-success')
+      $('#alert_toast .toast-body').html(success);
+      $('#alert_toast').toast('show');
+    }
+    if (failure != '') {
+      $('#alert_toast').addClass('text-white bg-danger');
+      $('#alert_toast .toast-header').addClass('text-white bg-danger')
+      $('#alert_toast .toast-body').html(failure);
+      $('#alert_toast').toast('show');
+    }
 
 
 
 
 
-      //scripts especificos para cada concurso.
-      //1.- categoria empresa, pregunta 4 (presupuesto) sin textbox.
-      var survey_id = '<?= $_GET['survey_id'] ?? null ; ?>';
-      if( survey_id == '1' ){ $('#textarea_cuestionario_3').addClass('d-none'); }
-      if( survey_id == '2' ){ $('#textarea_cuestionario_4').addClass('d-none'); }
-      if( survey_id == '4' ){ $('#textarea_cuestionario_4').addClass('d-none'); }
-      if( survey_id == '5' ){ $('#textarea_cuestionario_4').addClass('d-none'); }
+    //scripts especificos para cada concurso.
+    //1.- categoria empresa, pregunta 4 (presupuesto) sin textbox.
+    var survey_id = '<?= $_GET['survey_id'] ?? null; ?>';
+
   });
 
 

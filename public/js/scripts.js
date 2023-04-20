@@ -89,3 +89,29 @@ $('textarea').on("propertychange keyup input paste ready", function () {
   var rest = remainingChars<=0?0:remainingChars;
   var asd = $(this).prev('label').children('span').text(rest);
 });
+
+
+function getTableData(table) {
+  var data = [];
+  
+  // recorrer todas las filas de la tabla
+  for (var i = 0; i < table.rows.length; i++) {
+    var row = table.rows[i];
+    var rowData = {};
+    
+    // recorrer todas las celdas de la fila
+    for (var j = 0; j < row.cells.length; j++) {
+      var cell = row.cells[j];
+      // obtener el valor de la celda
+      var value = cell.innerText;
+      // agregar la clave y el valor al objeto rowData
+      rowData['c_'+j] = value.trim();
+    }
+    
+    // agregar el objeto rowData al array data
+    data.push(rowData);
+  }
+  
+  // devolver el array data en formato JSON
+  return JSON.stringify(data);
+}

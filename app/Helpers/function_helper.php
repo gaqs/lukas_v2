@@ -56,6 +56,23 @@ function surveys_list(){
   return $survey_list;
 }
 
+
+function native_group($selected){
+  //var_dump($selected);
+  $db = db_connect();
+  $data = $db->table('native_group')->orderBy('name', 'ASC')->get()->getResultArray();
+  $group_list = '';
+
+  for ($i=0; $i < count($data); $i++) {
+
+    $select = ( $data[$i]['id'] == $selected ) ? 'selected' : '';
+
+    $group_list = $group_list.'<option value="'.$data[$i]['id'].'" '.$select.'>'.$data[$i]['name'].'</option>';
+  }
+
+  return $group_list;
+}
+
 function generate_pass($chars){
   $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   return substr(str_shuffle($data), 0, $chars);

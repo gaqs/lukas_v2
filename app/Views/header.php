@@ -39,7 +39,7 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/animate.css');?>">
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/hover.css');?>">
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/dashboard.css');?>">
-    <link rel="stylesheet" type="text/css" href="<?= base_url('css/styles.css?v=1.95');?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('css/styles.css?v=1.96');?>">
 
     <!-- Scripts -->
     <script type="text/javascript" src="<?= base_url('js/jquery-3.6.0.js'); ?>"></script>

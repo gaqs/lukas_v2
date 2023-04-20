@@ -37,7 +37,7 @@
         <?php if( session()->get('superadmin') == '1' ):  ?>
         <div class="col-md-12">
           <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="check_superadmin" name="superadmin" <?= ($admin['superadmin'] == 1 ? 'checked' : '') ?>>
+            <input type="checkbox" class="form-check-input" id="check_superadmin" name="superadmin" <?= ($admin['superadmin'] == 1 ? 'checked' : '') ?> >
             <label class="form-check-label" for="check_superadmin">Dar privilegios de superadmin (crear administradores y contraseñas)</label>
           </div>
         </div>
@@ -48,7 +48,9 @@
   <div class="row mt-3">
       <div class="col-md-12 text-end">
          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-         <button type="button" class="btn btn-primary submit_something" name="button" id="update_admin"><i class="fas fa-sync"></i> Actualizar</button>
+         <button type="button" class="btn btn-primary submit_something" name="button" id="update_admin">
+          <i class="fas fa-sync"></i> Actualizar
+        </button>
       </div>
    </div>
 </form>

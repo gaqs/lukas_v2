@@ -1,3 +1,4 @@
+<?php error_reporting(E_ERROR); ?>
 <div id="authentication" class="bg-light bg-gradient">
   <div id="authentication_content" class="my-5">
     <main role="main">
@@ -6,7 +7,7 @@
             <div class="col-md-8">
               <h1 class="fw-boldest passion-one-font carousel_lukas display-1">Atención!</h1>
               <h5>
-                <a href="<?= $link.'?v=0.2'; ?>" class="mb-3 ms-3 text-decoration-none" target="_blank">
+                <a href="<?= base_url('public/files/concursos/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2023.pdf?v=0.1'); ?>" class="mb-3 ms-3 text-decoration-none" target="_blank">
                   <i class="fa-solid fa-download"></i> Descargar aquí las bases del Concurso
                 </a>
               </h5>

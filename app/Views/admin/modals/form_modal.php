@@ -2,12 +2,12 @@
   <div class="col-md-6 mb-3">
     <p>Estado Formulario.</p>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="status" id="radio1" value="option1" <?= $status == 2 ? 'checked':null; ?> >
-      <label class="form-check-label" for="radio1">Formulario Enviado</label>
+      <input class="form-check-input" type="radio" name="status" id="radio1" value="2" <?= $status == 2 ? 'checked':null; ?> >
+      <label class="form-check-label" for="radio1"> Enviado</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="status" id="radio2" value="option2" <?= $status == 1 ? 'checked':null; ?> >
-      <label class="form-check-label" for="radio2">Formulario Guardado</label>
+      <input class="form-check-input" type="radio" name="status" id="radio2" value="1" <?= $status == 1 ? 'checked':null; ?> >
+      <label class="form-check-label" for="radio2"> Guardado</label>
     </div>
   </div>
 </div>
@@ -76,38 +76,86 @@ for ($i=0; $i < count($formulario); $i++) {
     $aux   = 0; //contador numero archivo por orden de respuesta
     foreach ($formulario[$i]->cuestionario as $key) {
 
-      echo '<div class="mb-4">
-              <label for="textarea_cuestionario_'.$count.'" class="form-label label_questions">
-              '.($count + 1).'.- '.$key->pregunta.'
-                <span class="letter_count">2000</span>
-              </label>
-              <textarea class="form-control mb-3 textarea_cuestionario" id="textarea_cuestionario_'.$count.'" rows="5" data-limit=2000 name="data[1]['.$count.']">'.($answers[1][$count] ?? null).'</textarea>
-            </div>';
+      if (isset($key->pregunta)) {
 
-      if( isset( $key->archivos ) ){
-        echo '<div class="archivos_adjuntos ms-4">';
+        echo '<div class="mb-4">
+            <label for="textarea_cuestionario_' . $count . '" class="form-label label_questions">
+            ' . ($count + 1) . '.- ' . $key->pregunta . '
+              <i tabindex=0 class="fa-solid fa-circle-question help_icon" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-custom-class="custom_popover" data-bs-html="true" data-bs-content="<b>Ejemplo.</b> ' . $key->ejemplo . '"></i>
+              <span class="letter_count">2000</span>
+            </label>
+            <textarea class="form-control mb-3 textarea_cuestionario" id="textarea_cuestionario_' . $count . '" rows="5" data-limit=2000 name="data[1][' . $count . ']">' . ($answers[1][$count] ?? null) . '</textarea>
+          </div>';
+
+      }
+      if (isset($key->tabla)) {
+
+        $jt = json_decode($answers[1][$count] ?? null);
+
+        echo '<div class="mb-4">
+              <label for="textarea_cuestionario_' . $count . '" class="form-label label_questions">
+              ' . ($count + 1) . '.- ' . $key->tabla . '
+                <i tabindex=0 class="fa-solid fa-circle-question help_icon" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-custom-class="custom_popover" data-bs-html="true" data-bs-content="<b>Ejemplo.</b> ' . $key->ejemplo . '"></i>
+              </label>
+              <table border="1" width="100%" class="table table-bordered" id="cotizacion" name="cotizacion">
+                <thead>
+                  <tr>
+                    <th>Nombre Item</th>
+                    <th>Cantidad</th>
+                    <th>Precio unitario</th>
+                    <th>Total</th>
+                    <th>Resultados esperados</th>
+                  </tr>
+                </thead>
+                <tbody>';
+
+        for ($k = 1; $k < 11; $k++) {
+          echo '<tr>
+                <td contenteditable="true">' . (isset($jt[$k]->c_0) ? $jt[$k]->c_0 : null) . '&nbsp;</td>
+                <td contenteditable="true" class="allownumeric">' . (isset($jt[$k]->c_1) ? $jt[$k]->c_1 : null) . '&nbsp;</td>
+                <td contenteditable="true" class="allownumeric">' . (isset($jt[$k]->c_2) ? $jt[$k]->c_2 : null) . '&nbsp;</td>
+                <td contenteditable="true" class="allownumeric">' . (isset($jt[$k]->c_3) ? $jt[$k]->c_3 : null) . '&nbsp;</td>
+                <td contenteditable="true">' . (isset($jt[$k]->c_4) ? $jt[$k]->c_4 : null) . '&nbsp;</td>
+              </tr>';
+        }
+
+        echo '<tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td align=right><b>Total:</b></td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>';
+      }
+
+      if (isset($key->archivos)) {
+        echo '<div class="archivos_adjuntos ms-md-4">';
         foreach ($key->archivos as $row) {
           echo '<div class="mb-3 col-md-12">
-                  <label for="formFile" class="form-label mb-0 file_label_'.($aux+1).'">'.($aux+1).'.- '.$row.'
-                  </label>
-                  <div class="row mb-3 '.( !isset( $file_list[1][$aux] ) ? 'd-none' : null ).'" id="uploadedFile">
-                      <div class="col-md-12">
-                        <div class="input-group w-50">
-                          <input type="text" class="form-control" value="DOCUMENTO COMPLEMENTARIO #'.($aux + 1).'" aria-label="" readonly>
-                          <a href="'.base_url('public/files/usuarios').'/'.$user['rut'].'/'.$user['surveys_id'].'/'.($file_list[1][$aux]  ?? null).'?v='.rand(10000,99999).'" class="btn btn-outline-success z_index_0" target="_blank" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Ver/Descargar"><i class="fa-solid fa-eye"></i></a>
-                          <button class="btn btn-outline-danger z_index_0" id="delete_file" type="button" value="'.($file_list[1][$aux] ?? null).'" data-bs-tooltip="true" data-bs-placement="top" title="Eliminar">
-                            <i class="fa-solid fa-trash-can"></i>
-                          </button>
-                        </div>
+                <label for="formFile" class="form-label mb-0 file_label_' . ($aux + 1) . '">' . ($aux + 1) . '.- ' . $row . '
+                </label>
+                <small class="form-text mt-0 mb-2 fw-light f-small d-block"> (Tamaño máximo 20 mb. Formatos permitidos .jpeg, .jpg, .png, .pdf, .doc, .xls, .docx, .xslx, .odt, y .odf)</small>
+                <div class="row mb-3 ' . (!isset($file_list[1][$aux]) ? 'd-none' : null) . '" id="uploadedFile">
+                    <div class="col-md-12">
+                      <div class="input-group w-50">
+                        <input type="text" class="form-control" value="DOCUMENTO COMPLEMENTARIO #' . ($aux + 1) . '" aria-label="" readonly>
+                        <a href="' . base_url('public/files/usuarios') . '/' . session()->get('rut') . '/' . $survey_id . '/' . ($file_list[1][$aux] ?? null) . '?v=' . rand(0, 50) . '" class="btn btn-outline-success z_index_0" target="_blank" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Ver/Descargar"><i class="fa-solid fa-eye"></i></a>
+                        <button class="btn btn-outline-danger z_index_0" id="delete_file" type="button" value="' . ($file_list[1][$aux] ?? null) . '" data-bs-tooltip="true" data-bs-placement="top" title="Eliminar">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
                       </div>
                     </div>
-                <input class="form-control w-50 mb-4  '.( isset( $file_list[1][$aux] ) ? 'd-none' : null ).'" type="file" id="formFile" name="comp[]">
-                <div class="feedback text-start mb-4"></div>
-            </div>';
+                  </div>
+              <input class="form-control w-50 mb-4  ' . (isset($file_list[1][$aux]) ? 'd-none' : null) . '" type="file" id="formFile" name="comp[]">
+              <div class="feedback text-start mb-4"></div>
+          </div>';
           $aux++;
         }
         echo '</div>';
-      }//archivos adjuntos
+      } //archivos adjuntos
       $count++;
     }
     echo '</div>';

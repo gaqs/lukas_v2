@@ -13,7 +13,7 @@ class UserModel extends Model{
   protected $updatedField  = 'updated_at';
   protected $deletedField  = 'deleted_at';
 
-  protected $allowedFields = ['name','lastname','birthday','sector','sex','email','optional_email','rut','address','phone','fix_phone','password','email_verification_token','deleted_at', 'email_verified_at'];
+  protected $allowedFields = ['name','lastname','birthday','sector','sex','email','optional_email','rut','address','phone','fix_phone','password','agrupation','id_native','email_verification_token','deleted_at', 'email_verified_at'];
   protected $beforeInsert = ['beforeInsert'];
   protected $beforeUpdate = ['beforeUpdate'];
 
@@ -53,6 +53,8 @@ class UserModel extends Model{
                           u.fix_phone,
                           u.email as user_email,
                           u.optional_email,
+                          u.agrupation,
+                          u.id_native,
                           u.email_verified_at,
 
                           ub.id as user_bank_id,
@@ -97,6 +99,8 @@ class UserModel extends Model{
                           u.fix_phone,
                           u.email as user_email,
                           u.optional_email,
+                          u.agrupation,
+                          u.id_native,
                           u.email_verified_at,
 
                           ub.id as user_bank_id,
