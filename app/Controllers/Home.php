@@ -47,7 +47,9 @@ class Home extends BaseController
               return redirect()->to( base_url() )->with('failure','No es posible participar en otro concurso.');
           }
         }
+        
         $query = $survey_answer->survey_answers_per_user( $data['survey_id'], session()->get('id') );
+        
         if( !empty($query) ){
           if ($query[0]['results_id'] == '4') {
             return redirect()->to( base_url() )->with('failure','No es posible ingresar a este concurso. Usuario retirado.');
@@ -208,7 +210,7 @@ class Home extends BaseController
             $send = send_email(session()->get('email'), '', 'Postulación confirmada', $message, '');
 
             $resp['status'] = 'success';
-            session()->setFlashdata('success','Postulación enviada correctamente.');
+            session()->setFlashdata('success','Postulación enviada correctamente. Se ha enviado un correo con la informacion de postulación.<br><small>(De no ver el correo de notificación, revise su carpeta <b>SPAM</b>).</small>');
           }else{
             $resp['status'] = 'error';
             session()->setFlashdata('failure','Tiene campos sin completar, <b>SU POSTULACIÓN NO SE HA ENVIADO</b>.');

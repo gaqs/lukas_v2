@@ -10,6 +10,7 @@
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carousel_header" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carousel_header" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <!--<button type="button" data-bs-target="#carousel_header" data-bs-slide-to="2" aria-label="Slide 3"></button>-->
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -20,11 +21,11 @@
             </div>
             <div class="col-7 fw-bolder align-self-center text-white">
               <h3 class="d-inline">
-                CONCURSO <h5 class="d-inline">(21 de Abril al 19 de Mayo)</h5>
+                FONDO CONCURSABLE
               </h3>
               <h1 class="carousel_lukas display-1 text-primary" style="line-height:0.8;">
                 <span>LUKAS PARA</span><br><span>EMPRENDER</span><br>
-                <span class="d-inline">2023</span>
+                <span class="d-inline">2024</span>
               </h1>
               <h4>MUNICIPALIDAD DE PUERTO MONTT</h4>
               <h4>
@@ -37,25 +38,44 @@
         </div>
       </div>
 
-      
       <div class="carousel-item">
         <div class="container d-grid">
           <div class="row justify-content-center">
             <div class="col-7 text-center align-self-center">
               <h4 class="text-white"></h4>
+              <h2 class="text-white">Lukas para Emprender</h2>
               <h1 class="carousel_lukas display-3 fw-boldest passion-one-font text-primary" style="line-height:0.8;">
-                  TALLERES ACLARACIÓN DE BASES
+                BASES DEL CONCURSO
               </h1>
               <hr class="text-white">
-              <h4 class="text-white">
-                  Haga <a href="https://forms.gle/RGvG28Zr58WtqeJY9" target="_blank">CLICK AQUÍ</a> para inscribirse
-              </h4>
+              <h2 class="text-white">
+                Haga <a href="<?= base_url('public/files/concursos/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2023.pdf?v=0.1'); ?>" target="_blank">CLICK AQUÍ</a> para descargar
+              </h2>
+              <h5 class="text-white mt-3">Del 21 de Abril al 19 de Mayo</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--
+      <div class="carousel-item">
+        <div class="container d-grid">
+          <div class="row justify-content-center">
+            <div class="col-7 text-center align-self-center">
+              <h4 class="text-white"></h4>
+              <h2 class="text-white">Lukas para Emprender</h2>
+              <h1 class="carousel_lukas display-3 fw-boldest passion-one-font text-primary" style="line-height:0.8;">
+              TALLERES ACLARACIÓN DE BASES
+              </h1>
+              <hr class="text-white">
+              <h2 class="text-white">
+                Haga <a href="https://forms.gle/RGvG28Zr58WtqeJY9" target="_blank">CLICK AQUÍ</a> para inscribirse
+              </h2>
               <h5 class="text-white mt-3">Del 28 de Abril al 10 de Mayo</h5>
             </div>
           </div>
         </div>
       </div>
-      
+    -->
     </div>
 
 
@@ -68,21 +88,185 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-  
-  <section id="nosotros" class="bg-white">
 
+  <!-- GANADORES E INFORMACION -->
+  <section id="info" class="d-none">
     <div class="container my-5 text-center">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="alert alert-info" role="alert">
-            <h2 class="alert-heading"><b>¡ATENCIÓN!</b></h2>
-            <h4><b>INSCRIPCIÓN A TALLERES ACLARACIÓN DE BASES</b></h4>
-              Haga <a href="https://forms.gle/RGvG28Zr58WtqeJY9" target="_blank">CLICK AQUÍ</a> para inscribirse en los talleres de aclaración de bases.<br>Se realizarán 6 talleres entre el 28 de Abril y el 10 de Mayo.
+      <div class="row justify-content-center d-flex align-items-center mb-5">
+
+        <div class="col-md-3 col-7">
+          <img src="<?= base_url('public/img/trofeo.png'); ?>" class="w-100" alt="">
+        </div>
+        <div class="col-md-6">
+          <div class="alert alert-success m-0" role="alert">
+          <h3 style="font-weight:700;" class="mb-0 fs-1">GANADORES</h3>
+            <h4 class="alert-heading" style="font-weight:700;">Lukas para Emprender 2023</h4>
+            <p>Con fecha 31 dde Julio del 2023 finalizo el proceso de evalucion de los proyectos postulados al concurso Lukas para Emprender en las categorias Emprendimiento, Emprendimiento Rural, Mujer Pescadora Artesanal, y Empresa.</p>
+            <h5>
+              <a class="btn btn-success btn-lg w-50" href="<?= base_url('public/files/GANADORES_LUKASPARAEMPRENDER_2023.pdf?v=0.3'); ?>" class="text-decoration-none" target="_blank">
+                <i class="fa-solid fa-eye"></i> VER AQUI
+              </a> 
+            </h5>
           </div>
         </div>
+
+        <div class="col-md-6">
+          <div class="alert alert-info" role="alert" style="overflow:hidden;">
+            <div class="red_band"><b>Cupos Limitados</b></div>
+            <h4 class="alert-heading" style="font-weight:700;">¡ÚLTIMA CHARLA DE<br>ACLARACIÓN DE BASES!</h4>
+            <h4 style="font-weight:500;">16 de Mayo a las 10:00 hrs.</h4>
+            <hr>
+            <h5>
+              Haga <a href=https://forms.gle/RGvG28Zr58WtqeJY9 class="text-decoration-none" target="_blank">
+                CLICK AQUI
+              </a> para inscribirse.<br>
+              <small>O'Higgins 236, 2do piso. Anexo Municipal.</small>
+            </h5>
+          </div>
+        </div>
+
       </div>
     </div>
 
+  </section>
+  <!-- GANADORES E INFORMACION -->
+
+  <section id="how" class="bg-light">
+    <div class="container my-5">
+      <div class="row title text-center mb-3">
+        <h1 class="display-3 passion-one-font fw-bold mb-0">¿Cómo postular?</h1>
+        <h5>Ver el <a href="#">video tutorial</a></h5>
+      </div>
+      <div class="row">
+
+        <!-- paso 1 -->
+        <div class="col-md-12">
+          <div class="card ps-0 mb-3">
+            <div class="row g-0">
+              <div class="col-md-2 bg-danger text-white d-flex justify-content-center rounded-start">
+                <h1 class="align-self-center mb-0">Paso 1</h1>
+              </div>
+              <div class="col-md-10">
+                <div class="card-body">
+                  <h5 class="card-title">Registrarse es obligatorio</h5>
+                  <p class="card-text">Debe crearse una cuenta <a class="text-decoration-none" href="<?= base_url('users/register'); ?>">click aquí</a> o iniciar sesion haciendo <a class="text-decoration-none" href="<?= base_url('users'); ?>">click aquí</a> de ya poseer una cuenta.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+        <!-- paso 2 -->
+        <div class="col-md-12">
+          <div class="card ps-0 mb-3 col-md-12">
+            <div class="row g-0">
+              <div class="col-md-2 bg-danger text-white d-flex justify-content-center rounded-start">
+                <h1 class="align-self-center mb-0">Paso 2</h1>
+              </div>
+              <div class="col-md-10">
+                <div class="card-body">
+                  <h5 class="card-title">Leer bases del concurso</h5>
+                  <p class="card-text">Lea detenidamente las bases del concurso, las puede descargar desde el siguiente link:</p>
+                  <a href="<?= base_url('public/files/concursos/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2023.pdf?v=0.1'); ?>" class="text-decoration-none" target="_blank"> <i class="fa-solid fa-download"></i> Bases del Concurso Lukas para Emprender 2024
+                </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+
+        <!-- paso 3 -->
+        <div class="col-md-12">
+          <div class="card ps-0 mb-3">
+            <div class="row g-0">
+              <div class="col-md-2 bg-danger text-white d-flex justify-content-center rounded-start">
+                <h1 class="align-self-center mb-0">Paso 3</h1>
+              </div>
+              <div class="col-md-10">
+                <div class="card-body">
+                  <h5 class="card-title">Elegir categoria </h5>
+                  <p class="card-text">Luego de crearse una cuenta y leer las bases del concurso, elija una de las 3 categorias a continuación.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+        <!-- categorias -->
+        <div class="row title text-center my-3">
+          <h1 class="display-3 passion-one-font fw-bold">Categorías</h1>
+        </div>
+
+        <div class="col-md-6 mb-3 d-flex align-items-stretch">
+          <div class="card overflow-hidden card_concurso">
+            <i class="fa-solid fa-house-laptop back_icon"></i>
+            <div class="card-body" style="z-index:1;">
+              <h4 class="card-title">Emprendimiento</h4>
+              <p class="card-text">Corresponde a personas naturales mayores de 18 años de edad, sin iniciación de actividades en 1ª categoría en la comuna de Puerto Montt, que posean un negocio o emprendimiento vigente al momento de postular.</p>
+            </div>
+            <div class="card-footer" style="z-index:1009;">
+              <a href="<?= base_url('home/briefing?survey_id=1'); ?>" class="btn btn-lg btn-primary mb-auto float-end">Postular <i class="fa-solid fa-angles-right fs-6"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3 d-flex align-items-stretch">
+          <div class="card overflow-hidden card_concurso">
+            <i class="fa-solid fa-tractor back_icon"></i>
+            <div class="card-body" style="z-index:1;">
+              <h4 class="card-title">Emprendimiento Rural</h4>
+              <p class="card-text">Corresponde a emprendimientos basados en la producción y comercialización de productos que posean valor cultural, territorial, ambiental o similar, y cuya producción se realiza en zonas rurales de la comuna de Puerto Montt.</p>
+            </div>
+            <div class="card-footer" style="z-index:1009;">
+              <a href="<?= base_url('home/briefing?survey_id=2'); ?>" class="btn btn-lg btn-primary mb-auto float-end">Postular <i class="fa-solid fa-angles-right fs-6"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3 d-flex align-items-stretch">
+          <div class="card overflow-hidden card_concurso">
+            <i class="fa-solid fa-fish back_icon"></i>
+            <div class="card-body" style="z-index:1;">
+              <h4 class="card-title">Mujer Pescadora Artesanal</h4>
+              <p class="card-text">Corresponde a mujeres que realizan la actividad productiva de pesca artesanal, inscritas en cualquiera de sus categorías en el Registro Pesquero Artesanal (RPA) en las categorías recolector de orilla, pescador artesanal y/o armador artesanal.</p>
+            </div>
+            <div class="card-footer" style="z-index:1009;">
+              <a href="<?= base_url('home/briefing?survey_id=3'); ?>" class="btn btn-lg btn-primary mb-auto float-end">Postular <i class="fa-solid fa-angles-right fs-6"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3 d-flex align-items-stretch">
+          <div class="card overflow-hidden card_concurso">
+            <i class="fa-solid fa-building back_icon"></i>
+            <div class="card-body" style="z-index:1;">
+              <h4 class="card-title">Empresa</h4>
+              <p class="card-text">Corresponde a microempresas con negocios establecidos e iniciación de actividades en 1ª Categoría vigente, con ventas anuales inferiores a 2.400 UF y con todos los permisos de operación vigentes al momento del cierre de postulación.</p>
+            </div>
+            <div class="card-footer" style="z-index:1009;">
+              <a href="<?= base_url('home/briefing?survey_id=4'); ?>" class="btn btn-lg btn-primary mb-auto float-end">Postular <i class="fa-solid fa-angles-right fs-6"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  
+  <section id="tutorial">
+    <div class="row justify-content-center">
+      <div class="col-md-7 text-center my-5">
+        <h1 class="display-3 passion-one-font fw-bold mb-2">Tutorial 2024</h1>
+        <a class="popup-youtube_1 hvr-grow w-100 mb-5" href="https://www.youtube.com/watch?v=9p3fx9dl6sk">
+          <i class="fas fa-play-circle play_yutu"></i>
+          <img src="<?= base_url('public/img/back_video.png')?>" class="w-100 thumbnail" alt="">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="nosotros" class="bg-white">
     <div class="container my-5">
       <div class="row">
         <div class="col-md-6 d-flex align-items-center pe-5 text-end">
@@ -113,133 +297,22 @@
     </div>
   </section>
 
-  <section id="how" class="bg-light">
-    <div class="container my-5">
-      <div class="row title text-center mb-3">
-        <h1 class="display-3 passion-one-font fw-bold">¿Como postular?</h1>
-      </div>
-      <div class="row">
-
-        <div class="col-md-5 text-center">
-          <h4 class="ms-3 mb-5">Video tutorial 2023</h4>
-          <h1><b>...PRONTO...</b></h1>
-          <!--
-          <a class="popup-youtube_1 hvr-grow w-100 mb-5" href="https://www.youtube.com/watch?v=-AFDtaCkzDo">
-            <i class="fas fa-play-circle play_yutu"></i>
-            <img src="https://i3.ytimg.com/vi/-AFDtaCkzDo/maxresdefault.jpg" class="w-100 thumbnail" alt="">
-          </a>
-          -->
-        </div>
-
-        <div class="col-md-7">
-          <h4 class="ms-3">Instrucciones</h4>
-          <ol>
-            <!-- concursar por postular -->
-            <li><b>Registrarse es obligatorio</b>, puede crear una cuenta haciendo <a href="<?= base_url('users/register'); ?>">click aqui</a>.<br>Si ya posee una cuenta, puede iniciar sesión <a href="<?= base_url('users'); ?>">aquí</a>.</li>
-            <li>Para postular, eliga una de las categorías que se encuentran en la sección <a href="<?= base_url('#concursos') ?>">concursos</a>.</li>
-            <li>Siga detenidamente las indicaciones listadas al momento de entrar a uno de las categorías.</li>
-          </ol>
-          <h4 class="ms-3">Bases del Concurso</h4>
-          <ul>
-            <li>
-              <a href="<?= base_url('public/files/concursos/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2023.pdf?v=0.1');?>" class="" target="_blank">
-                Bases del concurso Lukas para Emprender 2023
-              </a>
-            </li>
-          </ul>
-        </div>
-
-
-      </div>
-  </section>
-
-
-  <section id="concursos" class="bg-light">
-    <div class="container my-5 pb-5">
-      <div class="row title text-center mb-3">
-        <h1 class="display-3 passion-one-font fw-bold">Concursos 2023</h1>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-md-12">
-          <div class="alert alert-warning" role="alert">
-            <h4 class="alert-heading"><i class="fa-solid fa-triangle-exclamation"></i> Atención!</h4>
-            <p>La 14ta version del concurso Lukas para Emprender año 2023, solo permitirá que los usuarios previamente registrados, concursen en UNA SOLA CATEGORIA de las dos que se encuentran operativas. </p>
-            <hr>
-            <p class="mb-0"><b>Recuerde mantener los datos de su perfil actualizados.</b></p>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-md-3 mb-3 d-flex align-items-stretch">
-          <div class="card overflow-hidden card_concurso">
-            <i class="fa-solid fa-house-laptop back_icon"></i>
-            <div class="card-body" style="z-index:1;">
-              <h4 class="card-title">Emprendimiento</h4>
-              <p class="card-text">Corresponde a personas naturales mayores de 18 años de edad, sin iniciación de actividades en 1ª categoría en la comuna de Puerto Montt, que posean un negocio o emprendimiento vigente al momento de postular.</p>
-            </div>
-            <div class="card-footer" style="z-index:1009;">
-              <a href="<?= base_url('home/briefing?survey_id=6'); ?>" class="btn btn-lg btn-primary mb-auto align-self-start">Postular <i class="fa-solid fa-angles-right"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 mb-3 d-flex align-items-stretch">
-          <div class="card overflow-hidden card_concurso">
-            <i class="fa-solid fa-tractor back_icon"></i>
-            <div class="card-body" style="z-index:1;">
-              <h4 class="card-title">Emprendimiento Rural</h4>
-              <p class="card-text">Corresponde a emprendimientos basados en la producción y comercialización de productos que posean valor cultural, territorial, ambiental o similar, y cuya producción se realiza en zonas rurales de la comuna de Puerto Montt.</p>
-            </div>
-            <div class="card-footer" style="z-index:1009;">
-              <a href="<?= base_url('home/briefing?survey_id=7'); ?>" class="btn btn-lg btn-primary mb-auto align-self-start">Postular <i class="fa-solid fa-angles-right"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 mb-3 d-flex align-items-stretch">
-          <div class="card overflow-hidden card_concurso">
-            <i class="fa-solid fa-fish back_icon"></i>
-            <div class="card-body" style="z-index:1;">
-              <h4 class="card-title">Mujer Pescadora Artesanal</h4>
-              <p class="card-text">Corresponde a mujeres que realizan la actividad productiva de pesca artesanal, inscritas en cualquiera de sus categorías en el Registro Pesquero Artesanal (RPA) en las categorías recolector de orilla, pescador artesanal y/o armador artesanal.</p>
-            </div>
-            <div class="card-footer" style="z-index:1009;">
-              <a href="<?= base_url('home/briefing?survey_id=8'); ?>" class="btn btn-lg btn-primary mb-auto align-self-start">Postular <i class="fa-solid fa-angles-right"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 mb-3 d-flex align-items-stretch">
-          <div class="card overflow-hidden card_concurso">
-            <i class="fa-solid fa-building back_icon"></i>
-            <div class="card-body" style="z-index:1;">
-              <h4 class="card-title">Empresa</h4>
-              <p class="card-text">Corresponde a microempresas con negocios establecidos e iniciación de actividades en 1ª Categoría vigente, con ventas anuales inferiores a 2.400 UF y con todos los permisos de operación vigentes al momento del cierre de postulación.</p>
-            </div>
-            <div class="card-footer" style="z-index:1009;">
-              <a href="<?= base_url('home/briefing?survey_id=9'); ?>" class="btn btn-lg btn-primary mb-auto align-self-start">Postular <i class="fa-solid fa-angles-right"></i></a>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
   <section id="sponsor" class="bg-white">
     <div class="container my-5">
       <div class="row justify-content-md-center">
         <div class="col-md-4 col-10 align-self-center">
           <a href="https://www.puertomontt.cl/" target="_blank">
-            <img src="<?= base_url('public/img/logo_muni.png'); ?>" class="w-100 ">
+            <img src="<?= base_url('public/img/icons/logo_muni.png'); ?>" class="w-100 ">
           </a>
         </div>
         <div class="col-md-2 col-5 align-self-center">
           <a href="https://www.puertomontt.cl/unidades-municipales/dideco/" target="_blank">
-            <img src="<?= base_url('public/img/dideco_trans_border.png'); ?>" class="w-100 ">
+            <img src="<?= base_url('public/img/icons/dideco_trans_border.png'); ?>" class="w-100 ">
           </a>
         </div>
         <div class="col-md-3 col-7 align-self-center">
           <a href="https://www.ulagos.cl/" target="_blank">
-            <img src="<?= base_url('public/img/loslagos_border.png'); ?>" class="w-100 ">
+            <img src="<?= base_url('public/img/icons/loslagos_border.png'); ?>" class="w-100 ">
           </a>
         </div>
         <!--

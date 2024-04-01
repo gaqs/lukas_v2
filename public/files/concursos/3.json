@@ -1,18 +1,14 @@
 {
   "id": "3",
-  "nombre": "Categoría Mujer Pescadora",
-  "importante": "Para poder completar su postulación a la categoria mujer pescadora, es necesario que complete su perfil de usuario, haciendo click en su nombre ubicado en la barra superior.",
+  "nombre": "Emprendimiento Mujer Pescadora Artesanal",
+  "importante": "",
   "formulario": {
     "0": {
       "titulo": "Datos Proyecto",
       "datos": {
         "0": {
           "pregunta": "Nombre del Proyecto",
-          "ejemplo": "Mejoramiento de la comercialización de productos del mar: Venta de Ahumado ecologico en Chaicas, puerto Montt."
-        },
-        "1": {
-          "pregunta": "Número RPA",
-          "ejemplo": "969876"
+          "ejemplo": "Compra de maquinaria para mejorar producción y ventas."
         }
       }
     },
@@ -20,59 +16,50 @@
       "titulo": "Información relevante al Proyecto",
       "cuestionario": {
         "0": {
-          "pregunta": "<b>Explique de forma breve su emprendimiento pesquero en desarrollo.</b>",
-          "ejemplo": "Problema: Bajos precios del pescado fresco. Solución: Dar valor agregado para mejor precio, como, cuando y donde realizara el emprendimiento, es decir, donde está emplazado, propiedad del terreno, precios, competencia, mercado, clientes, redes de contacto, tiene agua potable, apr, electricidad, solución particular o alcantarrilado, etc."
+          "pregunta": "<b>PRODUCTOS/SERVICIOS:</b> Describa detalladamente los productos/servicios que comercializa. Identifique y describa a sus competidores y destaque las características de sus productos/servicios que los hacen diferentes o innovadores. Presente los precios a los que comercializa.",
+          "ejemplo": "Considere las siguientes preguntas orientadoras: ¿Cuáles son los productos/servicios?, ¿Qué características tienen?, ¿Quiénes son sus competidores? ¿Qué productos/servicios ofrecen los competidores? ¿Qué características tienen los productos/servicios de sus competidores? ¿Cómo sus productos/servicios se diferencias o son innovadores en relación a los competidores? ¿A qué precio vende? ¿Cuenta con precios diferenciados por cliente? ¿Aplica algún tipo de descuento?. "
         },
         "1": {
-          "pregunta": "<b>Si cuenta con un equipo emprendedor, haga una breve reseña de ellos.</b>",
-          "ejemplo": "Grupo familiar, el esposo es pescador abastece de materias primas, los hijos ayudan a filetear, a ofrecer por redes sociales y la emprendedora vende en ferias y particulares."
+          "pregunta": "<b>CLIENTES:</b> Describa detalladamente a los clientes a los que están dirigidos los productos/servicios.",
+          "ejemplo": "Considere las siguientes preguntas orientadoras: ¿Quiénes son sus clientes o potenciales clientes? ¿Cuáles son sus principales características (edad, ubicación, entre otras)? ¿Cuál es la necesidad que estos clientes manifiestan?."
         },
         "2": {
-          "pregunta": "<b>¿Qué hace que su emprendimiento pesquero en Desarrollo sea relevante o diferente de otras existentes?</b>",
-          "ejemplo": "Ahumado ecológico. Fortalezas: Me autoabastezco de materias primas, mi marido es pescador, vivo en una caleta, soy socia de un sindicato, llevo 20 años vendiendo informalmente, mi factor identatario es vendo ahumado con finas hierbas o quiero generar un producto nuevo con finas hierbas."
+          "pregunta": "<b>CANALES:</b> Describa detalladamente los canales de venta, distribución y difusión de sus productos/servicios.",
+          "ejemplo": "Considere las siguientes preguntas orientadoras: ¿Dónde vende sus productos? ¿Cómo son el o los locales donde vende? ¿Qué tipo de envases utiliza? ¿Cómo distribuye sus productos? ¿Cómo promociona sus productos/servicios? ¿Cuáles son sus medios de pago? ¿Cuenta con redes sociales, página web  para promocionar sus productos/servicios y cómo las utiliza? ¿Qué redes sociales utiliza su emprendimiento?"
         },
         "3": {
-          "pregunta": "<b>¿Qué hará con el dinero adjudicado de este Concurso?</b>.",
-          "ejemplo": "En el negocio del ahumado voy a comprar un ahumador moderno ecológico, con pellets provenientes de bosques manejados, de gran eficiencia, describir mis costos de aumador, pellets, pescado, congelador, cuchillos fileteros, horas hombre, pasajes de micro, internet para ofrecer redes sociales, entre otros. presentación de presupuestos y cotizaciones.",
-          "archivos": {
-            "0": "Cotizaciones Referenciales.",
-            "1": "Presupuesto. <a href='../files/concursos/ejemplos_doc/detalle_presupuesto.docx'>Descargar aquí tabla presupuesto formato tipo</a>."
-          }
+          "pregunta": "<b>PRODUCCIÓN:</b> Describa detalladamente la manera en que produce o presta el servicio, destacando equipos, infraestructura, otros.",
+          "ejemplo": "Considere las siguientes preguntas orientadoras: ¿Cómo elabora o prepara los  productos o servicios que ofrece? ¿Con que infraestructura cuenta? ¿Dónde se ubica? ¿Con qué equipamiento cuenta?."
         },
         "4": {
-          "pregunta": "<b>¿Quiénes son sus potenciales clientes?</b>",
-          "ejemplo": "En el negocio del ahumado le vendo a la sra. Carmela Gonzalez, mi vecina, (fotos de venta de producto, o boletas o facturas), vendo también en la fiesta costumbrista de Lenca y Chaicas (facturas, fotos o cartas de apoyo del pdte de la feria), vendo en Facebook, WhatsApp o Instagram (pantallazos de sus ofertas en las redes sociales), vendo cuando hay mareas (cuaderno de registro de ventas o carpeta tributaria para solicitar creditos)."
+          "pregunta": "<b>EQUIPO DE TRABAJO:</b> Describa detalladamente a la o las personas que trabajan en el emprendimiento, detallando los roles o funciones de cada uno. Destaque la experiencia y logros alcanzados.",
+          "ejemplo": "Considere las siguientes preguntas orientadoras: ¿Cuál es el equipo de trabaja? ¿Qué experiencia tienen? ¿Cuáles son los roles o funciones de cada uno? ¿Qué logros pueden destacar como equipo? ¿Cuenta con redes de apoyo para el negocio? ¿Se han capacitado? ¿Están vinculados a alguna institución que apoye el emprendimiento?."
         },
         "5": {
-          "pregunta": "<b>Experiencia. ¿cuántos años lleva operando en el rubro?.</b>",
-          "ejemplo": "Ha vendido hace 10 años al minoreo merluza fresca eviscerada en filetes en bandeja de 500 grs con vitafilm a $5000 y hace dos años vende ahumado en caliente en tambor $7.000/kg, quiere dar otro paso hacia mejorar."
+          "pregunta": "<b>POTENCIAL:</b> Describa detalladamente las fortalezas y debilidades del negocio, así como las proyecciones que tiene para los siguientes años.",
+          "ejemplo": "Considere las siguientes preguntas orientadoras: ¿Cuáles son las principales fortalezas y debilidades de su negocio/emprendimiento?, ¿Cómo proyecta su negocio o emprendimiento para los próximos años? ¿Pretende crecer? ¿De qué forma?."
         },
         "6": {
-          "pregunta": "<b> Información complementaria y otros aspectos que quiera Ud. destacar</b> (Premios obtenidos, ubicación de su negocio, años de experiencia, cursos, capacitaciones, fotos, certificados, publicaciones en diarios o televisión, resolución sanitaria, titulos de dominios, participación en ferias costumbristas, medios de verificación, entre otros).",
-          "ejemplo": "Fotos de su participación en capital semilla fosis, conadi, nota de prensa en sabingo, fotos de participación en el noticiero municipal, recortes de diarios de feria costumbrista de hace 5 años, certificados de capacitacion sence, certificados de capacitacion en liderazgo, entre otros.",
+          "pregunta": "<b>PROYECTO:</b> Describa detalladamente la iniciativa a desarrollar con el financiamiento destacando los resultados que desea obtener.",
+          "ejemplo": "Considere las siguientes preguntas orientadoras: ¿Qué hará con el financiamiento adjudicado de este concurso? ¿Como este financiamianto mejorará su negocio o emprendimiento o le permite avanzar en las proyecciones que presentó?."
+        },
+        "7": {
+          "tabla": "<b>PRESUPUESTO:</b> Rellene el siguiente cuadro y considerar campo para subir cotizaciones.",
+          "ejemplo": "Nombre item: Vitrina, Cantidad: 2, Precio unitario: 3500000, Total: 700000, Resultados esperados:  Mostrar los productos desde la tienda presencial y aumentar la presencia del local.",
           "archivos": {
-            "0": "Archivo complementario #1",
-            "1": "Archivo complementario #2",
-            "2": "Archivo complementario #3"
+            "0": "Cotizaciones Referenciales."
           }
-        },
-        "7" : {
-          "pregunta": "<b>Informacion productiva.</b> ¿Ha entregado formulario de desembarque artesanal o de recolección en Sernapesca?",
-          "ejemplo": "Estadististica de desembarque con el RPA en el periodo señalado en sernapesca o la revision on line con clave de trazabilidad."
-        },
-        "8":{
-          "pregunta": "<b>Informacion productiva.</b> ¿Que orientación tiene su proyecto? Agregación de Valor (congelado, conserva, ahumado y deshidratado), turismo vivencial o patrimonial, acuicultura de pequeña escala (APE) y gastronomía asociada al turismo.",
-          "ejemplo": "Vendo ahumado en tambor y mi idea de negocios es comprar un ahumador para vender un producto mejor."
         }
       }
     },
     "2": {
       "titulo": "Documentación necesaria",
       "archivos": {
-        "0": "Certificado RPA vigente, emitido por el Sernapesca con antigüedad menor a 30 días corridos del cierre del concurso.",
-        "1": "Copia clara y legible de la cédula de identidad vigente POR AMBOS LADOS en la misma hoja.",
-        "2": "Certificado de residencia emitido por la Junta de Vecinos o Notarial, con antigüedad menor a 30 días corridos del cierre del concurso.",
-        "3": "Cotización formal de los bienes incluidos en el presupuesto, sólo serán considerados de forma referencial y debiendo ser lo más detallado posible en términos de especificaciones técnicas."
+        "0": "Cedula de identidad <b>POR AMBOS LADOS</b>.",
+        "1": "Certificado de Residencia (Enero a Mayo 2024, junta de vecinos o notarial) o Cartola de Registro Social de Hogares.",
+        "2": "Certificado RPA vigente, emitido por el SERNAPESCA, con antiguedad menor a 30 días corridos del cierre del concurso.",
+        "3": "Otros Permisos (Permiso Municipal, Declaracion Jurada Permiso Sanitario, SEC, SAG, otros).",
+        "4": "Acreditación emprendimiento informal (redes sociales, fotografías, permisos municipales con fecha entre Enero y Mayo 2024)."
       }
     }
   }

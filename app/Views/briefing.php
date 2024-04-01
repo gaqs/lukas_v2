@@ -5,25 +5,25 @@
       <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-              <h1 class="fw-boldest passion-one-font carousel_lukas display-1">Atención!</h1>
+              <h1 class="display-3 passion-one-font fw-bold">¡Atención!</h1>
               <h5>
-                <a href="<?= base_url('public/files/concursos/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2023.pdf?v=0.1'); ?>" class="mb-3 ms-3 text-decoration-none" target="_blank">
+                <a href="<?= base_url('public/files/concursos/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2023.pdf?v=0.1'); ?>" class="mb-3 text-decoration-none" target="_blank">
                   <i class="fa-solid fa-download"></i> Descargar aquí las bases del Concurso
                 </a>
               </h5>
               <br>
-              <ol>
+              <ol class="ps-0">
                 <li>
                   <b>LEA DETENIDAMENTE LAS BASES DE POSTULACIÓN.</b>
                 </li>
                 <li>
-                  Proceda a completar el formulario, adjuntando los documentos solicitados en las bases de postulación.
+                  Llene el formulario y adjunte los documentos solicitados según lo indicado en las bases de postulación.
                 </li>
                 <li>
-                Recuerde que puede guardar sus avances en cualquier momento haciendo click en el botón <b>GUARDAR</b>.
+                  Guarde su progreso haciendo clic en el botón <b>"Guardar"</b>. Puede volver a editar su postulación accediendo desde su perfil.
                 </li>
                 <li>
-                  Cuando haya completado TODOS los campos requeridos, haga click al botón <b>ENVIAR</b> ubicado al final del formulario.
+                  Una vez que haya completado todos los campos requeridos, haga clic en el botón <b>"Enviar"</b> ubicado al final del formulario.
                 </li>
               </ol>
 
@@ -38,7 +38,7 @@
               </div>
               -->
 
-              <a href="<?= base_url('home/forms?survey_id='.$id);?>" type="button" class="btn btn-lg btn-primary w-100 mt-3" id="postulate_button" name="button">IR AL FORMULARIO <i class="fa-solid fa-forward ms-2"></i></a>
+              <a href="<?= base_url('home/forms?survey_id='.$id);?>" type="button" class="btn btn-lg btn-primary w-100 mt-3" id="postulate_button" name="button">Ir al formulario <i class="fa-solid fa-angles-right fs-6"></i></a>
             </div>
             <div class="col-md-4">
               <img src="<?= base_url('public/img/lukitas_border.png'); ?>" class="w-100" alt="">

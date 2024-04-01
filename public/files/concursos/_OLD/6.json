@@ -1,0 +1,72 @@
+{
+  "id": "6",
+  "nombre": "Emprendimiento",
+  "importante": "Para poder completar su postulación a la categoria emprendimiento, es necesario que complete su perfil de usuario, haciendo click en su nombre ubicado en la barra superior.",
+  "formulario": {
+    "0": {
+      "titulo": "Datos Proyecto",
+      "datos": {
+        "0": {
+          "pregunta": "Nombre del Proyecto",
+          "ejemplo": "Compra de maquinaria para mejorar producción y ventas."
+        }
+      }
+    },
+    "1": {
+      "titulo": "Información relevante al Proyecto",
+      "cuestionario": {
+        "0": {
+          "pregunta": "<b>PRODUCTOS/SERVICIOS:</b> Describa detalladamente los productos/servicios que comercializa. Identifique y describa a sus competidores y destaque las características de sus productos/servicios que los hacen diferentes o innovadores. Presente los precios a los que comercializa.",
+          "ejemplo": "¿Cuáles son los productos/servicios?, ¿Qué características tienen?, ¿Quiénes son sus competidores? ¿Qué productos/servicios ofrecen los competidores? ¿Qué características tienen los productos/servicios de sus competidores? ¿Cómo sus productos/servicios se diferencias o son innovadores en relación a los competidores? ¿A qué precio vende?."
+        },
+        "1": {
+          "pregunta": "<b>CLIENTES:</b> Describa detalladamente a los clientes a los que están dirigidos los productos/servicios.",
+          "ejemplo": "¿Quiénes son sus clientes o potenciales clientes? ¿Cuáes son sus principales características (Edad, ubicación, entre otras)? ¿Cuál es la necesidad que estos clientes manifiestan?."
+        },
+        "2": {
+          "pregunta": "<b>CANALES:</b> Describa detalladamente los canales de venta, distribución y difusión de sus productos/servicios.",
+          "ejemplo": "¿Dónde vende sus productos? ¿Cómo son el o los locales donde vende? ¿Qué tipo de envases utiliza? ¿Cómo distribuye sus productos? ¿Cómo promociona sus productos/servicios?, ¿Cuenta con redes sociales, página web  para promocionar sus productos/servicios y cómo las utiliza?."
+        },
+        "3": {
+          "pregunta": "<b>PRODUCCIÓN:</b> Describa detalladamente la manera en que produce o presta el servicio, destacando equipos, infraestructura, otros.",
+          "ejemplo": "¿Cómo elabora o prepara los  productos o servicios que ofrece? ¿Con que infraestructura cuenta? ¿Dónde se ubica? ¿Con qué equipamiento cuenta?."
+        },
+        "4": {
+          "pregunta": "<b>EQUIPO DE TRABAJO:</b> Describa detalladamente a la o las personas que trabajan en el emprendimiento, detallando los roles o funciones de cada uno. Destaque la experiencia y logros alcanzados.",
+          "ejemplo": "¿Cuál es el equipo de trabaja? ¿Qué experiencia tienen? ¿Cuáles son los roles o funciones de cada uno? ¿Qué logros pueden destacar como equipo? ¿Cuenta con redes de apoyo para el negocio? ¿Se han capacitado? ¿Están vinculados a alguna institución que apoye el emprendimiento?."
+        },
+        "5": {
+          "pregunta": "<b>POTENCIAL:</b> Describa detalladamente las fortalezas y debilidades del negocio, así como las proyecciones que tiene para los siguientes años.",
+          "ejemplo": "¿Cuáles son las principales fortalezas y debilidades de su negocio/emprendimiento?, ¿Cómo proyecta su negocio o emprendimiento para los próximos años? ¿Qué espera del negocio/emprendimiento para los siguientes años? ¿Pretende crecer? ¿De qué forma?."
+        },
+        "6": {
+          "pregunta": "<b>PROYECTO:</b> Describa detalladamente la iniciativa a desarrollar con el financiamiento destacando los resultados que desea obtener.",
+          "ejemplo": "¿Qué hará con el financiamiento adjudicado de este concurso? ¿Como este financiamianto mejorará su negocio o emprendimiento o le permite avanzar en las proyecciones que presentó?."
+        },
+        "7": {
+          "tabla": "<b>PRESUPUESTO:</b> Rellene el siguiente cuadro y considerar campo para subir cotizaciones.",
+          "ejemplo": "Nombre item: Vitrina, Cantidad: 2, Precio unitario: 3500000, Total: 700000, Resultados esperados:  Mostrar los productos desde la tienda presencial y aumentar la presencia del local.",
+          "archivos": {
+            "0": "Cotizaciones Referenciales."
+          }
+        },
+        "8": {
+          "pregunta": "<b>ANEXOS:</b> Informacion complementaria y otros aspectos que quiera usted destacar (Premios obtenidos, ubicación de su negocio, años de experiencia, fotografías, certificados, etc.) ",
+          "ejemplo": "",
+          "archivos": {
+            "0": "Documentos anexos."
+          }
+        }
+      }
+    },
+    "2": {
+      "titulo": "Documentación necesaria",
+      "archivos": {
+        "0": "Cedula de identidad <b>POR AMBOS LADOS</b>.",
+        "1": "Certificado de Residencia 2023 (Junta de vecinos, Notarial o Cartola de Registro Social de Hogares).",
+        "2": "Otros Permisos (resolución sanitaria, SAG, rubro alimentación). Si pertenece al rubro de alimentación o produccion/venta de plantas, y no posee resolucion, <a href='../files/concursos/docs/declaracion_jurada_permiso_sanitario_SAG.docx'>descargar aquí declaración jurada simple</a>. Si su rubro no requiere este permiso, adjunte un documento simple que indique las causas.",
+        "3": "Acreditación emprendimiento informal (redes sociales, fotografias, permisos municipales, etc.)."
+      }
+    }
+  }
+}

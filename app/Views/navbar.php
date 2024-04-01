@@ -6,9 +6,15 @@
       <small>
         <ul class="navbar-nav text-secondary">
           <li>
-            <i class="fas fa-landmark me-1"></i>Municipalidad de Puerto Montt
-            <i class="fa fa-envelope ms-3 me-2"></i>lukasparaemprender@puertomontt.cl
-            <i class="fa fa-phone ms-3 me-1"></i> (+65) 2 261315
+            <div class="d-md-inline d-block">
+              <i class="fas fa-landmark me-1"></i>Municipalidad de Puerto Montt
+            </div>
+            <div class="d-md-inline d-block">
+              <i class="fa fa-envelope ms-md-3 me-2"></i>lukasparaemprender@puertomontt.cl
+            </div>
+            <div class="d-md-inline d-block">
+              <i class="fa fa-phone ms-md-3 me-1"></i> (+65) 2 261315
+            </div>
           </li>
         </ul>
       </small>

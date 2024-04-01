@@ -104,12 +104,12 @@ for ($i=0; $i < count($formulario); $i++) {
                     <th>Cantidad</th>
                     <th>Precio unitario</th>
                     <th>Total</th>
-                    <th>Resultados esperados</th>
+                    <th>Resultados esperados <span style="font-weight:200;">(¿En que le ayudará esta compra?)</span></th>
                   </tr>
                 </thead>
                 <tbody>';
 
-        for ($k = 1; $k < 11; $k++) {
+        for ($k = 1; $k < 10; $k++) {
           echo '<tr>
                 <td contenteditable="true">' . (isset($jt[$k]->c_0) ? $jt[$k]->c_0 : null) . '&nbsp;</td>
                 <td contenteditable="true" class="allownumeric">' . (isset($jt[$k]->c_1) ? $jt[$k]->c_1 : null) . '&nbsp;</td>
@@ -119,14 +119,7 @@ for ($i=0; $i < count($formulario); $i++) {
               </tr>';
         }
 
-        echo '<tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td align=right><b>Total:</b></td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-          </tbody>
+        echo '</tbody>
         </table>
       </div>';
       }
@@ -142,7 +135,7 @@ for ($i=0; $i < count($formulario); $i++) {
                     <div class="col-md-12">
                       <div class="input-group w-50">
                         <input type="text" class="form-control" value="DOCUMENTO COMPLEMENTARIO #' . ($aux + 1) . '" aria-label="" readonly>
-                        <a href="' . base_url('public/files/usuarios') . '/' . session()->get('rut') . '/' . $survey_id . '/' . ($file_list[1][$aux] ?? null) . '?v=' . rand(0, 50) . '" class="btn btn-outline-success z_index_0" target="_blank" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Ver/Descargar"><i class="fa-solid fa-eye"></i></a>
+                        <a href="' . base_url('public/files/usuarios') . '/' . $user['rut']. '/' . $survey_id . '/' . ($file_list[1][$aux] ?? null) . '?v=' . rand(0, 50) . '" class="btn btn-outline-success z_index_0" target="_blank" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Ver/Descargar"><i class="fa-solid fa-eye"></i></a>
                         <button class="btn btn-outline-danger z_index_0" id="delete_file" type="button" value="' . ($file_list[1][$aux] ?? null) . '" data-bs-tooltip="true" data-bs-placement="top" title="Eliminar">
                           <i class="fa-solid fa-trash-can"></i>
                         </button>

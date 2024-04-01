@@ -15,9 +15,10 @@
                   </div>
                   <div class="card-body">
                      <div class="alert alert-warning" role="alert">
-                        <small>Si se encuentra con algún problema y/o error al momento de ingresar, no dude en contactarse al correo <b>lukasparaemprender@puertomontt.cl</b>.</small>
+                        <small>Si se encuentra con algún problema y/o error al momento de ingresar, no dude en contactarse al correo <b>soporte@lukasparaemprender.com</b>.</small>
                      </div>
                      <form action="<?= base_url('users/index');?>" method="post">
+                        <?= csrf_field() ?>
                         <div class="form-floating mb-3">
                            <input class="form-control" id="input_rut" type="text" name="rut" value="<?= set_value('rut');?>" placeholder="12356789-0" oninput="checkRut(this)" />
                            <label for="input_rut">RUT</label>

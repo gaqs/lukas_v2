@@ -14,7 +14,7 @@ class Admin extends BaseController
     {
       $data = [];
       $model = new SurveysModel();
-      $data['surveys'] = $model->find([6,7,8,9]);
+      $data['surveys'] = $model->find([1,2,3]);
 
       $db = db_connect();
       $builder = $db->table('users');
@@ -49,42 +49,42 @@ class Admin extends BaseController
     {
       $data = [];
 
-        if($this->request->getMethod() == 'post'){
-          //validation rules
-          $rules = [
-            'email'     => ['label' => 'correo', 'rules' => 'required|min_length[6]|max_length[250]|valid_email'],
-            'password'  => ['label' => 'contraseña', 'rules' => 'required|min_length[6]|max_length[255]|validate_email[email,password]']
-          ];
-          $errors = [
-            'password' => [
-              'validate_email' => 'Correo electrónico o contraseña no coinciden'
-            ]
-          ];
+      if($this->request->getMethod() == 'post'){
+        //validation rules
+        $rules = [
+          'email'     => ['label' => 'correo', 'rules' => 'required|min_length[6]|max_length[250]|valid_email'],
+          'password'  => ['label' => 'contraseña', 'rules' => 'required|min_length[6]|max_length[255]|validate_email[email,password]']
+        ];
+        $errors = [
+          'password' => [
+            'validate_email' => 'Correo electrónico o contraseña no coinciden'
+          ]
+        ];
 
-          if(!$this->validate($rules, $errors)){
-            $data['validation'] = $this->validator;
-          }else{
-            $model = new AdminModel();
-            $admin = $model->where('email', $this->request->getVar('email'))
-                          ->first();
+        if(!$this->validate($rules, $errors)){
+          $data['validation'] = $this->validator;
+        }else{
+          $model = new AdminModel();
+          $admin = $model->where('email', $this->request->getVar('email'))
+                        ->first();
 
-            $data = [
-              //'id'        => $admin['id'],
-              'name'        => $admin['name'],
-              'lastname'    => $admin['lastname'],
-              'email'       => $admin['email'],
-              'role'        => 'admin',
-              'superadmin'  => $admin['superadmin'],
-              'loggedIn'    => true
-            ];
-            session()->set($data);
-            return redirect()->to( base_url('admin/index'));
-          }
+          $data = [
+            //'id'        => $admin['id'],
+            'name'        => $admin['name'],
+            'lastname'    => $admin['lastname'],
+            'email'       => $admin['email'],
+            'role'        => 'admin',
+            'superadmin'  => $admin['superadmin'],
+            'loggedIn'    => true
+          ];
+          session()->set($data);
+          return redirect()->to( base_url('admin/index'));
         }
+      }
 
-        echo view('admin/header');
-        echo view('admin/login',$data);
-        echo view('admin/footer');
+      echo view('admin/header');
+      echo view('admin/login',$data);
+      echo view('admin/footer');
     }
 
     public function forms()
@@ -391,17 +391,14 @@ class Admin extends BaseController
     }
     
     public function review_form(){ //solo emprendimiento
-
-      $data = [];
-      $file_list = [];
-      $descalificado = 0;
+      $id_form = 9;
 
       $db = db_connect();
       $users = $db->table('users as u')
                     ->select('u.id as user_id, us.id, u.rut, u.name, u.lastname')
                     ->join('users_surveys us', 'u.id = us.user_id')
-                    ->where('surveys_id = 1')
-                    ->where('results_id = 1')
+                    ->where('us.surveys_id = '. $id_form)
+                    ->where('us.results_id = 1')
                     ->get()->getResultArray();
 
     echo '<table>';
@@ -410,7 +407,7 @@ class Admin extends BaseController
       $todas_respuestas = true;
       $todos_archivos = false;
       //revision archivos
-      $files_directory  = ROOTPATH . 'public/files/usuarios/' . $users[$i]['rut'] . '/1/';
+      $files_directory  = ROOTPATH . 'public/files/usuarios/' . $users[$i]['rut'] . '/'.$id_form.'/';
       $clean = [];
       $list = directory_map($files_directory);
       for ($k=0; $k < count($list); $k++) {
@@ -418,7 +415,7 @@ class Admin extends BaseController
           $clean[] = $name;
       }
 
-      $obligatory = array('2_0_file','2_1_file','2_3_file');
+      $obligatory = array('2_0_file','2_1_file','2_2_file','2_3_file');
       if(count(array_intersect($obligatory, $clean)) == count($obligatory)){
         //var_dump($clean);
         $todos_archivos = true;

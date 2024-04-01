@@ -115,3 +115,26 @@ function getTableData(table) {
   // devolver el array data en formato JSON
   return JSON.stringify(data);
 }
+
+
+//check to enable input
+const checkAgr = document.getElementById("check_agrupation");
+const inputAgr = document.getElementById("input_agrupation");
+
+if (checkAgr != null) {
+  if (checkAgr.value != '') {
+    checkAgr.checked = true;
+    inputAgr.disabled = false;
+  }
+
+  checkAgr.addEventListener("click", function () {
+    if (checkAgr.checked) {
+      inputAgr.disabled = false;
+      localStorage.setItem("isChecked", "true");
+    } else {
+      inputAgr.disabled = true;
+      inputAgr.value = '';
+      localStorage.setItem("isChecked", "false");
+    }
+  });
+}

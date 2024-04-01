@@ -15,6 +15,7 @@ $formulario = (array) $json->formulario;
   </div>
 
   <form class="needs-valdiation" id="form" enctype="multipart/form-data" autocomplete="off">
+    <?= csrf_field() ?>
     <input type="hidden" name="survey_id" value="<?= set_value('survey_id', $survey_id); ?>">
 
     <div class="row">
@@ -195,7 +196,7 @@ $formulario = (array) $json->formulario;
                         <th>Cantidad</th>
                         <th>Precio unitario</th>
                         <th>Total</th>
-                        <th>Aporte al proyecto</th>
+                        <th>Resultados esperados <span style="font-weight:200;">(¿En que le ayudará esta compra?)</span></th>
                       </tr>
                     </thead>
                     <tbody>';
@@ -210,14 +211,7 @@ $formulario = (array) $json->formulario;
                   </tr>';
             }
 
-            echo '<tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td align=right><b>Total:</b></td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                </tr>
-              </tbody>
+            echo '</tbody>
             </table>
             </div>
           </div>';
@@ -331,7 +325,7 @@ $formulario = (array) $json->formulario;
 
   tds.forEach(td => {
     td.addEventListener('keypress', event => {
-      const maxLength = 50;
+      const maxLength = 500;
       const currentLength = td.innerText.length;
       if (currentLength >= maxLength) {
         event.preventDefault();
@@ -339,7 +333,8 @@ $formulario = (array) $json->formulario;
     });
   });
 
-  //calculo del total
+
+  /*calculo del total
   const total = document.querySelector('#cotizacion tr:last-child td:nth-last-child(2)');
   const valores = document.querySelectorAll('#cotizacion tr:not(:last-child) td:nth-of-type(4)');
   var totalPrice = 0;
@@ -350,5 +345,6 @@ $formulario = (array) $json->formulario;
     totalPrice = totalPrice + indPrice;
   });
   total.innerText = totalPrice;
+  */
 
 </script>

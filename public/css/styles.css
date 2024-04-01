@@ -44,10 +44,10 @@ b{
   text-align: center;
 }
 .back{
-  background-image: url("../public/img/ganadores_blur_2.jpg");
+  background-image: url("../public/img/ganadores_blur_4.jpg");
   height: 500px;
   background-attachment: fixed;
-  background-position: 50% 30%;
+  background-position: 50% 40%;
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
@@ -233,8 +233,26 @@ opacity: 0.9;
   transform: translate(-50%,0);
 }
 
+.red_band{
+  position: absolute;
+background: red;
+color: white;
+padding: 10px 60px 10px 60px;
+transform: rotate(-42deg);
+top: 40px;
+left: -60px;
+}
+
 
 @media (max-width: 576px) {
+  .red_band{
+    position: relative;
+    transform: rotate(0);
+    top: 0;
+    width: 100%;
+    left: 0;
+    margin-bottom: 10px;
+  }
 
 }
 

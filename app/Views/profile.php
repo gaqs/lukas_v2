@@ -8,24 +8,29 @@
                      <div class="card-body text-center">
                         <?php if (!empty($surveys)) { ?>
                            <h3 class="card-title pt-4">Mis Postulaciones</h3>
+                           <h6>
+                              <a href="<?= base_url('public/files/concursos/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2023.pdf?v=0.1'); ?>" class="mb-3 ms-3 text-decoration-none" target="_blank">
+                                 <i class="fa-solid fa-download"></i> Descargar aquí las bases del Concurso
+                              </a>
+                           </h6>
                            <div class="card-text px-2">
                               <div class="table-responsive">
-                              <table class="table align-middle mt-3">
-                                 <thead>
-                                    <tr>
-                                       <th scope="col">N°</th>
-                                       <th scope="col">ID </th>
-                                       <th scope="col">Concurso</th>
-                                       <th scope="col">Ingresado</th>
-                                       <th scope="col">Estado</th>
-                                       <th scope="col">Accion</th>
-                                    </tr>
-                                 </thead>
-                                 <tbody>
-                                    <?php
-                                    for ($i = 0; $i < count($surveys); $i++) {
-                                       $r_id = $surveys[$i]['results_id'];
-                                       echo '<tr scope="row" class="' . ($r_id == 3 ? 'text-decoration-line-through' : null) . '">
+                                 <table class="table align-middle mt-3">
+                                    <thead>
+                                       <tr>
+                                          <th scope="col">N°</th>
+                                          <th scope="col">ID </th>
+                                          <th scope="col">Concurso</th>
+                                          <th scope="col">Ingresado</th>
+                                          <th scope="col">Estado</th>
+                                          <th scope="col">Accion</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <?php
+                                       for ($i = 0; $i < count($surveys); $i++) {
+                                          $r_id = $surveys[$i]['results_id'];
+                                          echo '<tr scope="row" class="' . ($r_id == 3 ? 'text-decoration-line-through' : null) . '">
                                                 <td>' . ($i + 1) . '</td>
                                                 <td>' . $surveys[$i]['id'] . '</td>
                                                 <td>' . $surveys[$i]['name'] . '</td>
@@ -35,32 +40,35 @@
                                                    <div class="btn-group" role="group" aria-label="Acción">
                                                       <a href="' . base_url('home/forms?survey_id=' . $surveys[$i]['surveys_id']) . '" class="btn btn-primary ' . ($r_id != 1 && 2 ? 'disabled' : null) . '" data-bs-tooltip="true" data-bs-placement="top" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
 
-                                                      <a href="'.base_url('export/export_user_survey?user_id='.session()->get('id').'&survey_id='.$surveys[$i]['surveys_id']).'" target="_blank" class="btn btn-success" data-bs-tooltip="true" data-bs-placement="top" title="Ver"><i class="fa-solid fa-eye"></i></a>
+                                                      <a href="' . base_url('export/export_user_survey?user_id=' . session()->get('id') . '&survey_id=' . $surveys[$i]['surveys_id']) . '" target="_blank" class="btn btn-success" data-bs-tooltip="true" data-bs-placement="top" title="Ver"><i class="fa-solid fa-eye"></i></a>
 
-                                                      <button type="button" class="btn btn-danger ' . ($r_id != 1 && 2 ? 'disabled' : null) . '" data-bs-toggle="modal" data-bs-target="#delete_form_modal" data-bs-whatever="' . $surveys[$i]['id'] . '" data-bs-tooltip="true" data-bs-placement="top" title="Eliminar"><i class="fa-solid fa-trash-can"></i></button>
+                                                      <button type="button" class="disabled btn btn-danger ' . ($r_id != 1 && 2 ? 'disabled' : null) . '" data-bs-toggle="modal" data-bs-target="#delete_form_modal" data-bs-whatever="' . $surveys[$i]['id'] . '" data-bs-tooltip="true" data-bs-placement="top" title="Eliminar"><i class="fa-solid fa-trash-can"></i></button>
                                                    </div>
                                                 </td>
                                              </tr>';
-                                    }
-                                    ?>
-                                 </tbody>
-                              </table>
+                                       }
+                                       ?>
+                                    </tbody>
+                                 </table>
                               </div>
                               <div class="col-12 text-end">
                                  ¿Eliminó su postulación y desea probar nuevamente?<br>
-                                 <a href="<?= base_url(); ?>/#concursos" class="btn btn-primary mt-2">
+                                 <a href="<?= base_url(); ?>/#how" class="btn btn-primary mt-2">
                                     Volver a postular
                                  </a>
                               </div>
                            </div>
                         <?php } else { ?>
-                           <h2 class="card-title">¡Lukas para Empreder 2023!</h2>
+                           <h2 class="card-title">¡Lukas para Empreder 2024!</h2>
                            <p class="card-text">
-                              Para entrar al concurso, haga click en el boton <i>postular aquí</i> para seleccionar la
-                              categoría
-                              a la cual quiera ingresar.
+                              Para entrar al concurso, lea detenidamente las bases, luego, haga click en el botón <i>postular aquí</i> para seleccionar la categoría a la cual quiera postular.
                            </p>
-                           <a href="<?= base_url(); ?>/#concursos" class="btn btn-primary card-link px-5">Postular aquí</a>
+                           <p style="font-weight:500;">
+                              <a href="<?= base_url('public/files/concursos/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2023.pdf?v=0.1'); ?>" class="mb-3 ms-3 text-decoration-none" target="_blank">
+                                 <i class="fa-solid fa-download"></i> Descargar aquí las bases del Concurso
+                              </a>
+                           </p>
+                           <a href="<?= base_url(); ?>/#how" class="btn btn-primary card-link px-5">Postular aquí</a>
                         <?php } ?>
                      </div>
                   </div>
@@ -166,9 +174,9 @@
                                                    Si <input class="form-check-input mt-0 ms-2" type="checkbox" id="check_agrupation">
                                                 </div>
                                                 <input type="text" class="form-control" id="input_agrupation" name="agrupation" aria-describedby="" value="<?= set_value('agrupation', $user['agrupation']); ?>" disabled>
-                                             </div>  
+                                             </div>
                                           </div>
-                                       
+
                                           <div class="row">
                                              <small>
                                                 <p class="text-end text-danger"><b>*</b>Obligatorio</p>

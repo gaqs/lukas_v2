@@ -18,35 +18,36 @@
 								</div>
 								<?php endif ?>
 								<div class="alert alert-warning" role="alert">
-									<small>Si se encuentra con algún problema y/o error al momento de registrarse, no dude en contactarse al correo <b>lukasparaemprender@puertomontt.cl</b>.</small>
+									<small>Si se encuentra con algún problema y/o error al momento de registrarse, no dude en contactarse al correo <b>soporte@lukasparaemprender.cl</b>.</small>
+								</div>
+								<div class="row mb-4 d-none">
+									<div class="mt-4 mb-0">
+										<button class="btn btn-secondary p-3 w-100 ">
+                                 <img src="<?= base_url('public/img/icons/google.png'); ?>" alt="" width="15" class="inline me-2"><span>Registrarse con Google</span>
+										</button>
+									</div>
+									<div class="mt-4 text-center">
+										ó
+									</div>
 								</div>
 								<form class="" action="<?= base_url('users/register');?>" method="post">
+									<?= csrf_field() ?>
 									<div class="row mb-3">
-										<div class="col-md-4">
-											<div class="form-floating mb-3 mb-md-0">
+										<div class="col-md-6">
+											<div class="form-floating mb-2 mb-md-0">
 												<input class="form-control" id="input_name" name="name" type="text" value="<?= set_value('name');?>" placeholder="Juan Andrés" />
 												<label for="input_name">Nombres</label>
 											</div>
 										</div>
-										<div class="col-md-5 mb-3">
+										<div class="col-md-6 mb-2">
 											<div class="form-floating">
 												<input class="form-control" id="input_lastname" type="text" name="lastname" value="<?= set_value('lastname');?>" placeholder="Perez Gonzales" />
 												<label for="input_lastname">Apellidos</label>
 											</div>
 										</div>
-										<div class="col-md-3">
-											<div class="form-floating">
-												<select class="form-select" id="sex_select" name="sex" aria-label="">
-													<option value="O" <?= set_select('sex', 'O'); ?> >Otro</option>
-													<option value="F" <?= set_select('sex', 'F'); ?> >Femenino</option>
-													<option value="M" <?= set_select('sex', 'M'); ?> >Masculino</option>
-												</select>
-												<label for="floatingSelect">Sexo</label>
-											</div>
-										</div>
 									</div>
 									<div class="row mb-3">
-										<div class="col-md-4 mb-3">
+										<div class="col-md-4 mb-2">
 											<div class="form-floating">
 												<input class="form-control" id="input_rut" type="text" name="rut" value="<?= set_value('rut');?>" placeholder="111111111-1" oninput="checkRut(this)" maxlength="11" autocomplete="off" onpaste="return false;"/>
 												<label for="input_rut">RUT</label>
@@ -59,7 +60,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="row mb-3">
+									<div class="row mb-2">
 										<div class="col-md-6">
 											<div class="form-floating mb-3 mb-md-0">
 												<input class="form-control" id="input_password" type="password" name="password" placeholder="********" />
@@ -74,10 +75,10 @@
 											</div>
 										</div>
 									</div>
-									<div class="mt-4 mb-0">
+									<div class="col-md-12 mt-4 mb-0">
 										<div class="d-grid">
-											<button type="submit" class="btn btn-primary btn-block submit_something">
-											<i class="fas fa-user-plus"></i> Registrarse
+											<button type="submit" class="btn btn-primary p-3 btn-block submit_something">
+											<i class="fas fa-user-plus me-1"></i> Crear Cuenta
 											</button>
 										</div>
 									</div>

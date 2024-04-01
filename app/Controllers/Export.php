@@ -49,6 +49,7 @@ class Export extends BaseController
     $dompdf->loadHtml( view('admin/pdfview', $data) );
     $dompdf->render();
     $dompdf->stream('export.pdf', array("Attachment" => false));
+    exit;
 
     }else{
       return redirect()->to(base_url())->with('failure', 'No tiene permisos para acceder a este formulario.');
@@ -127,7 +128,7 @@ class Export extends BaseController
     $files = ['public/files/usuarios/08802287-4/1/2_1_file.pdf'];
 
     //creacion de zip
-    $zipname = '../public/files/temp/residencia.zip';
+    $zipname = '../public/files/temp/cedulas.zip';
     $zip = new \ZipArchive;
     $zip->open($zipname, ZipArchive::CREATE);
     foreach ($files as $key => $value) {
@@ -137,7 +138,7 @@ class Export extends BaseController
     }
     $zip->close();
 
-    header('Content-disposition: attachment; filename=residencia.zip');
+    header('Content-disposition: attachment; filename=cedulas.zip');
     header('Content-type: application/zip');
     readfile($zipname);
 

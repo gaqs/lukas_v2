@@ -1,7 +1,7 @@
 {
   "id": "4",
-  "nombre": "Categoría Idea de Negocios",
-  "importante": "Para poder completar su postulación a la categoria emprendimiento, es necesario que complete su perfil de usuario, haciendo click en su nombre ubicado en la barra superior.",
+  "nombre": "Empresa",
+  "importante": "",
   "formulario": {
     "0": {
       "titulo": "Datos Proyecto",
@@ -16,26 +16,38 @@
       "titulo": "Información relevante al Proyecto",
       "cuestionario": {
         "0": {
-          "pregunta": "<b>Descripción de la Oportunidad:</b> describa la oportunidad de negocio detectada, colocando énfasis en la identificación y caracterización de los potenciales clientes y sus necesidades, especialmente aquellas que no están completamente satisfechas. Presente antecedentes de la oferta de productos/servicios que actualmente se encuentra disponible para satisfacer las necesidades de los clientes, destacando aquellos aspectos de la necesidad que no se abordan. Entregue antecedentes cuantitativos y/o cualitativos que permitan dimensionar la oportunidad de negocio y justificar sus planteamientos.",
-          "ejemplo": "..."
+          "pregunta": "<b>PRODUCTOS/SERVICIOS:</b> Describa detalladamente los productos/servicios que comercializa. Identifique y describa a sus competidores y destaque las características de sus productos/servicios que los hacen diferentes o innovadores. Presente los precios a los que comercializa.",
+          "ejemplo": "Considere las siguientes preguntas orientadoras: ¿Cuáles son los productos/servicios?, ¿Qué características tienen?, ¿Quiénes son sus competidores? ¿Qué productos/servicios ofrecen los competidores? ¿Qué características tienen los productos/servicios de sus competidores? ¿Cómo sus productos/servicios se diferencias o son innovadores en relación a los competidores? ¿A qué precio vende? ¿Cuenta con precios diferenciados por cliente? ¿Aplica algún tipo de descuento?. "
         },
         "1": {
-          "pregunta": "<b>Descripción del modelo de negocios:</b> realice una descripción del modelo de negocios, para lo cual se sugiere describir de la manera más detallada a los clientes junto a sus características y necesidades, oferta de productos/servicios, canales de venta, distribución y difusión, estrategias para capturar nuevos cliente, mantenerlos cautivos y estimular las ventas, las fuentes de ingresos incluyendo precios, política de descuentos, entre otros.",
-          "ejemplo": "..."
+          "pregunta": "<b>CLIENTES:</b> Describa detalladamente a los clientes a los que están dirigidos los productos/servicios.",
+          "ejemplo": "Considere las siguientes preguntas orientadoras: ¿Quiénes son sus clientes o potenciales clientes? ¿Cuáles son sus principales características (edad, ubicación, entre otras)? ¿Cuál es la necesidad que estos clientes manifiestan?."
         },
         "2": {
-          "pregunta": "<b>Experiencia y equipo de trabajo:</b> presente al equipo de trabajo que gestionará el negocio/emprendimiento y realice una breve reseña de su experiencia, los logros alcanzados a la fecha, las redes de apoyo con las que cuenta, apoyos recibidos de organismos que apoyan el emprendimiento (Municipalidad, FOSIS; SERCOTEC), entre otros.",
-          "ejemplo": "..."
+          "pregunta": "<b>CANALES:</b> Describa detalladamente los canales de venta, distribución y difusión de sus productos/servicios.",
+          "ejemplo": "Considere las siguientes preguntas orientadoras: ¿Dónde vende sus productos? ¿Cómo son el o los locales donde vende? ¿Qué tipo de envases utiliza? ¿Cómo distribuye sus productos? ¿Cómo promociona sus productos/servicios? ¿Cuáles son sus medios de pago? ¿Cuenta con redes sociales, página web  para promocionar sus productos/servicios y cómo las utiliza? ¿Qué redes sociales utiliza su emprendimiento?"
         },
         "3": {
-          "pregunta": "<b>Descripcion del proyecto:</b> describa brevemente la iniciativa a desarrollar con este financiamiento destacando los resultados que espera obtener y cómo potenciarán su negocio/emprendimiento.",
-          "ejemplo": "..."
+          "pregunta": "<b>PRODUCCIÓN:</b> Describa detalladamente la manera en que produce o presta el servicio, destacando equipos, infraestructura, otros.",
+          "ejemplo": "Considere las siguientes preguntas orientadoras: ¿Cómo elabora o prepara los  productos o servicios que ofrece? ¿Con que infraestructura cuenta? ¿Dónde se ubica? ¿Con qué equipamiento cuenta?."
         },
         "4": {
-          "pregunta": "<b>Presupuesto:</b> detalle las compras que realizará con el financiamiento indicando en qué invertirá el subsidio, cantidades, precios y cuál será el aporte de dicha compra al proyecto. Recuerde que los gastos en los que incurrirá deben ser coherentes con su emprendimiento y el proyecto que desarrollará.",
-          "ejemplo": "...",
+          "pregunta": "<b>EQUIPO DE TRABAJO:</b> Describa detalladamente a la o las personas que trabajan en el emprendimiento, detallando los roles o funciones de cada uno. Destaque la experiencia y logros alcanzados.",
+          "ejemplo": "Considere las siguientes preguntas orientadoras: ¿Cuál es el equipo de trabaja? ¿Qué experiencia tienen? ¿Cuáles son los roles o funciones de cada uno? ¿Qué logros pueden destacar como equipo? ¿Cuenta con redes de apoyo para el negocio? ¿Se han capacitado? ¿Están vinculados a alguna institución que apoye el emprendimiento?."
+        },
+        "5": {
+          "pregunta": "<b>POTENCIAL:</b> Describa detalladamente las fortalezas y debilidades del negocio, así como las proyecciones que tiene para los siguientes años.",
+          "ejemplo": "Considere las siguientes preguntas orientadoras: ¿Cuáles son las principales fortalezas y debilidades de su negocio/emprendimiento?, ¿Cómo proyecta su negocio o emprendimiento para los próximos años? ¿Pretende crecer? ¿De qué forma?."
+        },
+        "6": {
+          "pregunta": "<b>PROYECTO:</b> Describa detalladamente la iniciativa a desarrollar con el financiamiento destacando los resultados que desea obtener.",
+          "ejemplo": "Considere las siguientes preguntas orientadoras: ¿Qué hará con el financiamiento adjudicado de este concurso? ¿Como este financiamianto mejorará su negocio o emprendimiento o le permite avanzar en las proyecciones que presentó?."
+        },
+        "7": {
+          "tabla": "<b>PRESUPUESTO:</b> Rellene el siguiente cuadro y considerar campo para subir cotizaciones.",
+          "ejemplo": "Nombre item: Vitrina, Cantidad: 2, Precio unitario: 3500000, Total: 700000, Resultados esperados:  Mostrar los productos desde la tienda presencial y aumentar la presencia del local.",
           "archivos": {
-            "0": "Presupuesto. <a href='../files/concursos/ejemplos_doc/detalle_presupuesto.docx'>Descargar aquí tabla presupuesto formato tipo</a>."
+            "0": "Cotizaciones Referenciales."
           }
         }
       }
@@ -44,7 +56,10 @@
       "titulo": "Documentación necesaria",
       "archivos": {
         "0": "Cedula de identidad <b>POR AMBOS LADOS</b>.",
-        "1": "Certificado de Residencia 2022 (Junta de vecinos, Notarial o Cartola de Registro Social de Hogares)."
+        "1": "Rol único tributario",
+        "2": "Carpeta tributaria para solicitar créditos de los últimos 6 meses.",
+        "3": "Otros Permisos (Patente Municipal, Resolución sanitaria, SEC, SAG, otros).",
+        "4": "Acreditación emprendimiento informal (redes sociales, fotografías, permisos municipales con fecha entre Enero y Mayo 2024)."
       }
     }
   }

@@ -32,8 +32,8 @@ function manage_files( $form_section, $array, $key_name, $directory_path ){
   }
 }
 
-function reorder_answers($query){
-
+function reorder_answers($query)
+{
   $order = [];
   for ($i=0; $i < count($query); $i++) {
     $key1 = $query[$i]['section'];
@@ -85,14 +85,17 @@ function send_email($send_to, $send_cc, $subject, $message, $attach){
 							'protocol' => 'smtp',
 							'SMTPHost' => 'mail.lukasparaemprender.com',
 							'SMTPPort' => '587',
-              'SMTPUser' => 'postmaster@lukasparaemprender.com',
-              'SMTPPass' => 'g3@N1Phrd=JL',
+              'SMTPUser' => 'postmaster_3@lukasparaemprender.com',
+              'SMTPPass' => 'jI!m%S?z}0Gj',
 							'mailType' => 'html',
 							'charset'  => 'utf-8',
 							'newline'	 => "\r\n"
 						);
+            
             //'SMTPUser' => 'postmaster@lukasparaemprender.com',
             //'SMTPPass' => 'g3@N1Phrd=JL',
+            //'SMTPUser' => 'postmaster_2@lukasparaemprender.com',
+            //'SMTPPass' => ')GlLqkw$hZg0',
             //'SMTPUser' => 'postmaster_3@lukasparaemprender.com',
             //'SMTPPass' => 'jI!m%S?z}0Gj',
             //'SMTPUser' => 'postmaster_4@lukasparaemprender.com',

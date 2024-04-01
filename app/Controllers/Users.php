@@ -89,35 +89,33 @@ class Users extends BaseController
 
         $data['name']     = $this->request->getVar('name');
         $data['lastname'] = $this->request->getVar('lastname');
-        $data['sex']      = $this->request->getVar('sex');
         $data['email']    = $this->request->getVar('email');
         $data['rut']      = $this->request->getVar('rut');
         $data['password'] = $this->request->getVar('password');
 
         $token = bin2hex(openssl_random_pseudo_bytes(32));
 
-        //$data['link'] = base_url('users/email_validation?key=' . $data['rut'] . '&token=' . $token);
+        $data['link'] = base_url('users/email_validation?key=' . $data['rut'] . '&token=' . $token);
 
         $userData = [
           'name'                      => ucwords(strtolower($data['name'])),
           'lastname'                  => ucwords(strtolower($data['lastname'])),
-          'sex'                       => $data['sex'],
           'rut'                       => $data['rut'],
           'email'                     => strtolower($data['email']),
           'password'                  => $data['password'],
-          'email_verification_token'  => $token,
-          'email_verified_at'         => date('y-m-d H:i:s')
+          'email_verification_token'  => $token
         ];
+        //'email_verified_at'         => date('y-m-d H:i:s')
 
         $model->save($userData);
 
-        //$message = view('emails/validation', $data);
-        $message = view('emails/registered', $data);
+        $message = view('emails/validation', $data);
+        //$message = view('emails/registered', $data);
 
         $send = send_email($data['email'], '', 'Registrado correctamente', $message, '');
 
         if ($send) {
-          return redirect()->to(base_url('users'))->with('success', 'Registrado correctamente. Hemos enviado un correo electrónico con sus datos. <b>Ya puede iniciar sesión.</b>');
+          return redirect()->to(base_url('users'))->with('success', 'Registrado correctamente. Hemos enviado un correo electrónico con sus datos. <b>Ya puede iniciar sesión.</b><br><br><small>(De no ver el correo de notificación, revise su carpeta <b>SPAM</b>).</small>');
         } else {
           return redirect()->to(base_url('users'))->with('failure', 'Error al enviar el correo con sus datos de registro.');
         }
@@ -131,35 +129,37 @@ class Users extends BaseController
 
   } //end register
 
-  /*
+  
   public function email_validation()
   {
-  $model = new UserModel();
-  $data = [];
-  if ($this->request->getMethod() == 'get') {
-  $rut = $this->request->getVar('key');
-  $token = $this->request->getVar('token');
-  $user = $model->where('rut', $rut)
-  ->where('email_verification_token', $token)
-  ->first();
-  if ($user != null) {
-  //update database email_verified_at
-  $userData = [
-  'id' => $user['id'],
-  'email_verified_at' => date('y-m-d H:i:s')
-  ];
-  $model->save($userData);
-  if (!is_dir(ROOTPATH . 'public/files/usuarios/' . $rut)) {
-  mkdir(ROOTPATH . 'public/files/usuarios/' . $rut, 0777, TRUE);
-  }
-  session()->setFlashdata('success', 'Correo validado correctamente. Ya puede iniciar sesión.');
-  } else {
-  session()->setFlashdata('success', 'Correo validado previamente. Ya puede iniciar sesión.');
-  }
-  return redirect()->to(base_url('users'));
-  }
+    $model = new UserModel();
+    $data = [];
+    if ($this->request->getMethod() == 'get') {
+      $rut = $this->request->getVar('key');
+      $token = $this->request->getVar('token');
+
+      $user = $model->where('rut', $rut)->where('email_verification_token', $token)->first();
+
+      if ($user != null) {
+        //update database email_verified_at
+        $userData = [
+          'id' => $user['id'],
+          'email_verified_at' => date('y-m-d H:i:s')
+        ];
+
+        $model->save($userData);
+
+        if (!is_dir(ROOTPATH . 'public/files/usuarios/' . $rut)) {
+          mkdir(ROOTPATH . 'public/files/usuarios/' . $rut, 0777, TRUE);
+        }
+        session()->setFlashdata('success', 'Correo validado correctamente. Ya puede iniciar sesión.');
+      } else {
+        session()->setFlashdata('success', 'Correo validado previamente. Ya puede iniciar sesión.');
+      }
+      return redirect()->to(base_url('users'));
+    }
   } //end email_validation
-  */
+  
 
   public function profile()
   {
@@ -352,8 +352,8 @@ class Users extends BaseController
         $data['validation'] = $this->validator;
       } else {
         $user = $model->where('rut', $this->request->getVar('rut'))
-          ->where('email', $this->request->getVar('email'))
-          ->first();
+                      ->where('email', $this->request->getVar('email'))
+                      ->first();
 
         if ($user != null) {
           //ver tiempo desde generado el hash
@@ -490,7 +490,6 @@ class Users extends BaseController
     } //end password
     echo json_encode($data);
   }
-
 
   public function logout()
   {

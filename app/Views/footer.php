@@ -17,7 +17,7 @@
         <p><i class="fa fa-home mr-3"></i> Av. Presidente Ibañez #600.<br>Edificio Consistorial II<br></p>
         <p><i class="fa fa-envelope mr-3"></i> lukasparaemprender@puertomontt.cl</p>
         <p><i class="fa fa-phone mr-3"></i> (+65) 2 261315</p>
-        <p><i class="fa fa-phone mr-3"></i> (+65) 2 261323</p>
+        <p><i class="fa fa-phone mr-3"></i> (+65) 2 261306</p>
       </div>
       <!-- Grid column -->
 
@@ -104,7 +104,7 @@
 </div>
 
 <!-- Modal informacion -->
-<div class="modal fade" id="info_form_modal" tabindex="-1" aria-labelledby="info_form_modal_label" aria-hidden="true">
+<div class="modal fade" id="info_form_modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="info_form_modal_label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -174,7 +174,7 @@
     
     if( sessionStorage.getItem("wasClosed") != "true"){
       setTimeout(function(){
-        $('#info_form_modal').modal('toggle');
+        //$('#info_form_modal').modal('toggle');
       }, 1000);
     }
     
@@ -207,7 +207,7 @@
       const files = document.querySelectorAll("#form input[name='file[]']");
       const emptyFiles = Array.from(files).filter(
         input => input.classList[2] != "d-none" && input.value == ""
-      );
+      ); 
       if (emptyInputs.length === 0 && emptyFiles.length == 0) {
         send = true;
       }
@@ -341,29 +341,6 @@
       $('#alert_toast').toast('show');
     }
   });//end document ready
-
-
-  //check to enable input
-  const checkbox = document.getElementById("check_agrupation");
-  const input = document.getElementById("input_agrupation");
-
-  if (checkbox != null) {
-    if (input.value != '') {
-      checkbox.checked = true;
-      input.disabled = false;
-    }
-
-    checkbox.addEventListener("click", function () {
-      if (checkbox.checked) {
-        input.disabled = false;
-        localStorage.setItem("isChecked", "true");
-      } else {
-        input.disabled = true;
-        input.value = '';
-        localStorage.setItem("isChecked", "false");
-      }
-    });
-  }
   
   //scripts especificos para cada concurso.
 
