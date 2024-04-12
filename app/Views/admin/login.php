@@ -22,6 +22,7 @@
 												}
 												?>
 												<form action="<?= base_url('admin/login');?>" method="post">
+												<?= csrf_field() ?>
 														<div class="form-floating mb-3">
 																<input class="form-control" id="input_email" type="email" name="email" value="<?= set_value('email');?>" placeholder="nombre@ejemplo.com" />
 																<label for="input_email">Correo electrónico</label>

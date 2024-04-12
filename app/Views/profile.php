@@ -30,7 +30,7 @@
                                        <?php
                                        for ($i = 0; $i < count($surveys); $i++) {
                                           $r_id = $surveys[$i]['results_id'];
-                                          echo '<tr scope="row" class="' . ($r_id == 3 ? 'text-decoration-line-through' : null) . '">
+                                          echo '<tr scope="row" class="' . ($r_id == 4 ? 'text-decoration-line-through' : null) . '">
                                                 <td>' . ($i + 1) . '</td>
                                                 <td>' . $surveys[$i]['id'] . '</td>
                                                 <td>' . $surveys[$i]['name'] . '</td>
@@ -42,7 +42,7 @@
 
                                                       <a href="' . base_url('export/export_user_survey?user_id=' . session()->get('id') . '&survey_id=' . $surveys[$i]['surveys_id']) . '" target="_blank" class="btn btn-success" data-bs-tooltip="true" data-bs-placement="top" title="Ver"><i class="fa-solid fa-eye"></i></a>
 
-                                                      <button type="button" class="disabled btn btn-danger ' . ($r_id != 1 && 2 ? 'disabled' : null) . '" data-bs-toggle="modal" data-bs-target="#delete_form_modal" data-bs-whatever="' . $surveys[$i]['id'] . '" data-bs-tooltip="true" data-bs-placement="top" title="Eliminar"><i class="fa-solid fa-trash-can"></i></button>
+                                                      <button type="button" class="btn btn-danger ' . ($r_id != 1 && 2 ? 'disabled' : null) . '" data-bs-toggle="modal" data-bs-target="#delete_form_modal" data-bs-whatever="' . $surveys[$i]['id'] . '" data-bs-tooltip="true" data-bs-placement="top" title="Eliminar"><i class="fa-solid fa-trash-can"></i></button>
                                                    </div>
                                                 </td>
                                              </tr>';
@@ -92,6 +92,7 @@
                                     <h3 class="card-title">Perfil</h3>
                                     <hr>
                                     <form class="" action="<?= base_url('users/profile'); ?>" method="post">
+                                       <?= csrf_field() ?>
                                        <div class="row mb-3">
                                           <div class="col-md-4 mb-3">
                                              <label for="input_name" class="form-label">Nombre<span class="text-danger">*</span></label>
@@ -168,13 +169,9 @@
                                              </select>
                                           </div>
                                           <div class="col-md-8">
-                                             <label for="input_agrupation" class="form-label">¿Pertenece a alguna agrupación?</label>
-                                             <div class="input-group mb-3">
-                                                <div class="input-group-text">
-                                                   Si <input class="form-check-input mt-0 ms-2" type="checkbox" id="check_agrupation">
-                                                </div>
-                                                <input type="text" class="form-control" id="input_agrupation" name="agrupation" aria-describedby="" value="<?= set_value('agrupation', $user['agrupation']); ?>" disabled>
-                                             </div>
+                                             <label for="input_agrupation" class="form-label">Agrupación</label>
+                                             <input type="text" class="form-control" id="input_agrupation" name="agrupation" aria-describedby="" value="<?= set_value('agrupation', $user['agrupation']); ?>">
+                                             <small class="form-text">*De no pertenecer a alguna, dejar el campo vacio.</small>
                                           </div>
 
                                           <div class="row">
@@ -206,6 +203,7 @@
                                     <h3 class="card-title">Cuenta Bancaria</h3>
                                     <hr>
                                     <form class="" action="<?= base_url('users/profile'); ?>" method="post">
+                                    <?= csrf_field() ?>
                                        <div class="alert alert-warning" role="alert">
                                           Datos basicos de cuenta bancaria en caso de ser ganador de un concurso. El
                                           premio se depositará en la cuenta asociada a este usuario.
@@ -262,6 +260,7 @@
                                     <div class="row">
 
                                        <form id="change_password_form">
+                                       <?= csrf_field() ?>
                                           <div class="col-12">
                                              <div class="mb-3">
                                                 <label for="input_old_password" class="form-label">Contraseña

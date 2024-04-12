@@ -15,6 +15,7 @@
                     </div>
                     <div class="card-body">
                       <form action="<?= base_url('users/change_password')?>" method="post">
+                      <?= csrf_field() ?>
                         <div class="form-floating mb-3">
                             <input class="form-control" id="input_token" type="hidden" name="token" value="<?= $token ?? set_value('token'); ?>">
                             <input class="form-control" id="input_rut" type="text" name="rut" value="<?= $key ?? set_value('rut'); ?>" placeholder="" readonly/>

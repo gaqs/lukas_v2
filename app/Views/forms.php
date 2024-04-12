@@ -15,7 +15,7 @@ $formulario = (array) $json->formulario;
   </div>
 
   <form class="needs-valdiation" id="form" enctype="multipart/form-data" autocomplete="off">
-    <?= csrf_field() ?>
+  <?= csrf_field() ?>
     <input type="hidden" name="survey_id" value="<?= set_value('survey_id', $survey_id); ?>">
 
     <div class="row">
@@ -96,15 +96,11 @@ $formulario = (array) $json->formulario;
                 <?= native_group(set_value('id_native', $user['id_native'])); ?>
               </select>
             </div>
-            <div class="col-md-8">
-              <label for="input_agrupation" class="form-label">¿Pertenece a alguna agrupación?</label>
-              <div class="input-group mb-3">
-                <div class="input-group-text">
-                  Si <input class="form-check-input mt-0 ms-2" type="checkbox" id="check_agrupation">
-                </div>
-                <input type="text" class="form-control optional" id="input_agrupation" name="agrupation" aria-describedby="" value="<?= set_value('agrupation', $user['agrupation']); ?>" disabled>
+            <div class="col-md-8 mb-3">
+              <label for="input_agrupation" class="form-label">Agrupación</label>
+                <input type="text" class="form-control optional" id="input_agrupation" name="agrupation" aria-describedby="" value="<?= set_value('agrupation', $user['agrupation']); ?>">
+                <small class="form-text">*De no pertenecer a alguna, dejar el campo vacio.</small>
               </div>
-            </div>
 
             <div class="col-md-4 mb-3">
               <label for="input_name" class="form-label">Banco<span class="text-danger">*</span></label>
@@ -175,7 +171,7 @@ $formulario = (array) $json->formulario;
                   <i tabindex=0 class="fa-solid fa-circle-question help_icon" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-custom-class="custom_popover" data-bs-html="true" data-bs-content="<b>Considere las siguientes preguntas orientadoras.</b> ' . $key->ejemplo . '"></i>
                   <span class="letter_count">3000</span>
                 </label>
-                <textarea class="form-control mb-3 textarea_cuestionario" id="textarea_cuestionario_' . $count . '" rows="5" data-limit=3000 name="data[1][' . $count . ']">' . ($answers[1][$count] ?? null) . '</textarea>
+                <textarea class="form-control mb-3 textarea_cuestionario" id="textarea_cuestionario_' . $count . '" rows="5" data-limit=3000 name="data[1][' . $count . ']">' . set_value('data[1]['.$count.']', $answers[1][$count] ?? null ) . '</textarea>
               </div>';
 
           }
@@ -265,7 +261,7 @@ $formulario = (array) $json->formulario;
                     </div>
                   </div>
                 </div>
-              <input class="form-control w-50 ' . (isset($file_list[2][$count]) ? 'd-none' : null) . '" type="file" id="formFile" name="file[]">
+              <input class="form-control w-50 ' . (isset($file_list[2][$count]) ? 'd-none' : null) . ($count+1 == 3 ? 'optional':'').'" type="file" id="formFile" name="file[]">
               <div class="feedback text-start mb-3"></div>
             </div>';
           $count++;

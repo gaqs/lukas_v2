@@ -162,16 +162,16 @@ for ($i=0; $i < count($formulario); $i++) {
       echo '<div class="mb-3 col-md-12">
               <label for="formFile" class="form-label mb-0">'.($count + 1).'.- '.$key.'</label>
                 <div class="row '.( !isset( $file_list[2][$count] ) ? 'd-none' : null ).'" id="uploadedFile">
-                <div class="col-md-12">
-                  <div class="input-group w-50">
-                    <input type="text" class="form-control" value="DOCUMENTO NECESARIO #'.($count + 1).'" aria-label="" readonly>
-                    <a href="'.base_url('public/files/usuarios').'/'.$user['rut'].'/'.$user['surveys_id'].'/'.($file_list[2][$count] ?? null).'?v='.rand(10000,99999).'" target="_blank" class="btn btn-outline-success z_index_0" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Ver/Descargar"><i class="fa-solid fa-eye"></i></a>
-                    <button class="btn btn-outline-danger z_index_0" id="delete_file" type="button" value="'.($file_list[2][$count] ?? null).'" data-bs-tooltip="true" data-bs-placement="top" title="Eliminar">
-                      <i class="fa-solid fa-trash-can"></i>
-                    </button>
+                  <div class="col-md-12">
+                    <div class="input-group w-50">
+                      <input type="text" class="form-control" value="DOCUMENTO NECESARIO #'.($count + 1).'" aria-label="" readonly>
+                      <a href="'.base_url('public/files/usuarios').'/'.$user['rut'].'/'.$user['surveys_id'].'/'.($file_list[2][$count] ?? null).'?v='.rand(10000,99999).'" target="_blank" class="btn btn-outline-success z_index_0" type="button" data-bs-tooltip="true" data-bs-placement="top" title="Ver/Descargar"><i class="fa-solid fa-eye"></i></a>
+                      <button class="btn btn-outline-danger z_index_0" id="delete_file" type="button" value="'.($file_list[2][$count] ?? null).'" data-bs-tooltip="true" data-bs-placement="top" title="Eliminar">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
             <input class="form-control w-50 '.( isset( $file_list[2][$count] ) ? 'd-none' : null ).'" type="file" id="formFile" name="file[]">
             <div class="feedback text-start mb-3"></div>
           </div>';

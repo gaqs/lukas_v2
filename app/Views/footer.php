@@ -15,9 +15,9 @@
       <div class="col-md-5 col-lg-4 col-xl-4 mx-auto mt-4">
         <h6 class="text-uppercase mb-4 font-weight-bold">CONTACTO</h6>
         <p><i class="fa fa-home mr-3"></i> Av. Presidente Ibañez #600.<br>Edificio Consistorial II<br></p>
-        <p><i class="fa fa-envelope mr-3"></i> lukasparaemprender@puertomontt.cl</p>
-        <p><i class="fa fa-phone mr-3"></i> (+65) 2 261315</p>
-        <p><i class="fa fa-phone mr-3"></i> (+65) 2 261306</p>
+        <p><i class="fa fa-envelope mr-3"></i> lukasparaemprender@puertomontt.cl<br><i class="fa fa-envelope mr-3"></i> lukasparaemprender@gmail.com</p>
+        <p><i class="fa fa-phone mr-3"></i> (+65) 2 261315<br><i class="fa fa-phone mr-3"></i> (+65) 2 261306</p>
+        <p></p>
       </div>
       <!-- Grid column -->
 
@@ -88,7 +88,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close" name="button"></button>
       </div>
       <form action="<?= base_url('home/delete_survey'); ?>" method="post">
-
+        <?= csrf_field() ?>
         <div class="modal-body">
           <input type="hidden" name="user_survey_id" value="">
           ¿Está seguro que desea eliminar su postulación?<br><b>No podrá volver a postular a este concurso</b>.
@@ -146,6 +146,7 @@
 <script type="text/javascript" src="<?= base_url('dist/magnificpopup-1.1.0/jquery.magnific-popup.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('js/scrollreveal.js'); ?>"></script>
 <script type="text/javascript" src="<?= base_url('js/file-validator.js'); ?>"></script>
+<script type="text/javascript" src="<?= base_url('js/favloader.js'); ?>"></script>
 <script type="text/javascript" src="<?= base_url('js/scripts.js?v=0.1'); ?>"></script>
 
 <!-- Custom script -->
@@ -153,6 +154,14 @@
 
   $(document).ready(function () {
     var url = '<?= base_url(); ?>';
+
+    favloader.init({
+      size: 16,
+      radius: 6,
+      thickness: 2,
+      color: '#0F60A8',
+      duration: 5000
+    });
 
     $('.popup-youtube_1').magnificPopup({
       disableOn: 700,
@@ -162,6 +171,18 @@
       preloader: false,
       fixedContentPos: false
     });
+
+    
+    /*
+    const uploadField = document.getElementById("formFile");
+
+    uploadField.onchange = function() {
+        if(this.files[0].size > 2097152) {
+          alert("El archivo es muy pesado! Máximo 20Mb.");
+          this.value = "";
+        }
+    };
+    */
 
     var closed = document.querySelectorAll('[name="button_close"]');
 
@@ -196,17 +217,17 @@
     });
 
     $('body').on('click', '#save_form, #send_form', function (event) {
+      favloader.start();
       event.preventDefault();
       var button = $(this).val();
       var send = false;
       //verifica que no haya inputs text y textarea vacios
       const fields = document.querySelectorAll("#form input[type=text]:not(.optional), #form select, #form textarea:not(.d-none)");
-      //console.log(fields);
       const emptyInputs = Array.from(fields).filter(input => input.value == "");
       //verifica que esten todos los archivos, o si falta uno que al menos tenga un archivo compatible
-      const files = document.querySelectorAll("#form input[name='file[]']");
+      const files = document.querySelectorAll("#form input[name='file[]']:not(.optional)");
       const emptyFiles = Array.from(files).filter(
-        input => input.classList[2] != "d-none" && input.value == ""
+        input => input.classList[2] != "d-none" && input.value == "" && input.classList != "optional"
       ); 
       if (emptyInputs.length === 0 && emptyFiles.length == 0) {
         send = true;
@@ -277,7 +298,7 @@
               $('#error_change_password').addClass('alert-danger').html(obj.data);
             } else if (obj.status == 'success') {
               $('#error_change_password').addClass('alert-success').html(obj.data);
-              setTimeout(function () { window.location.href = url + '/users/logout'; }, 3000)
+              //setTimeout(function () { window.location.href = url + '/users/logout'; }, 3000)
             }
           }
         });

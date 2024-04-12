@@ -1,4 +1,5 @@
 <form class="" action="<?= base_url('admin/admins'); ?>" method="post">
+<?= csrf_field() ?>
   <div class="card mb-3">
     <div class="card-header">
       <div class=""> Registro Administrador </div>

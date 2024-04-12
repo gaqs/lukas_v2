@@ -18,7 +18,7 @@
 								</div>
 								<?php endif ?>
 								<div class="alert alert-warning" role="alert">
-									<small>Si se encuentra con algún problema y/o error al momento de registrarse, no dude en contactarse al correo <b>soporte@lukasparaemprender.cl</b>.</small>
+									<small>Si se encuentra con algún problema y/o error al momento de registrarse, no dude en contactarse al correo <b>lukasparaemprender@gmail.com</b>.</small>
 								</div>
 								<div class="row mb-4 d-none">
 									<div class="mt-4 mb-0">

@@ -6,7 +6,7 @@
   </style>
 
   <div class="back"></div> <!-- background slider y menu header -->
-  <div id="carousel_header" class="carousel slide" data-bs-ride="carousel">
+  <div id="carousel_header" class="carousel slide" data-bs-ride="false">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carousel_header" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carousel_header" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -16,6 +16,7 @@
       <div class="carousel-item active">
         <div class="container d-grid">
           <div class="row justify-content-center">
+            <div id="date_banner" class="">Del 15 de Abril al 05 de Mayo</div>
             <div class="col-3 offset-md-2 align-self-center">
               <img src="<?= base_url('public/img/lukitas_border.png'); ?>" class="w-100" alt="">
             </div>
@@ -49,9 +50,9 @@
               </h1>
               <hr class="text-white">
               <h2 class="text-white">
-                Haga <a href="<?= base_url('public/files/concursos/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2023.pdf?v=0.1'); ?>" target="_blank">CLICK AQUÍ</a> para descargar
+                Haga <a href="<?= base_url('public/files/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2024.pdf?v=0.1'); ?>" target="_blank">CLICK AQUÍ</a> para descargar
               </h2>
-              <h5 class="text-white mt-3">Del 21 de Abril al 19 de Mayo</h5>
+              <h5 class="text-white mt-3">Del 15 de Abril al 05 de Mayo</h5>
             </div>
           </div>
         </div>
@@ -90,37 +91,34 @@
   </div>
 
   <!-- GANADORES E INFORMACION -->
-  <section id="info" class="d-none">
+  <section id="info" class="">
     <div class="container my-5 text-center">
       <div class="row justify-content-center d-flex align-items-center mb-5">
-
-        <div class="col-md-3 col-7">
-          <img src="<?= base_url('public/img/trofeo.png'); ?>" class="w-100" alt="">
-        </div>
-        <div class="col-md-6">
-          <div class="alert alert-success m-0" role="alert">
-          <h3 style="font-weight:700;" class="mb-0 fs-1">GANADORES</h3>
-            <h4 class="alert-heading" style="font-weight:700;">Lukas para Emprender 2023</h4>
-            <p>Con fecha 31 dde Julio del 2023 finalizo el proceso de evalucion de los proyectos postulados al concurso Lukas para Emprender en las categorias Emprendimiento, Emprendimiento Rural, Mujer Pescadora Artesanal, y Empresa.</p>
-            <h5>
-              <a class="btn btn-success btn-lg w-50" href="<?= base_url('public/files/GANADORES_LUKASPARAEMPRENDER_2023.pdf?v=0.3'); ?>" class="text-decoration-none" target="_blank">
-                <i class="fa-solid fa-eye"></i> VER AQUI
-              </a> 
-            </h5>
+        <div class="d-none">
+          <div class="col-md-3 col-7">
+            <img src="<?= base_url('public/img/trofeo.png'); ?>" class="w-100" alt="">
+          </div>
+          <div class="col-md-6">
+            <div class="alert alert-success m-0" role="alert">
+            <h3 style="font-weight:700;" class="mb-0 fs-1">GANADORES</h3>
+              <h4 class="alert-heading" style="font-weight:700;">Lukas para Emprender 2023</h4>
+              <p>Con fecha 31 dde Julio del 2023 finalizó el proceso de evalución de los proyectos postulados al concurso Lukas para Emprender en las categorias Emprendimiento, Emprendimiento Rural, Mujer Pescadora Artesanal, y Empresa.</p>
+              <h5>
+                <a class="btn btn-success btn-lg w-50" href="<?= base_url('public/files/GANADORES_LUKASPARAEMPRENDER_2023.pdf?v=0.3'); ?>" class="text-decoration-none" target="_blank">
+                  <i class="fa-solid fa-eye"></i> VER AQUI
+                </a> 
+              </h5>
+            </div>
           </div>
         </div>
-
-        <div class="col-md-6">
-          <div class="alert alert-info" role="alert" style="overflow:hidden;">
-            <div class="red_band"><b>Cupos Limitados</b></div>
-            <h4 class="alert-heading" style="font-weight:700;">¡ÚLTIMA CHARLA DE<br>ACLARACIÓN DE BASES!</h4>
-            <h4 style="font-weight:500;">16 de Mayo a las 10:00 hrs.</h4>
+        <div class="col-md-10">
+          <div class="alert alert-info m-0" role="alert" style="overflow:hidden;">
+            <div class="red_band d-none"><b>Cupos Limitados</b></div>
+            <h4 class="alert-heading" style="font-weight:700;">CHARLAS DE ACLARACIÓN DE BASES Y ORIENTACIÓN</h4>
+            <h4 style="font-weight:500;">del 16  al 29 de Abril entre las 10:00 y 17:00 hrs.</h4>
             <hr>
             <h5>
-              Haga <a href=https://forms.gle/RGvG28Zr58WtqeJY9 class="text-decoration-none" target="_blank">
-                CLICK AQUI
-              </a> para inscribirse.<br>
-              <small>O'Higgins 236, 2do piso. Anexo Municipal.</small>
+              <small>Mayor información en las bases de postulación del concurso.</small>
             </h5>
           </div>
         </div>
@@ -169,7 +167,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Leer bases del concurso</h5>
                   <p class="card-text">Lea detenidamente las bases del concurso, las puede descargar desde el siguiente link:</p>
-                  <a href="<?= base_url('public/files/concursos/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2023.pdf?v=0.1'); ?>" class="text-decoration-none" target="_blank"> <i class="fa-solid fa-download"></i> Bases del Concurso Lukas para Emprender 2024
+                  <a href="<?= base_url('public/files/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2024.pdf?v=0.1'); ?>" class="text-decoration-none" target="_blank"> <i class="fa-solid fa-download"></i> Bases del Concurso Lukas para Emprender 2024
                 </a>
                 </div>
               </div>
@@ -188,7 +186,7 @@
               <div class="col-md-10">
                 <div class="card-body">
                   <h5 class="card-title">Elegir categoria </h5>
-                  <p class="card-text">Luego de crearse una cuenta y leer las bases del concurso, elija una de las 3 categorias a continuación.</p>
+                  <p class="card-text">Luego de crearse una cuenta y leer las bases del concurso, elija una de las 4 categorias a continuación.</p>
                 </div>
               </div>
             </div>
@@ -333,10 +331,10 @@
         </div>
         <div class="col-md-6">
           <h1 class="display-1 passion-one-font fw-bold lh-1 mb-3">Necesitas<br>ayuda?</h1>
-          <p>Puede acercarse a nuestras oficinas ubicadas en:<br><b>Avda. Pdte. Ibáñez 600, 2do piso - Edificio Consistorial II</b>.<br><br>Comunicarse via correo electrónico a:<br> <b>lukasparaemprender@puertomontt.cl</b><br><br>o directamente haciendo click en en botón a continuación.</p>
+          <p>Puede acercarse a nuestras oficinas ubicadas en:<br><b>Avda. Pdte. Ibáñez 600, 2do piso - Edificio Consistorial II</b>.<br><br>Comunicarse via correo electrónico a:<br> <b>lukasparaemprender@puertomontt.cl</b><br><b>lukasparaemprender@gmail.com</b><br><br>o directamente haciendo click en en botón a continuación.</p>
           <a class="btn btn-light text-primary mb-3" href="<?= base_url('home/help'); ?>"><i class="fa-solid fa-circle-question"></i> Contactar soporte</a>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6">z
           <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item bg-transparent border border-secondary rounded">
               <h2 class="accordion-header" id="flush-headingOne">

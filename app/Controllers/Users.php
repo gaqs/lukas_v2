@@ -115,7 +115,7 @@ class Users extends BaseController
         $send = send_email($data['email'], '', 'Registrado correctamente', $message, '');
 
         if ($send) {
-          return redirect()->to(base_url('users'))->with('success', 'Registrado correctamente. Hemos enviado un correo electrónico con sus datos. <b>Ya puede iniciar sesión.</b><br><br><small>(De no ver el correo de notificación, revise su carpeta <b>SPAM</b>).</small>');
+          return redirect()->to(base_url('users'))->with('success', 'Registrado correctamente. Hemos enviado un correo electrónico para validar sus datos.<br><br><small>(De no ver el correo de notificación, revise su carpeta <b>SPAM</b>).</small>');
         } else {
           return redirect()->to(base_url('users'))->with('failure', 'Error al enviar el correo con sus datos de registro.');
         }
@@ -344,7 +344,7 @@ class Users extends BaseController
           'validate_rut' => 'El RUT ingresado contiene errores.'
         ],
         'email' => [
-          'verified_user' => 'Correo electrónico no validado.<br>Haga <a href="' . base_url('users/resend_validation') . '?rut={value}">click aquí</a> para reenviar el correo de validación.'
+          'verified_user' => 'Correo electrónico aún no validado.<br><b>Revise su carpeta SPAM</b>, de no encontrar el correo de validación, haga <a href="' . base_url('users/resend_validation') . '?rut={value}" class="link_something">click aquí</a> para reenviar.'
         ]
       ];
 
@@ -482,10 +482,10 @@ class Users extends BaseController
         ];
         $user_model->save($userData);
         $data['status'] = 'success';
-        $data['data'] = 'Contraseña Actualizada. <b>Cerrando sesión...</b>';
+        $data['data'] = 'Contraseña Actualizada.';
       }else{
         $data['status'] = 'error';
-        $data['data'] = 'Contraseña actual incorrecta';
+        $data['data'] = 'Contraseña actual incorrecta.';
       }
     } //end password
     echo json_encode($data);

@@ -18,6 +18,7 @@
                         <small><b>¿Olvidaste tu contraseña?</b> No te preocupes! Sólo ingresa tu RUT y correo electrónico asociado y te enviaremos un link para que la puedas cambiar.</small>
                      </div>
                      <form action="<?= base_url('users/forgot');?>" method="post">
+                        <?= csrf_field() ?>
                         <div class="form-floating mb-3">
                           <input class="form-control" id="input_rut" type="text" name="rut" value="<?= set_value('rut');?>" placeholder="12356789-0" oninput="checkRut(this)" maxlength="12"/>
                           <label for="input_rut">RUT</label>

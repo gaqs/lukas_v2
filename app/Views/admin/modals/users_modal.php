@@ -7,6 +7,7 @@
         </div>
         <div class="card-body">
           <form id="user_info" class="" action="<?= base_url('users/profile'); ?>" method="post">
+          <?= csrf_field() ?>
             <input type="hidden" name="id" value="<?= $user['user_id']; ?>">
             <div class="row">
               <div class="col-md-4 mb-3">

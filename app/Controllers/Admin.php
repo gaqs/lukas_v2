@@ -452,13 +452,22 @@ class Admin extends BaseController
       array_map('unlink', glob( $files_directory . $file_name ));
     }//end delete_file
 
-    public function show_email(){
-      $data['name'] = 'Gustavo';
-      $data['lastname'] = 'Quilodran';
-      $data['rut'] = '17513256-2';
-      $data['password'] = 'ASDASD';
+    public function test_email(){
+      $data = [
+        'name'                      => 'Gustavo',
+        'lastname'                  => 'Quilodran',
+        'rut'                       => '17513256-2',
+        'email'                     => 'gaqs.02@gmail.com',
+        'password'                  => '132456',
+        'email_verification_token'  => 'token',
+        'link' => 'link'
+      ];
+      //'email_verified_at'         => date('y-m-d H:i:s')
 
-      echo view('emails/registered',$data);
+      $message = view('emails/validation', $data);
+      //$message = view('emails/registered', $data);
+
+      $send = send_email($data['email'], '', 'Registrado correctamente', $message, '');
     }
 
 }//end class

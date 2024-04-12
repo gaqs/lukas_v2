@@ -54,7 +54,7 @@ class Home extends BaseController
           if ($query[0]['results_id'] == '4') {
             return redirect()->to( base_url() )->with('failure','No es posible ingresar a este concurso. Usuario retirado.');
           }else if( $query[0]['results_id'] != '1' ){
-            return redirect()->to( base_url() )->with('success','Formulario correctamente enviado, no es posible editarlo.');
+            return redirect()->to( base_url() )->with('success','<b>Postulación enviada correctamente</b>. Se ha enviado un correo con la confirmación de su postulación.<br><small>(De no ver el correo de confirmación, revise su carpeta <b>SPAM</b>).');
           }else{
             $data['answers'] = reorder_answers($query);
           }
@@ -95,7 +95,7 @@ class Home extends BaseController
                     ->get()
                     ->getResultArray();
 
-        if( empty($query) ){ //( && $button == 'save_form') primer formulario que llena el usuario
+        if( empty($query) && $button == 'save_form' ){ //( && $button == 'save_form') primer formulario que llena el usuario
           $userData = [
             'user_id'     => session()->get('id'),
             'surveys_id'  => $data['survey_id'],
@@ -210,7 +210,7 @@ class Home extends BaseController
             $send = send_email(session()->get('email'), '', 'Postulación confirmada', $message, '');
 
             $resp['status'] = 'success';
-            session()->setFlashdata('success','Postulación enviada correctamente. Se ha enviado un correo con la informacion de postulación.<br><small>(De no ver el correo de notificación, revise su carpeta <b>SPAM</b>).</small>');
+            session()->setFlashdata('success','<b>Postulación enviada correctamente</b>. Se ha enviado un correo con la confirmación de su postulación.<br><small>(De no ver el correo de confirmación, revise su carpeta <b>SPAM</b>).');
           }else{
             $resp['status'] = 'error';
             session()->setFlashdata('failure','Tiene campos sin completar, <b>SU POSTULACIÓN NO SE HA ENVIADO</b>.');

@@ -30,7 +30,7 @@
     <meta property="twitter:image" content="<?= base_url('img/default.jpg');?>">
 
     <!-- Icon -->
-    <link rel="icon" type="image/x-icon" href="<?= base_url('img/icon/default.png');?>">
+    <link rel="icon" type="image/x-icon" href="<?= base_url('img/icons/dideco_logo.png');?>">
     
 		<!-- Css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url('dist/bootstrap-5.1.3/css/bootstrap.css');?>">
@@ -39,7 +39,7 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/animate.css');?>">
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/hover.css');?>">
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/dashboard.css');?>">
-    <link rel="stylesheet" type="text/css" href="<?= base_url('css/styles.css?v=1.97');?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('css/styles.css?v=1.98');?>">
 
     <!-- Scripts -->
     <script type="text/javascript" src="<?= base_url('js/jquery-3.6.0.js'); ?>"></script>

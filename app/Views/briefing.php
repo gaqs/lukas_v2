@@ -7,8 +7,8 @@
             <div class="col-md-8">
               <h1 class="display-3 passion-one-font fw-bold">¡Atención!</h1>
               <h5>
-                <a href="<?= base_url('public/files/concursos/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2023.pdf?v=0.1'); ?>" class="mb-3 text-decoration-none" target="_blank">
-                  <i class="fa-solid fa-download"></i> Descargar aquí las bases del Concurso
+                <a href="<?= base_url('public/files/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2024.pdf?v=0.1'); ?>" class="mb-3 text-decoration-none" target="_blank">
+                  <i class="fa-solid fa-download"></i> Bases del Concurso Lukas para Emprender 2024 
                 </a>
               </h5>
               <br>

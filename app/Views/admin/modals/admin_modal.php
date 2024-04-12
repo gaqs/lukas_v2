@@ -1,4 +1,5 @@
 <form id="admin_info" class="" action="<?= base_url('admin/edit_admin');?>" method="post">
+<?= csrf_field() ?>
   <div class="card mb-3">
     <div class="card-header">
       <div class=""> Editar Administrador </div>

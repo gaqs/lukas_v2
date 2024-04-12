@@ -5,6 +5,7 @@
     <meta http-equiv="Last-Modified" content="Saturday, 5-Sep-20 14:33:00 GMT">
     <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
     <meta http-equiv="Pragma" content="no-cache">
+    <meta name="csrf-token" content="<?= csrf_hash(); ?>" >
 
     <meta charset="utf-8">
     <meta http-equiv="X-Frame-Options" content="allow-from https://www.youtube.com/">

@@ -56,10 +56,10 @@
       "titulo": "Documentación necesaria",
       "archivos": {
         "0": "Cedula de identidad <b>POR AMBOS LADOS</b>.",
-        "1": "Certificado de Residencia (Enero a Mayo 2024, junta de vecinos o notarial) o Cartola de Registro Social de Hogares.",
-        "2": "Certificado RPA vigente, emitido por el SERNAPESCA, con antiguedad menor a 30 días corridos del cierre del concurso.",
-        "3": "Otros Permisos (Permiso Municipal, Declaracion Jurada Permiso Sanitario, SEC, SAG, otros).",
-        "4": "Acreditación emprendimiento informal (redes sociales, fotografías, permisos municipales con fecha entre Enero y Mayo 2024)."
+        "1": "Certificado de Residencia (Enero a Mayo 2024, junta de vecinos, UCJV o notarial) o Cartola de Registro Social de Hogares.",
+        "2": "Otros Permisos (Permiso Municipal, Declaracion Jurada Permiso Sanitario, SEC, SAG, otros). Emprendimientos relacionados a alimentación y plantas, <a href='../files/docs/DECLARACION_JURADA_PERMISO_SANITARIO_2024.pdf'>descargar aquí declaración jurada simple</a>. *Opcional.",
+        "3": "Acreditación emprendimiento informal (redes sociales, fotografías, permisos municipales con fecha entre Enero y Mayo 2024).",
+        "4": "Certificado RPA vigente, emitido por el SERNAPESCA, con antiguedad menor a 30 días corridos del cierre del concurso."
       }
     }
   }

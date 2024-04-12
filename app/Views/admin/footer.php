@@ -62,7 +62,8 @@
   $(document).ready(function () {
 
     var url = "<?= base_url() ?>";
-
+    var _token = $('meta[name="csrf-token"]').attr('content');
+    
     //cambia icono izq boton por icono carga y bloquea boton
     $('body').on('click', '.submit_something', function () {
       $(this).addClass('disabled')
@@ -116,6 +117,7 @@
         data: formData,
         processData: false,
         contentType: false,
+        headers: { 'X-CSRF-TOKEN': _token },
         success: function (html) {
           //console.log(html);
           location.reload();
@@ -147,6 +149,7 @@
           data: formData,
           processData: false,
           contentType: false,
+          headers: { 'X-CSRF-TOKEN': _token },
           success: function (html) {
             location.reload();
           }
@@ -186,6 +189,7 @@
         data: formData,
         processData: false,
         contentType: false,
+        headers: { 'X-CSRF-TOKEN': _token },
         success: function (html) {
           var obj = JSON.parse(html);
           if (obj.status == 'success') {
@@ -209,21 +213,27 @@
     });
 
     $('body').on('click', '#delete_file', function () {
-      $(this).parents('#uploadedFile').addClass('d-none');
-      $(this).parents('#uploadedFile').next('#formFile').removeClass('d-none').val('');
 
-      var survey_id = $('input[name="survey_id"]').val();
-      var file_name = $(this).val();
-      var rut = $('#input_rut').val();
+      var confirm = window.confirm('¿Está seguro que desea borrar el archivo?');
 
-      $.ajax({
-        url: url + "/admin/delete_file",
-        type: "POST",
-        data: "survey_id=" + survey_id + "&file_name=" + file_name + "&rut=" + rut,
-        success: function (html) {
-          //console.log(html);
-        }
-      });
+      if( confirm ){
+        $(this).parents('#uploadedFile').addClass('d-none');
+        $(this).parents('#uploadedFile').next('#formFile').removeClass('d-none').val('');
+
+        var survey_id = $('input[name="survey_id"]').val();
+        var file_name = $(this).val();
+        var rut = $('#input_rut').val();
+
+        $.ajax({
+          url: url + "/admin/delete_file",
+          type: "POST",
+          data: "survey_id=" + survey_id + "&file_name=" + file_name + "&rut=" + rut,
+          headers: { 'X-CSRF-TOKEN': _token },
+          success: function (html) {
+            //console.log(html);
+          }
+        });
+      }
     });
 
 
@@ -237,8 +247,6 @@
       document.getElementById('button_random').previousElementSibling.removeAttribute('readonly');
       $('#input_password_admin').val(retVal);
     });
-
-  
 
     //popup de mensaje de exito y error
     var success = "<?= session()->get('success'); ?>";
@@ -255,9 +263,6 @@
       $('#alert_toast .toast-body').html(failure);
       $('#alert_toast').toast('show');
     }
-
-
-
 
 
     //scripts especificos para cada concurso.

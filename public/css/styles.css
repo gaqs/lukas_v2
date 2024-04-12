@@ -243,6 +243,18 @@ top: 40px;
 left: -60px;
 }
 
+#date_banner{
+  position: absolute;
+  color: white;
+  background: #dc3545;
+  font-size: 1.5rem;
+  text-align: center;
+  //transform: rotate(-45deg);
+  //padding: 10px;
+  //top: 220px;
+  left: 0;
+}
+
 
 @media (max-width: 576px) {
   .red_band{

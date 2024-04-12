@@ -82,45 +82,34 @@ function send_email($send_to, $send_cc, $subject, $message, $attach){
   $email = \Config\Services::email();
 
   $config = Array(
-							'protocol' => 'smtp',
-							'SMTPHost' => 'mail.lukasparaemprender.com',
-							'SMTPPort' => '587',
-              'SMTPUser' => 'postmaster_3@lukasparaemprender.com',
-              'SMTPPass' => 'jI!m%S?z}0Gj',
-							'mailType' => 'html',
-							'charset'  => 'utf-8',
-							'newline'	 => "\r\n"
+							'protocol' => getenv('email.default.protocol'),
+							'SMTPHost' => getenv('email.default.smtphost'),
+							'SMTPPort' => getenv('email.default.smtpport'),
+              'SMTPUser' => getenv('email.default.smtpuser'),
+              'SMTPPass' => getenv('email.default.smtppass'),
+							'mailType' => getenv('email.default.type'),
+							'charset'  => getenv('email.default.charset'),
+							'newline'	 => getenv('email.default.newline')
 						);
             
-            //'SMTPUser' => 'postmaster@lukasparaemprender.com',
-            //'SMTPPass' => 'g3@N1Phrd=JL',
-            //'SMTPUser' => 'postmaster_2@lukasparaemprender.com',
-            //'SMTPPass' => ')GlLqkw$hZg0',
-            //'SMTPUser' => 'postmaster_3@lukasparaemprender.com',
-            //'SMTPPass' => 'jI!m%S?z}0Gj',
-            //'SMTPUser' => 'postmaster_4@lukasparaemprender.com',
-            //'SMTPPass' => '^h+JZz}#q5t@',
-
   $email->initialize($config);
 
-  $email->setFrom('postmaster@lukasparaemprender.com', 'Lukas para Emprender');
+  $email->setFrom('noreply@lukasparaemprender.cl', 'Lukas para Emprender');
   $email->setTo($send_to);
   $send_cc != '' ? $email->setCC($send_cc): false;
   $attach != '' ? $email->attach($attach): false;
   $email->setSubject($subject);
   $email->setMessage($message);
 
-  $email->send();
-  return true;
-
-  /*
+  //$email->send();
+  
   if ( $email->send() ){
     return true;
   } else {
     echo $email->printDebugger();
     return false;
   }
-  */
+  
 
 }//end send_email
 
