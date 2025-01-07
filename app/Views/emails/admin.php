@@ -150,7 +150,7 @@
                     <span class="apple-link" style="color: #999999; font-size: 12px; text-align: center;">
                       <!-- footer text -->
                     </span>
-                    <br> Nuestra página, <a href="https://www.lukasparaemprender.com/" style="text-decoration: underline; color: #999999; font-size: 12px; text-align: center;">Lukas para Emprender</a>
+                    <br> Nuestra página, <a href="https://www.lukasparaemprender.cl/" style="text-decoration: underline; color: #999999; font-size: 12px; text-align: center;">Lukas para Emprender</a>
                   </td>
                 </tr>
                 <tr>

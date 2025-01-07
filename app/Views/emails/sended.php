@@ -121,7 +121,7 @@
                             <tr>
                               <td align="left" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 5px;" valign="top">
                                 <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 10px; ">
-                                  Muchas gracias por completar correctamente el formulario del 14to concurso de <b>Luka$ para Emprender</b>, su postulación ha sido recibida correctamente con fecha <b><?= $update_date; ?></b>.
+                                  Muchas gracias por completar correctamente el formulario del concurso de <b>Luka$ para Emprender</b>, su postulación ha sido recibida correctamente con fecha <b><?= $update_date; ?></b>.
                                   <br><br>
                                   Puede revisar el estado de su postulación en su perfil, sección "Mis Postulaciones".
                                   <br><br>
@@ -155,7 +155,7 @@
                     <span class="apple-link" style="color: #999999; font-size: 12px; text-align: center;">
                       <!-- footer text -->
                     </span>
-                    <br> Nuestra página, <a href="https://www.lukasparaemprender.com/" style="text-decoration: underline; color: #999999; font-size: 12px; text-align: center;">Lukas para Emprender</a><br>
+                    <br> Nuestra página, <a href="https://www.lukasparaemprender.cl/" style="text-decoration: underline; color: #999999; font-size: 12px; text-align: center;">Lukas para Emprender</a><br>
                     <a href="https://www.puertomontt.cl/" style="color: #999999; font-size: 12px; text-align: center; ">Municipalidad de Puerto Montt</a>
                   </td>
                 </tr>

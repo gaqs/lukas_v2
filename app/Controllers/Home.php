@@ -5,7 +5,6 @@ use App\Models\UserModel;
 use App\Models\UsersBankModel;
 use App\Models\UsersSurveysModel;
 use App\Models\SurveyAnswersModel;
-use CodeIgniter\Files\File;
 
 class Home extends BaseController
 {
@@ -18,7 +17,11 @@ class Home extends BaseController
       echo view('footer');
     }
 
-    public function forms(){
+    Public function forms(){
+      echo 'Concurso Lukas para Emprender 2024 concluido!<br> Muchas gracias por participar!';
+    }
+
+    public function _forms(){
       $db = db_connect();
       $survey_answer    = new SurveyAnswersModel();
       $users_surveys    = new UsersSurveysModel();
@@ -157,11 +160,15 @@ class Home extends BaseController
         $users_bank_model->save($bankData);
 
         //manejo de archivos del formulario
+        $file_error = '';
         if ( $files ) {
           $aux = '1';
-          foreach ($files as $key => $value) {
-            manage_files( $aux, $files, $key, $files_directory ); //manage_files( $seccion formulario, $arreglo completo archivos, $key del array, $directorio )
+          foreach ($files as $key => $value) { //si contiene mas de un tipo de archivo (comp y file)
+            $archivo = manage_files( $aux, $files, $key, $files_directory ); //manage_files( $seccion formulario, $arreglo completo archivos, $key del array, $directorio )
             $aux++;
+            if($archivo == false){
+              $file_error = '<br><br>No fue posible subir todos sus archivos. Algunos contienen errores.';
+            }
           }
         }
 
@@ -210,10 +217,10 @@ class Home extends BaseController
             $send = send_email(session()->get('email'), '', 'Postulación confirmada', $message, '');
 
             $resp['status'] = 'success';
-            session()->setFlashdata('success','<b>Postulación enviada correctamente</b>. Se ha enviado un correo con la confirmación de su postulación.<br><small>(De no ver el correo de confirmación, revise su carpeta <b>SPAM</b>).');
+            session()->setFlashdata('success','<b>POSTULACIÓN ENVIADA CORRECTAMENTE</b>.<br>Se ha enviado un correo con la confirmación de su postulación.<br><small>(De no ver el correo de confirmación, revise su carpeta <b>SPAM</b>).');
           }else{
             $resp['status'] = 'error';
-            session()->setFlashdata('failure','Tiene campos sin completar, <b>SU POSTULACIÓN NO SE HA ENVIADO</b>.');
+            session()->setFlashdata('failure','Tiene campos sin completar, <b>Postulación aún no enviada</b>.');
           }
         }else{
           $data = [
@@ -223,7 +230,7 @@ class Home extends BaseController
           $users_surveys->save($data);
 
           $resp['status'] = 'success';
-          session()->setFlashdata('success','Datos guardados correctamente.<br><b>RECUERDE QUE SU POSTULACIÓN AUN NO SE HA ENVIADO.</b>');
+          session()->setFlashdata('success','FORMULARIO GUARDADO CORRECTAMENTE.<br><b>Postulación aún no enviada</b>'. $file_error);
         }//end if send_form
 
         echo json_encode($resp);
@@ -279,8 +286,8 @@ class Home extends BaseController
       $survey_id = $this->request->getVar('survey_id');
       $file_name = $this->request->getVar('file_name');
       $files_directory  = ROOTPATH . 'public/files/usuarios/' . session()->get('rut') . '/' . $survey_id . '/';
-      //var_dump($files_directory);
-      array_map('unlink', glob( $files_directory . $file_name ));
+      var_dump($files_directory);
+      array_map('unlink', glob( $files_directory . $file_name )); 
     }//end delete_file
 
     public function help(){

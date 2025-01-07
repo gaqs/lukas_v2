@@ -62,7 +62,7 @@
         <?php else: ?>
 
           <li class="nav-item nav_register">
-            <a class="nav-link"  href="<?= base_url('users/register'); ?>">
+            <a class="nav-link disabled"  href="<?= base_url('users/register'); ?>">
               <i class="fas fa-user-plus ml-1"></i> Registrarse
             </a>
           </li>

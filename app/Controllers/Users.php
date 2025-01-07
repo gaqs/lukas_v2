@@ -58,7 +58,11 @@ class Users extends BaseController
   } //end index
 
 
-  public function register()
+  public function register(){
+    echo 'No es posible registrarse, concurso concluido el dia 05/Mayo a las 23:59.';
+  }
+
+  public function _register()
   {
     $data = [];
     if ($this->request->getMethod() == 'post') {
@@ -115,7 +119,7 @@ class Users extends BaseController
         $send = send_email($data['email'], '', 'Registrado correctamente', $message, '');
 
         if ($send) {
-          return redirect()->to(base_url('users'))->with('success', 'Registrado correctamente. Hemos enviado un correo electrónico para validar sus datos.<br><br><small>(De no ver el correo de notificación, revise su carpeta <b>SPAM</b>).</small>');
+          return redirect()->to(base_url('users'))->with('success', 'Registrado correctamente. Hemos enviado un correo electrónico para validar sus datos.<br><small>(De no ver el correo de notificación, revise su carpeta <b>SPAM</b>).</small>');
         } else {
           return redirect()->to(base_url('users'))->with('failure', 'Error al enviar el correo con sus datos de registro.');
         }

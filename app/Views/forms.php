@@ -1,4 +1,5 @@
 <?php
+helper('form');
 $json = json_decode($content);
 $formulario = (array) $json->formulario;
 ?>
@@ -150,7 +151,7 @@ $formulario = (array) $json->formulario;
                 <label for="input_datos_' . $count . '" class="form-label mb-1">' . ($count + 1) . '.- ' . $key->pregunta . '
                   <i class="fa-solid fa-circle-question help_icon" data-bs-toggle="popover"  data-bs-custom-class="custom_popover" data-bs-trigger="hover focus" data-bs-html="true" data-bs-content="<b>Ejemplo</b>. ' . $key->ejemplo . '"></i>
                 </label>
-                <input type="text" class="form-control" id="input_datos_' . $count . '" name="data[0][' . $count . ']" value="' . ($answers[0][$count] ?? null) . '">
+                <input type="text" class="form-control" id="input_datos_' . $count . '" name="data[0][' . $count . ']" value="' . set_value("data[0][".$count."]", $answers[0][$count] ?? null) . '">
               </div>';
           $count++;
         }
@@ -164,14 +165,13 @@ $formulario = (array) $json->formulario;
         foreach ($formulario[$i]->cuestionario as $key) {
 
           if (isset($key->pregunta)) {
-
             echo '<div class="mb-4">
                 <label for="textarea_cuestionario_' . $count . '" class="form-label label_questions">
                 ' . ($count + 1) . '.- ' . $key->pregunta . '
-                  <i tabindex=0 class="fa-solid fa-circle-question help_icon" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-custom-class="custom_popover" data-bs-html="true" data-bs-content="<b>Considere las siguientes preguntas orientadoras.</b> ' . $key->ejemplo . '"></i>
+                  <i tabindex=0 class="fa-solid fa-circle-question help_icon" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-custom-class="custom_popover" data-bs-html="true" data-bs-content="' . $key->ejemplo . '"></i>
                   <span class="letter_count">3000</span>
                 </label>
-                <textarea class="form-control mb-3 textarea_cuestionario" id="textarea_cuestionario_' . $count . '" rows="5" data-limit=3000 name="data[1][' . $count . ']">' . set_value('data[1]['.$count.']', $answers[1][$count] ?? null ) . '</textarea>
+                <textarea class="form-control mb-3 textarea_cuestionario" id="textarea_cuestionario_' . $count . '" rows="5" data-limit=3000 name="data[1][' . $count . ']">' . set_value("data[1][".$count."]", $answers[1][$count] ?? null ) . '</textarea>
               </div>';
 
           }
@@ -261,7 +261,7 @@ $formulario = (array) $json->formulario;
                     </div>
                   </div>
                 </div>
-              <input class="form-control w-50 ' . (isset($file_list[2][$count]) ? 'd-none' : null) . ($count+1 == 3 ? 'optional':'').'" type="file" id="formFile" name="file[]">
+              <input class="form-control w-50 ' . (isset($file_list[2][$count]) ? 'd-none' : null) .' '. ($count+1 == 3 ? 'optional':'').'" type="file" id="formFile" name="file[]">
               <div class="feedback text-start mb-3"></div>
             </div>';
           $count++;

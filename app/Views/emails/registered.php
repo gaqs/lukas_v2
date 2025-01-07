@@ -128,7 +128,7 @@
                         <br>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">
                           Para ingresar a la página y concursar haz click en el siguiente link<br>
-                          <a href="https://www.lukasparaemprender.com/users" target="_blank">https://www.lukasparaemprender.com/users</a><br>
+                          <a href="https://www.lukasparaemprender.cl/users" target="_blank">https://www.lukasparaemprender.cl/users</a><br>
                           
                         </p>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">
@@ -152,7 +152,7 @@
                     <span class="apple-link" style="color: #999999; font-size: 12px; text-align: center;">
                       <!-- footer text -->
                     </span>
-                    <br> Nuestra página, <a href="https://www.lukasparaemprender.com/" style="text-decoration: underline; color: #999999; font-size: 12px; text-align: center;">Lukas para Emprender</a><br>
+                    <br> Nuestra página, <a href="https://www.lukasparaemprender.cl/" style="text-decoration: underline; color: #999999; font-size: 12px; text-align: center;">Lukas para Emprender</a><br>
                     <a href="https://www.puertomontt.cl/" style="color: #999999; font-size: 12px; text-align: center;">Municipalidad de Puerto Montt</a>
                   </td>
                 </tr>

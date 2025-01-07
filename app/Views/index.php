@@ -6,7 +6,7 @@
   </style>
 
   <div class="back"></div> <!-- background slider y menu header -->
-  <div id="carousel_header" class="carousel slide" data-bs-ride="false">
+  <div id="carousel_header" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carousel_header" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carousel_header" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -16,7 +16,7 @@
       <div class="carousel-item active">
         <div class="container d-grid">
           <div class="row justify-content-center">
-            <div id="date_banner" class="">Del 15 de Abril al 05 de Mayo</div>
+            <div id="date_banner" class="">¡MUCHAS GRACIAS POR PARTICIPAR!</div>
             <div class="col-3 offset-md-2 align-self-center">
               <img src="<?= base_url('public/img/lukitas_border.png'); ?>" class="w-100" alt="">
             </div>
@@ -50,7 +50,7 @@
               </h1>
               <hr class="text-white">
               <h2 class="text-white">
-                Haga <a href="<?= base_url('public/files/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2024.pdf?v=0.1'); ?>" target="_blank">CLICK AQUÍ</a> para descargar
+                Haga <a href="<?= base_url('public/files/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2024.pdf?v=0.3'); ?>" target="_blank">CLICK AQUÍ</a> para descargar
               </h2>
               <h5 class="text-white mt-3">Del 15 de Abril al 05 de Mayo</h5>
             </div>
@@ -93,36 +93,58 @@
   <!-- GANADORES E INFORMACION -->
   <section id="info" class="">
     <div class="container my-5 text-center">
-      <div class="row justify-content-center d-flex align-items-center mb-5">
-        <div class="d-none">
+      <div class="row justify-content-center d-flex mb-5">
+      <h1 class="display-3 passion-one-font fw-bold mb-2">Noticias</h1>
+
+        <div class="row">
           <div class="col-md-3 col-7">
             <img src="<?= base_url('public/img/trofeo.png'); ?>" class="w-100" alt="">
           </div>
-          <div class="col-md-6">
+          <div class="col-md-8">
             <div class="alert alert-success m-0" role="alert">
-            <h3 style="font-weight:700;" class="mb-0 fs-1">GANADORES</h3>
-              <h4 class="alert-heading" style="font-weight:700;">Lukas para Emprender 2023</h4>
-              <p>Con fecha 31 dde Julio del 2023 finalizó el proceso de evalución de los proyectos postulados al concurso Lukas para Emprender en las categorias Emprendimiento, Emprendimiento Rural, Mujer Pescadora Artesanal, y Empresa.</p>
+            <h1 style="font-weight:700;" class="mb-0 display-3 lh-1">GANADORES LUKAS PARA EMPRENDER 2024</h1>
+              <h4 class="alert-heading" style="font-weight:700;"></h4>
+              <p>Con fecha 04 de Julio del 2024 finalizó el proceso de evaluación de los proyectos postulados al concurso Lukas para Emprender en las categorias Emprendimiento, Emprendimiento Rural, Mujer Pescadora Artesanal, y Empresa.</p>
               <h5>
-                <a class="btn btn-success btn-lg w-50" href="<?= base_url('public/files/GANADORES_LUKASPARAEMPRENDER_2023.pdf?v=0.3'); ?>" class="text-decoration-none" target="_blank">
-                  <i class="fa-solid fa-eye"></i> VER AQUI
+                <a class="btn btn-success w-50" href="<?= base_url('public/files/docs/GANADORES_LUKASPARAEMPRENDER_2024.pdf?v=0.1'); ?>" class="text-decoration-none" target="_blank">
+                  <i class="fas fa-file-download"></i> Ver ganadores aquÍ
                 </a> 
               </h5>
             </div>
           </div>
         </div>
-        <div class="col-md-10">
-          <div class="alert alert-info m-0" role="alert" style="overflow:hidden;">
-            <div class="red_band d-none"><b>Cupos Limitados</b></div>
-            <h4 class="alert-heading" style="font-weight:700;">CHARLAS DE ACLARACIÓN DE BASES Y ORIENTACIÓN</h4>
-            <h4 style="font-weight:500;">del 16  al 29 de Abril entre las 10:00 y 17:00 hrs.</h4>
-            <hr>
-            <h5>
-              <small>Mayor información en las bases de postulación del concurso.</small>
-            </h5>
+
+        <!--
+        <div class="col-md-8 mb-3">
+          <div class="alert alert-success m-0" role="success">
+            <div class="position-absolute" style="width:220px;top:-80px;left:-50px;">
+              <img src="<?= base_url('public/img/exciting.svg');?>" class="w-100">
+            </div>
+            <div style="margin-left:170px;text-align:left;">
+              <div class="red_band d-none"><b>Cupos Limitados</b></div>
+              <h4 class="alert-heading" style="font-weight:700;">PRESELECCIONADOS LUKASPARAEMPRENDER 2024</h4>
+              <h5 style="font-weight:300;">Para acceder al listado <b>completo</b> de emprendimiento, emprendimiento rural y mujer pescadora artesanal y empresa, haz click en el siguiente botón:<br><br>
+                <a class="btn btn-success" href="<?= base_url('public/files/docs/PRESELECCIONADOS_LUKASPARAEMPRENDER_2024_2.pdf?v=2.0');?>" target="_blank"><b>Proyectos preseleccionados Lukas para Emprender 2024</b></a>
+              </h5>
+              <hr>
+              <small>
+                Para mayor información comunicarse a lukasparaemprender@puertomontt.cl
+              </small>
+            </div>
           </div>
         </div>
 
+        <div class="col-md-4">
+          <div class="alert alert-primary m-0" role="alert" style="overflow:hidden;">
+            <div class="red_band d-none"><b>Cupos Limitados</b></div>
+            <h4 class="alert-heading" style="font-weight:700;">LISTADO DE EVALUACIONES COMPLETA</h4>
+            <h5 style="font-weight:300;">
+              Para acceder al listado completo de evaluaciones del concurso, hacer click en el siguiente botón:<br><br>
+              <a class="btn btn-primary" href="<?= base_url('public/files/docs/EVALUACIONES_LUKASPARAEMPRENDER_2024.pdf?v=2.0');?>" target="_blank"><b>Evaluaciones por categoría</b></a>
+            </h5>
+            </div>
+        </div>
+  -->
       </div>
     </div>
 
@@ -133,7 +155,7 @@
     <div class="container my-5">
       <div class="row title text-center mb-3">
         <h1 class="display-3 passion-one-font fw-bold mb-0">¿Cómo postular?</h1>
-        <h5>Ver el <a href="#">video tutorial</a></h5>
+        <h5>Ver el <a href="#tutorial">video tutorial</a></h5>
       </div>
       <div class="row">
 
@@ -147,7 +169,7 @@
               <div class="col-md-10">
                 <div class="card-body">
                   <h5 class="card-title">Registrarse es obligatorio</h5>
-                  <p class="card-text">Debe crearse una cuenta <a class="text-decoration-none" href="<?= base_url('users/register'); ?>">click aquí</a> o iniciar sesion haciendo <a class="text-decoration-none" href="<?= base_url('users'); ?>">click aquí</a> de ya poseer una cuenta.
+                  <p class="card-text">Puede crearse una cuenta haciendo <a class="text-decoration-none" href="<?= base_url('users/register'); ?>">click aquí</a> o iniciar sesion haciendo <a class="text-decoration-none" href="<?= base_url('users'); ?>">click aquí</a> de ya poseer una.
                   </p>
                 </div>
               </div>
@@ -167,7 +189,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Leer bases del concurso</h5>
                   <p class="card-text">Lea detenidamente las bases del concurso, las puede descargar desde el siguiente link:</p>
-                  <a href="<?= base_url('public/files/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2024.pdf?v=0.1'); ?>" class="text-decoration-none" target="_blank"> <i class="fa-solid fa-download"></i> Bases del Concurso Lukas para Emprender 2024
+                  <a href="<?= base_url('public/files/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2024.pdf?v=0.3'); ?>" class="text-decoration-none" target="_blank"> <i class="fa-solid fa-download"></i> Bases del Concurso Lukas para Emprender 2024
                 </a>
                 </div>
               </div>
@@ -256,7 +278,7 @@
     <div class="row justify-content-center">
       <div class="col-md-7 text-center my-5">
         <h1 class="display-3 passion-one-font fw-bold mb-2">Tutorial 2024</h1>
-        <a class="popup-youtube_1 hvr-grow w-100 mb-5" href="https://www.youtube.com/watch?v=9p3fx9dl6sk">
+        <a class="popup-youtube_1 hvr-grow w-100 mb-5" href="https://www.youtube.com/watch?v=InEesG284CI">
           <i class="fas fa-play-circle play_yutu"></i>
           <img src="<?= base_url('public/img/back_video.png')?>" class="w-100 thumbnail" alt="">
         </a>
@@ -279,7 +301,7 @@
               información para dar inicio o fortalecer una actividad económica.
               <br><br>
               Continuando con el apoyo del Municipio a los microempresarios y emprendedores de la comuna,
-              este año corresponde a la <b>14va versión</b> del concurso “Lukas para Emprender” en convenio con la
+              este año corresponde a la <b>15ta versión</b> del concurso “Lukas para Emprender” en convenio con la
               Universidad de Los Lagos.
             </div>
             <div class="col-12 mt-3 mb-3">
@@ -334,7 +356,7 @@
           <p>Puede acercarse a nuestras oficinas ubicadas en:<br><b>Avda. Pdte. Ibáñez 600, 2do piso - Edificio Consistorial II</b>.<br><br>Comunicarse via correo electrónico a:<br> <b>lukasparaemprender@puertomontt.cl</b><br><b>lukasparaemprender@gmail.com</b><br><br>o directamente haciendo click en en botón a continuación.</p>
           <a class="btn btn-light text-primary mb-3" href="<?= base_url('home/help'); ?>"><i class="fa-solid fa-circle-question"></i> Contactar soporte</a>
         </div>
-        <div class="col-md-6">z
+        <div class="col-md-6">
           <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item bg-transparent border border-secondary rounded">
               <h2 class="accordion-header" id="flush-headingOne">
@@ -344,13 +366,7 @@
               </h2>
               <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                  Es un financiamiento No reembolsable, que se adjudica al postulante por medio de un proceso
-                  concursable para iniciar nuevos negocios y/o fortalecer los actuales.
-                  Por lo tanto, no se trata de un crédito, ya que el dinero entregado a los(as) ganadores no debe ser
-                  devuelto, pero sí, debe ser rendido íntegramente.
-                  Dicho financiamiento está destinado a fortalecer diferentes ámbitos de gestión de la microempresa, así
-                  como al ingreso de nuevos mercados y/o consolidación en los actuales mercados, que presenten reales
-                  oportunidades de negocios a microempresas de la Comuna de Puerto Montt.
+                Es un financiamiento <b>no reembolsable</b>, que se adjudica al postulante (Persona Natural o Persona Jurídica) por medio de un proceso concursable, destinado a fortalecer emprendimientos, negocios, microempresas permitiendo aumentar su productividad y/o mejorar la calidad de los productos como también servicios. No se trata de un crédito ya que el dinero entregado a los(as) ganadores(as) no debe ser devuelto, pero sí debe ser rendido íntegramente de acuerdo al procedimiento establecido para dichos fines.
                 </div>
               </div>
             </div>

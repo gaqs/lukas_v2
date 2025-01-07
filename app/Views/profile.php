@@ -8,11 +8,6 @@
                      <div class="card-body text-center">
                         <?php if (!empty($surveys)) { ?>
                            <h3 class="card-title pt-4">Mis Postulaciones</h3>
-                           <h6>
-                              <a href="<?= base_url('public/files/concursos/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2023.pdf?v=0.1'); ?>" class="mb-3 ms-3 text-decoration-none" target="_blank">
-                                 <i class="fa-solid fa-download"></i> Descargar aquí las bases del Concurso
-                              </a>
-                           </h6>
                            <div class="card-text px-2">
                               <div class="table-responsive">
                                  <table class="table align-middle mt-3">
@@ -64,7 +59,7 @@
                               Para entrar al concurso, lea detenidamente las bases, luego, haga click en el botón <i>postular aquí</i> para seleccionar la categoría a la cual quiera postular.
                            </p>
                            <p style="font-weight:500;">
-                              <a href="<?= base_url('public/files/concursos/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2023.pdf?v=0.1'); ?>" class="mb-3 ms-3 text-decoration-none" target="_blank">
+                              <a href="<?= base_url('public/files/docs/FONDO_CONCURSABLE_LUKASPARAEMPRENDER_2024.pdf?v=0.3'); ?>" class="mb-3 ms-3 text-decoration-none" target="_blank">
                                  <i class="fa-solid fa-download"></i> Descargar aquí las bases del Concurso
                               </a>
                            </p>

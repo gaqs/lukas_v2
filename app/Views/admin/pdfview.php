@@ -69,7 +69,7 @@
                     </thead>
                     <tbody>';
           $sum = 0;
-          for ($k = 1; $k < 11; $k++) {
+          for ($k = 1; $k < 9; $k++) {
             $sum = $sum + (int)$jt[$k]->c_3;
             echo '<tr>
                     <td contenteditable="true">' . (isset($jt[$k]->c_0) ? $jt[$k]->c_0 : null) . '&nbsp;</td>

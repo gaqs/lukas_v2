@@ -18,18 +18,27 @@ function email_valdiation($email) {
 
 function manage_files( $form_section, $array, $key_name, $directory_path ){
   $file = $array[$key_name];
-
+  $errors = [];
   for ($i=0; $i < count($file); $i++) {
     if ( $file[$i]->getSize() != 0 ) {
-        array_map('unlink', glob( $directory_path . $form_section.'_'.$i.'_'.$key_name.'.*' ));
-        $oname = $file[$i]->getName(); //estar atento
-        $ext = pathinfo( $oname, PATHINFO_EXTENSION );
-        $name = $form_section.'_'.$i.'_'.$key_name.'.'.$ext;
-        //nombre: [seccion]_[numero archivo]_comp.[extension]
-        //old function $file[$i]->guessExtension()
+      array_map('unlink', glob( $directory_path . $form_section.'_'.$i.'_'.$key_name.'.*' ));
+      $oname = $file[$i]->getName();
+      $ext = pathinfo( $oname, PATHINFO_EXTENSION );
+      $name = $form_section.'_'.$i.'_'.$key_name.'.'.$ext; //nombre: [seccion]_[numero archivo]_comp.[extension]
+      try {
         $file[$i]->move($directory_path, $name);
+      } catch (\Throwable $th) {
+        $errors[] = $th->getMessage();
+      }
     }
   }
+
+  if(!empty($errors)){
+    return false;
+  }else{
+    return true;
+  }
+
 }
 
 function reorder_answers($query)
@@ -50,7 +59,7 @@ function surveys_list(){
   $data = $db->table('surveys')->get()->getResultArray();
   $survey_list = '';
 
-  for ($i=5; $i < count($data); $i++) {
+  for ($i=0; $i < count($data); $i++) {
     $survey_list .= '<a class="nav-link" href="'.base_url('admin/forms?survey_id=').$data[$i]['id'].'">'.($i+1).'. '.$data[$i]['name'].'</a>';
   }
   return $survey_list;

@@ -131,3 +131,4 @@ nb-configuration.xml
 
 #extras
 public/files/usuarios/
+public/files/docs/*

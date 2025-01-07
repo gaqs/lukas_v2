@@ -9,6 +9,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-Frame-Options" content="allow-from https://www.youtube.com/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="<?= csrf_hash(); ?>" >
 
     <!-- Primary Meta Tags -->
     <title>Luka$ para Emprender</title>

@@ -131,7 +131,7 @@
       <small></small>
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
-    <div class="toast-body">
+    <div class="toast-body text-center">
       Hello, world! This is a toast message.
     </div>
   </div>
@@ -154,6 +154,7 @@
 
   $(document).ready(function () {
     var url = '<?= base_url(); ?>';
+    var _token = $('meta[name="csrf-token"]').attr('content');
 
     favloader.init({
       size: 16,
@@ -221,17 +222,21 @@
       event.preventDefault();
       var button = $(this).val();
       var send = false;
+
       //verifica que no haya inputs text y textarea vacios
       const fields = document.querySelectorAll("#form input[type=text]:not(.optional), #form select, #form textarea:not(.d-none)");
       const emptyInputs = Array.from(fields).filter(input => input.value == "");
+
       //verifica que esten todos los archivos, o si falta uno que al menos tenga un archivo compatible
       const files = document.querySelectorAll("#form input[name='file[]']:not(.optional)");
       const emptyFiles = Array.from(files).filter(
         input => input.classList[2] != "d-none" && input.value == "" && input.classList != "optional"
       ); 
-      if (emptyInputs.length === 0 && emptyFiles.length == 0) {
+
+      if (emptyInputs.length == 0 && emptyFiles.length == 0) {
         send = true;
       }
+
       var formData = new FormData($('#form')[0]);
       formData.append('send', send);
       formData.append('button', button);
@@ -264,18 +269,28 @@
 
     //borrar archivos dentro del formulario
     $('body').on('click', '#delete_file', function () {
-      $(this).parents('#uploadedFile').addClass('d-none');
-      $(this).parents('#uploadedFile').next('#formFile').removeClass('d-none').val('');
 
-      var survey_id = $('input[name="survey_id"]').val();
-      var file_name = $(this).val();
+      var confirm = window.confirm('¿Está seguro que desea borrar el archivo?');
 
-      $.ajax({
-        url: url + "/home/delete_file",
-        type: "POST",
-        data: "survey_id=" + survey_id + "&file_name=" + file_name,
-        success: function (html) { }
-      });
+      if( confirm ){
+
+        $(this).parents('#uploadedFile').addClass('d-none');
+        $(this).parents('#uploadedFile').next('#formFile').removeClass('d-none').val('');
+
+        var survey_id = $('input[name="survey_id"]').val();
+        var file_name = $(this).val();
+
+        $.ajax({
+          url: url + "/home/delete_file",
+          type: "POST",
+          data: "survey_id=" + survey_id + "&file_name=" + file_name,
+          headers: { 'X-CSRF-TOKEN': _token },
+          success: function (html) { 
+            location.reload();
+          }
+        });
+      }
+
     });
 
     $('body').on('click', '#update_password', function () {

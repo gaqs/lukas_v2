@@ -9,6 +9,10 @@
       <input class="form-check-input" type="radio" name="status" id="radio2" value="1" <?= $status == 1 ? 'checked':null; ?> >
       <label class="form-check-label" for="radio2"> Guardado</label>
     </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="status" id="radio3" value="4" <?= $status == 4 ? 'checked':null; ?> >
+      <label class="form-check-label" for="radio3"> Eliminado</label>
+    </div>
   </div>
 </div>
 
@@ -81,10 +85,10 @@ for ($i=0; $i < count($formulario); $i++) {
         echo '<div class="mb-4">
             <label for="textarea_cuestionario_' . $count . '" class="form-label label_questions">
             ' . ($count + 1) . '.- ' . $key->pregunta . '
-              <i tabindex=0 class="fa-solid fa-circle-question help_icon" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-custom-class="custom_popover" data-bs-html="true" data-bs-content="<b>Ejemplo.</b> ' . $key->ejemplo . '"></i>
-              <span class="letter_count">2000</span>
+              <i tabindex=0 class="fa-solid fa-circle-question help_icon d-none" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-custom-class="custom_popover" data-bs-html="true" data-bs-content="<b>Ejemplo.</b> ' . $key->ejemplo . '"></i>
+              <span class="letter_count d-none">3000</span>
             </label>
-            <textarea class="form-control mb-3 textarea_cuestionario" id="textarea_cuestionario_' . $count . '" rows="5" data-limit=2000 name="data[1][' . $count . ']">' . ($answers[1][$count] ?? null) . '</textarea>
+            <textarea class="form-control mb-3 textarea_cuestionario" id="textarea_cuestionario_' . $count . '" rows="5" data-limit=3000 name="data[1][' . $count . ']">' . ($answers[1][$count] ?? null) . '</textarea>
           </div>';
 
       }
@@ -95,7 +99,7 @@ for ($i=0; $i < count($formulario); $i++) {
         echo '<div class="mb-4">
               <label for="textarea_cuestionario_' . $count . '" class="form-label label_questions">
               ' . ($count + 1) . '.- ' . $key->tabla . '
-                <i tabindex=0 class="fa-solid fa-circle-question help_icon" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-custom-class="custom_popover" data-bs-html="true" data-bs-content="<b>Ejemplo.</b> ' . $key->ejemplo . '"></i>
+                <i tabindex=0 class="fa-solid fa-circle-question help_icon d-none" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-custom-class="custom_popover" data-bs-html="true" data-bs-content="<b>Ejemplo.</b> ' . $key->ejemplo . '"></i>
               </label>
               <table border="1" width="100%" class="table table-bordered" id="cotizacion" name="cotizacion">
                 <thead>
@@ -200,6 +204,5 @@ if( isset($validation) ){
 
 </form>
 <script type="text/javascript">
-var survey_id = $('#survey_id').val();
-
+  var survey_id = $('#survey_id').val();
 </script>

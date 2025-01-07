@@ -14,18 +14,21 @@ class Admin extends BaseController
     {
       $data = [];
       $model = new SurveysModel();
-      $data['surveys'] = $model->find([1,2,3]);
+      $data['surveys'] = $model->find([1,2,3,4]);
 
       $db = db_connect();
       $builder = $db->table('users');
       $data['users'] = $builder->countAll('rut');
 
       $builder2 = $db->table('users_surveys');
-      $data['user_surveys'] = $builder2->countAll('id');
+      $data['user_surveys'] = $builder2->where('results_id', '1')
+                                      ->orWhere('results_id', '2')
+                                      ->where('surveys_id !=', '0')->countAllResults();
 
       $builder3 = $db->table('users_surveys');
       $data['sended'] = $builder3->where('results_id', '2')
-                                 ->countAllResults();
+                                  ->where('surveys_id !=', '0')
+                                  ->countAllResults();
 
       echo view('admin/header');
       echo view('admin/navbar');
@@ -134,7 +137,7 @@ class Admin extends BaseController
                   ->join('users_surveys us', 'u.id = us.user_id')
                   ->where('us.id', $data['user_survey_id'])
                   ->get()->getResultArray();
-
+                  
       $data['user']       = $query[0];
       $data['survey_id']  = $data['user']['surveys_id'];
 
@@ -143,7 +146,7 @@ class Admin extends BaseController
 
       if( $this->request->getMethod() == 'get' ){
 
-        $data['status'] = $user_survey->where('id', $data['user_survey_id'])->findColumn('results_id')[0];
+        $data['status'] = $user_survey->where('id', $data['user_survey_id'])->withDeleted()->findColumn('results_id')[0];
 
         $data['content'] = file_get_contents( $form_directory . $data['user']['surveys_id'].'.json' );
 
@@ -250,6 +253,7 @@ class Admin extends BaseController
           'sector'         => $this->request->getVar('sector'),
           'phone'          => $this->request->getVar('phone'),
           'fix_phone'      => $this->request->getVar('fix_phone'),
+          'email'          => $this->request->getVar('email'),
           'optional_email' => $this->request->getVar('optional_email'),
           'id_native'       => $this->request->getVar('id_native'),
           'agrupation'      => $this->request->getVar('agrupation'),
@@ -299,7 +303,6 @@ class Admin extends BaseController
     public function admins()
     {
       $data = [];
-      $admin_model = new AdminModel();
       $db = db_connect();
       $data['admin'] = $db->table('administrators')
                           ->get()->getResultArray();
@@ -390,8 +393,8 @@ class Admin extends BaseController
       }
     }
     
-    public function review_form(){ //solo emprendimiento
-      $id_form = 9;
+    public function review_form(){ //solo emprendimientos
+      $id_form = 1;
 
       $db = db_connect();
       $users = $db->table('users as u')
@@ -415,7 +418,7 @@ class Admin extends BaseController
           $clean[] = $name;
       }
 
-      $obligatory = array('2_0_file','2_1_file','2_2_file','2_3_file');
+      $obligatory = array('1_0_comp','2_0_file','2_1_file','2_3_file');
       if(count(array_intersect($obligatory, $clean)) == count($obligatory)){
         //var_dump($clean);
         $todos_archivos = true;

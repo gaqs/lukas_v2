@@ -247,10 +247,9 @@ left: -60px;
   position: absolute;
   color: white;
   background: #dc3545;
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-align: center;
-  //transform: rotate(-45deg);
-  //padding: 10px;
+  padding: 2px;
   //top: 220px;
   left: 0;
 }
